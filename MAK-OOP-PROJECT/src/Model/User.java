@@ -24,6 +24,10 @@ public class User implements Comparable<User>, Serializable, Cloneable {
     
     public User() {}
     
+    public void s() {
+    	
+    }
+    
     
 
 	public User(String firstName, String lastName, Date birthDate, String id, String login, String phoneNumber,
