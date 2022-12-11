@@ -1,38 +1,7 @@
-package MAK-project21;
+package Controller;
 
 
-/**
-* @generated
-*/
 public class ScheduleControl {
-    
-    /**
-    * @generated
-    */
-    private  updateLesson;
-    
-    
-    
 
-    /**
-    * @generated
-    */
-    public  getUpdateLesson() {
-        return this.updateLesson;
-    }
-    
-    /**
-    * @generated
-    */
-    public  setUpdateLesson(invalid updateLesson) {
-        this.updateLesson = updateLesson;
-    }
-    
-    
-    
-    
-
-    //                          Operations                                  
-    
     
 }

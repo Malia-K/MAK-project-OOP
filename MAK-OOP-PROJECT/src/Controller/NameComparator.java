@@ -1,26 +1,10 @@
-package MAK-project21;
+package Controller;
 
+import java.util.Comparator;
 
-/**
-* @generated
-*/
 public class NameComparator implements Comparator {
-    
-    
-    
-
-    
-    
-
-    //                          Operations                                  
-    
-    /**
-    * @generated
-    */
-    public int compare() {
-        //TODO
-        return 0;
-    }
-    
-    
+	public int compare(Object o1, Object o2) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

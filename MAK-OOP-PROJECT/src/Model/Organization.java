@@ -1,157 +1,59 @@
-package MAK-project21;
+package Model;
 
+import java.util.Date;
+import java.util.Set;
+import java.util.Vector;
 
-/**
-* @generated
-*/
+import enums.Faculty;
+
 public class Organization {
-    
-    /**
-    * @generated
-    */
     private String name;
-    
-    /**
-    * @generated
-    */
     private String description;
-    
-    /**
-    * @generated
-    */
     private Student head;
-    
-    /**
-    * @generated
-    */
     private Vector<Student> members;
-    
-    /**
-    * @generated
-    */
     private Date dateOfCreation;
-    
-    /**
-    * @generated
-    */
     private Faculty faculty;
-    
-    
-    /**
-    * @generated
-    */
     private Set<Student> student;
     
-    
-
-    /**
-    * @generated
-    */
-    private String getName() {
+  
+    public String getName() {
         return this.name;
     }
-    
-    /**
-    * @generated
-    */
-    private String setName(String name) {
+
+    public void setName(String name) {
         this.name = name;
     }
     
-    
-    /**
-    * @generated
-    */
-    private String getDescription() {
+    public String getDescription() {
         return this.description;
     }
-    
-    /**
-    * @generated
-    */
-    private String setDescription(String description) {
+
+    public void setDescription(String description) {
         this.description = description;
     }
-    
-    
-    /**
-    * @generated
-    */
-    private Student getHead() {
+
+    public Student getHead() {
         return this.head;
     }
     
-    /**
-    * @generated
-    */
-    private Student setHead(Student head) {
+    public void setHead(Student head) {
         this.head = head;
     }
-    
-    
-    /**
-    * @generated
-    */
-    private Vector<Student> getMembers() {
+
+    public Vector<Student> getMembers() {
         return this.members;
     }
     
-    /**
-    * @generated
-    */
-    private Vector<Student> setMembers(Vector<Student> members) {
-        this.members = members;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private Date getDateOfCreation() {
+    public Date getDateOfCreation() {
         return this.dateOfCreation;
     }
-    
-    /**
-    * @generated
-    */
-    private Date setDateOfCreation(Date dateOfCreation) {
+
+    public void setDateOfCreation(Date dateOfCreation) {
         this.dateOfCreation = dateOfCreation;
     }
     
-    
-    /**
-    * @generated
-    */
-    private Faculty getFaculty() {
+    public Faculty getFaculty() {
         return this.faculty;
     }
-    
-    /**
-    * @generated
-    */
-    private Faculty setFaculty(Faculty faculty) {
-        this.faculty = faculty;
-    }
-    
-    
-    
-    /**
-    * @generated
-    */
-    public Set<Student> getStudent() {
-        if (this.student == null) {
-            this.student = new HashSet<Student>();
-        }
-        return this.student;
-    }
-    
-    /**
-    * @generated
-    */
-    public Set<Student> setStudent(Student student) {
-        this.student = student;
-    }
-    
-    
-    
+
 }

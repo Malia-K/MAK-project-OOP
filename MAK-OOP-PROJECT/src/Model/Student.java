@@ -1,6 +1,7 @@
 package Model;
 
 import java.util.Vector;
+import enums.*;
 
 public class Student extends User {
 
@@ -10,39 +11,32 @@ public class Student extends User {
     private int yearOfStudy;
     private Organization organization;
     private int creditsTaken;
-    private int maxAllowedCredits;
+    private static final int maxAllowedCredits;
     private Vector <Schedule> schedules;
     private Vector<Transcript> transcript;
     private Database database;
-    private Schedule schedule;
+    private Schedule schedule; 
     
-    
-    
+    static {
+    	maxAllowedCredits = 21;
+    }
     
     public Student() {}
     
 
 	public Student(Faculty faculty, Degree degree, int yearOfStudy, Organization organization, int creditsTaken,
-			int maxAllowedCredits, Vector<Schedule> schedules, Vector<Transcript> transcript, Database database,
+			Vector<Schedule> schedules, Vector<Transcript> transcript, Database database,
 			Schedule schedule) {
 		this.faculty = faculty;
 		this.degree = degree;
 		this.yearOfStudy = yearOfStudy;
 		this.organization = organization;
 		this.creditsTaken = creditsTaken;
-		this.maxAllowedCredits = maxAllowedCredits;
 		this.schedules = schedules;
 		this.transcript = transcript;
 		this.database = database;
 		this.schedule = schedule;
 	}
-
-
-
-	public Student(int maxAllowedCredits) {
-        this.maxAllowedCredits = maxAllowedCredits;
-    }
-
 
 	public Faculty getFaculty() {
 		return faculty;
@@ -97,12 +91,6 @@ public class Student extends User {
 	public int getMaxAllowedCredits() {
 		return maxAllowedCredits;
 	}
-
-
-	public void setMaxAllowedCredits(int maxAllowedCredits) {
-		this.maxAllowedCredits = maxAllowedCredits;
-	}
-
 
 	public Vector<Schedule> getSchedules() {
 		return schedules;

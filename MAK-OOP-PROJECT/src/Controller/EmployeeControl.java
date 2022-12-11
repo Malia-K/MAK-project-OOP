@@ -1,38 +1,16 @@
-package MAK-project21;
+package Controller;
 
+import Model.Employee;
 
-/**
-* @generated
-*/
 public class EmployeeControl extends UserControl {
-    
-    /**
-    * @generated
-    */
     private Employee employee;
     
-    
-    
 
-    /**
-    * @generated
-    */
     public Employee getEmployee() {
         return this.employee;
     }
-    
-    /**
-    * @generated
-    */
-    public Employee setEmployee(Employee employee) {
+
+    public void setEmployee(Employee employee) {
         this.employee = employee;
     }
-    
-    
-    
-    
-
-    //                          Operations                                  
-    
-    
 }

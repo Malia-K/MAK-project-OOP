@@ -1,141 +1,42 @@
-package MAK-project21;
+package Model;
 
-
-/**
-* @generated
-*/
 public class Mark {
-    
-    /**
-    * @generated
-    */
     private double firstAttestation;
-    
-    /**
-    * @generated
-    */
     private double secondAttestation;
-    
-    /**
-    * @generated
-    */
-    private double final;
-    
-    /**
-    * @generated
-    */
-    private  mark;
-    
-    /**
-    * @generated
-    */
+    private double finalExam;
+    private String mark;
     private double gpa ;
     
-    
-    /**
-    * @generated
-    */
-    private Set<RegisteredCourse> registeredCourse;
-    
-    
-
-    /**
-    * @generated
-    */
-    private double getFirstAttestation() {
+    public double getFirstAttestation() {
         return this.firstAttestation;
     }
-    
-    /**
-    * @generated
-    */
-    private double setFirstAttestation(Real firstAttestation) {
+
+    public void setFirstAttestation(double firstAttestation) {
         this.firstAttestation = firstAttestation;
     }
     
-    
-    /**
-    * @generated
-    */
-    private double getSecondAttestation() {
+    public double getSecondAttestation() {
         return this.secondAttestation;
     }
     
-    /**
-    * @generated
-    */
-    private double setSecondAttestation(Real secondAttestation) {
+    public void setSecondAttestation(double secondAttestation) {
         this.secondAttestation = secondAttestation;
     }
-    
-    
-    /**
-    * @generated
-    */
-    private double getFinal() {
-        return this.final;
+
+    public double getFinal() {
+        return this.finalExam;
     }
-    
-    /**
-    * @generated
-    */
-    private double setFinal(Real final) {
-        this.final = final;
+
+    public void setFinal(double finalExam) {
+        this.finalExam = finalExam;
     }
     
     
-    /**
-    * @generated
-    */
-    private  getMark() {
+    public String getMark() {
         return this.mark;
     }
-    
-    /**
-    * @generated
-    */
-    private  setMark(invalid mark) {
-        this.mark = mark;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private double getGpa () {
-        return this.gpa ;
-    }
-    
-    /**
-    * @generated
-    */
-    private double setGpa (Real gpa ) {
-        this.gpa  = gpa ;
-    }
-    
-    
-    
-    /**
-    * @generated
-    */
-    public Set<RegisteredCourse> getRegisteredCourse() {
-        if (this.registeredCourse == null) {
-            this.registeredCourse = new HashSet<RegisteredCourse>();
-        }
-        return this.registeredCourse;
-    }
-    
-    /**
-    * @generated
-    */
-    public Set<RegisteredCourse> setRegisteredCourse(RegisteredCourse registeredCourse) {
-        this.registeredCourse = registeredCourse;
-    }
-    
-    
-    
 
-    //                          Operations                                  
-    
-    
+    public double getGpa() {
+        return this.gpa ;
+    } 
 }

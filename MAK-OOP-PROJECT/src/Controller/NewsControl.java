@@ -1,18 +1,6 @@
-package MAK-project21;
+package Controller;
 
 
-/**
-* @generated
-*/
 public class NewsControl {
-    
-    
-    
 
-    
-    
-
-    //                          Operations                                  
-    
-    
 }

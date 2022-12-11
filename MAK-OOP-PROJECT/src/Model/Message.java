@@ -1,137 +1,43 @@
-package MAK-project21;
+package Model;
 
+import java.sql.Date;
 
-/**
-* @generated
-*/
 public class Message {
-    
-    /**
-    * @generated
-    */
     private Employee sender;
-    
-    /**
-    * @generated
-    */
-    private  attribute;
-    
-    /**
-    * @generated
-    */
     private Employee recipient;
-    
-    /**
-    * @generated
-    */
     private String message;
-    
-    /**
-    * @generated
-    */
     private Date sendTime;
     
     
-    /**
-    * @generated
-    */
-    private Set<Employee> employee;
-    
-    
-
-    /**
-    * @generated
-    */
-    private Employee getSender() {
+    public Employee getSender() {
         return this.sender;
     }
     
-    /**
-    * @generated
-    */
-    private Employee setSender(Employee sender) {
+    public void setSender(Employee sender) {
         this.sender = sender;
     }
     
-    
-    /**
-    * @generated
-    */
-    public  getAttribute() {
-        return this.attribute;
-    }
-    
-    /**
-    * @generated
-    */
-    public  setAttribute(invalid attribute) {
-        this.attribute = attribute;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private Employee getRecipient() {
+    public Employee getRecipient() {
         return this.recipient;
     }
-    
-    /**
-    * @generated
-    */
-    private Employee setRecipient(Employee recipient) {
+
+    public void setRecipient(Employee recipient) {
         this.recipient = recipient;
     }
     
-    
-    /**
-    * @generated
-    */
-    private String getMessage() {
+    public String getMessage() {
         return this.message;
     }
-    
-    /**
-    * @generated
-    */
-    private String setMessage(String message) {
+
+    public void setMessage(String message) {
         this.message = message;
     }
     
-    
-    /**
-    * @generated
-    */
-    private Date getSendTime() {
+    public Date getSendTime() {
         return this.sendTime;
     }
-    
-    /**
-    * @generated
-    */
-    private Date setSendTime(Date sendTime) {
+
+    public void setSendTime(Date sendTime) {
         this.sendTime = sendTime;
     }
-    
-    
-    
-    /**
-    * @generated
-    */
-    public Set<Employee> getEmployee() {
-        if (this.employee == null) {
-            this.employee = new HashSet<Employee>();
-        }
-        return this.employee;
-    }
-    
-    /**
-    * @generated
-    */
-    public Set<Employee> setEmployee(Employee employee) {
-        this.employee = employee;
-    }
-    
-    
-    
 }

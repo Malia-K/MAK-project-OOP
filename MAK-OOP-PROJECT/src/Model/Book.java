@@ -1,69 +1,28 @@
 package Model;
-public class Book {
-    
-    /**
-    * @generated
-    */
-    private String name;
-    
-    /**
-    * @generated
-    */
-    private String autor;
-    
-    
-    /**
-    * @generated
-    */
-    private Database database;
-    
-    
 
-    /**
-    * @generated
-    */
-    private String getName() {
+public class Book {
+	private String name;
+	private String author;
+    
+	public Book() {}
+
+    public String getName() {
         return this.name;
     }
-    
-    /**
-    * @generated
-    */
-    private String setName(String name) {
+
+    public void setName(String name) {
         this.name = name;
     }
     
-    
-    /**
-    * @generated
-    */
-    private String getAutor() {
-        return this.autor;
+    public String getAuthor() {
+        return this.author;
     }
     
-    /**
-    * @generated
-    */
-    private String setAutor(String autor) {
-        this.autor = autor;
+    public void setAuthor(String author) {
+        this.author = author;
+    }  
+    
+    public String toString() {
+    	return "book name: " + name + "\nbook author: " + author;
     }
-    
-    
-    
-    /**
-    * @generated
-    */
-    public Database getDatabase() {
-        return this.database;
-    }
-    
-    /**
-    * @generated
-    */
-    public Database setDatabase(Database database) {
-        this.database = database;
-    }
-    
-    
-    
 }

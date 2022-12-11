@@ -1,38 +1,13 @@
-package MAK-project21;
+package Controller;
 
+import Model.Student;
 
-/**
-* @generated
-*/
-public class StudentControl extends UserControl implements canSeeOrganizations, canViewCourses, canMakeRequest, viewCourseData, hasSchedule {
-    
-    /**
-    * @generated
-    */
+public class StudentControl extends UserControl /*implements canSeeOrganizations, canViewCourses, canMakeRequest, viewCourseData, hasSchedule*/ {
     private Student student;
     
-    
-    
 
-    /**
-    * @generated
-    */
     public Student getStudent() {
         return this.student;
     }
-    
-    /**
-    * @generated
-    */
-    public Student setStudent(Student student) {
-        this.student = student;
-    }
-    
-    
-    
-    
-
-    //                          Operations                                  
-    
     
 }

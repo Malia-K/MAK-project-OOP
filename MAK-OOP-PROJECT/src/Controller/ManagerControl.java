@@ -1,38 +1,15 @@
-package MAK-project21;
+package Controller;
 
+import Model.Manager;
 
-/**
-* @generated
-*/
-public class ManagerControl extends EmployeeControl implements canSeeOrganizations, canViewCourses, canMakeReport {
-    
-    /**
-    * @generated
-    */
+public class ManagerControl extends EmployeeControl /*implements canSeeOrganizations, canViewCourses, canMakeReport*/ {
     private Manager manager;
     
-    
-    
-
-    /**
-    * @generated
-    */
     public Manager getManager() {
         return this.manager;
     }
     
-    /**
-    * @generated
-    */
-    public Manager setManager(Manager manager) {
+    public void setManager(Manager manager) {
         this.manager = manager;
-    }
-    
-    
-    
-    
-
-    //                          Operations                                  
-    
-    
+    } 
 }

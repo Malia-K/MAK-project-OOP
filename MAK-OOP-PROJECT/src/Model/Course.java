@@ -1,154 +1,66 @@
-package MAK-project21;
+package Model;
 
+import enums.*;
 
-/**
-* @generated
-*/
 public class Course {
-    
-    /**
-    * @generated
-    */
-    private String id;
-    
-    /**
-    * @generated
-    */
+	private String id;
     private String name;
-    
-    /**
-    * @generated
-    */
-    private int credits ;
-    
-    /**
-    * @generated
-    */
+    private int credits;
     private Faculty faculty;
-    
-    /**
-    * @generated
-    */
-    private  formula;
-    
-    /**
-    * @generated
-    */
+    private int formula[];
     private Course prerequisite;
     
+    {
+    	formula = new int[3];
+    }
     
-    /**
-    * @generated
-    */
-    private Database database;
+    public Course() {}
     
-    
-
-    /**
-    * @generated
-    */
-    private String getId() {
+    public String getId() {
         return this.id;
     }
     
-    /**
-    * @generated
-    */
-    private String setId(String id) {
+    public void setId(String id) {
         this.id = id;
     }
-    
-    
-    /**
-    * @generated
-    */
-    private String getName() {
+
+    public String getName() {
         return this.name;
     }
     
-    /**
-    * @generated
-    */
-    private String setName(String name) {
+    public void setName(String name) {
         this.name = name;
     }
-    
-    
-    /**
-    * @generated
-    */
-    private int getCredits () {
+
+    public int getCredits() {
         return this.credits ;
     }
-    
-    /**
-    * @generated
-    */
-    private int setCredits (Integer credits ) {
+
+    public void setCredits (Integer credits ) {
         this.credits  = credits ;
     }
-    
-    
-    /**
-    * @generated
-    */
-    private Faculty getFaculty() {
+
+    public Faculty getFaculty() {
         return this.faculty;
     }
     
-    /**
-    * @generated
-    */
-    private Faculty setFaculty(Faculty faculty) {
+    public void setFaculty(Faculty faculty) {
         this.faculty = faculty;
     }
-    
-    
-    /**
-    * @generated
-    */
-    private  getFormula() {
+
+    public int[] getFormula() {
         return this.formula;
     }
-    
-    /**
-    * @generated
-    */
-    private  setFormula(invalid formula) {
+
+    public void setFormula(int[] formula) {
         this.formula = formula;
     }
-    
-    
-    /**
-    * @generated
-    */
-    private Course getPrerequisite() {
+
+    public Course getPrerequisite() {
         return this.prerequisite;
     }
-    
-    /**
-    * @generated
-    */
-    private Course setPrerequisite(Course prerequisite) {
+
+    public void setPrerequisite(Course prerequisite) {
         this.prerequisite = prerequisite;
-    }
-    
-    
-    
-    /**
-    * @generated
-    */
-    public Database getDatabase() {
-        return this.database;
-    }
-    
-    /**
-    * @generated
-    */
-    public Database setDatabase(Database database) {
-        this.database = database;
-    }
-    
-    
-    
+    }   
 }

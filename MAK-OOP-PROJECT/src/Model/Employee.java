@@ -3,16 +3,11 @@ package Model;
 import java.util.Vector;
 
 public class Employee extends User {
-    private static final long serialVersionUID = 1L;
-    
-    
-    
+    private static final long serialVersionUID = 1L; 
 	private int experience;
     private Vector<Message> messages;
     private Database database;
     
-    
-
     public int getExperience() {
 		return experience;
 	}
@@ -29,14 +24,4 @@ public class Employee extends User {
 		this.messages = messages;
 	}
 
-	public Database getDatabase() {
-        return this.database;
-    }
-
-    public Database setDatabase(Database database) {
-        this.database = database;
-    }
-    
-    
-    
 }
