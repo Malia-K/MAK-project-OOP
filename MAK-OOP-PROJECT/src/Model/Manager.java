@@ -1,4 +1,4 @@
-package MAK-project21;
+package Model;
 
 
 /**
