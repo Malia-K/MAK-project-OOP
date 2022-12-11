@@ -1,311 +1,151 @@
+package Model;
+
+import java.util.Vector;
 
 public class Student extends User {
-    
-    /**
-    * @generated
-    */
-    private Faculty faculty;
-    
-    /**
-    * @generated
-    */
-    private Degree degree ;
-    
-    /**
-    * @generated
-    */
-    private int yearOfStudy;
-    
-    /**
-    * @generated
-    */
-    private Faculty faculty;
-    
-    /**
-    * @generated
-    */
+
+    private static final long serialVersionUID = 1L;
+	private Faculty faculty;
     private Degree degree;
-    
-    /**
-    * @generated
-    */
     private int yearOfStudy;
-    
-    /**
-    * @generated
-    */
     private Organization organization;
-    
-    /**
-    * @generated
-    */
     private int creditsTaken;
-    
-    /**
-    * @generated
-    */
     private int maxAllowedCredits;
-    
-    /**
-    * @generated
-    */
     private Vector <Schedule> schedules;
-    
-    /**
-    * @generated
-    */
     private Vector<Transcript> transcript;
-    
-    
-    /**
-    * @generated
-    */
-    private Set<Transcript> transcript;
-    
-    /**
-    * @generated
-    */
     private Database database;
-    
-    /**
-    * @generated
-    */
-    private Organization organization;
-    
-    /**
-    * @generated
-    */
     private Schedule schedule;
     
     
-    /**
-     * @generated
-     */
-    public Student(int maxAllowedCredits) {
-        this.maxAllowedCredits = maxAllowedCredits;
-    }
+    
+    
+    public Student() {}
     
 
-    /**
-    * @generated
-    */
-    public Faculty getFaculty() {
-        return this.faculty;
+	public Student(Faculty faculty, Degree degree, int yearOfStudy, Organization organization, int creditsTaken,
+			int maxAllowedCredits, Vector<Schedule> schedules, Vector<Transcript> transcript, Database database,
+			Schedule schedule) {
+		this.faculty = faculty;
+		this.degree = degree;
+		this.yearOfStudy = yearOfStudy;
+		this.organization = organization;
+		this.creditsTaken = creditsTaken;
+		this.maxAllowedCredits = maxAllowedCredits;
+		this.schedules = schedules;
+		this.transcript = transcript;
+		this.database = database;
+		this.schedule = schedule;
+	}
+
+
+
+	public Student(int maxAllowedCredits) {
+        this.maxAllowedCredits = maxAllowedCredits;
     }
+
+
+	public Faculty getFaculty() {
+		return faculty;
+	}
+
+
+	public void setFaculty(Faculty faculty) {
+		this.faculty = faculty;
+	}
+
+
+	public Degree getDegree() {
+		return degree;
+	}
+
+
+	public void setDegree(Degree degree) {
+		this.degree = degree;
+	}
+
+
+	public int getYearOfStudy() {
+		return yearOfStudy;
+	}
+
+
+	public void setYearOfStudy(int yearOfStudy) {
+		this.yearOfStudy = yearOfStudy;
+	}
+
+
+	public Organization getOrganization() {
+		return organization;
+	}
+
+
+	public void setOrganization(Organization organization) {
+		this.organization = organization;
+	}
+
+
+	public int getCreditsTaken() {
+		return creditsTaken;
+	}
+
+
+	public void setCreditsTaken(int creditsTaken) {
+		this.creditsTaken = creditsTaken;
+	}
+
+
+	public int getMaxAllowedCredits() {
+		return maxAllowedCredits;
+	}
+
+
+	public void setMaxAllowedCredits(int maxAllowedCredits) {
+		this.maxAllowedCredits = maxAllowedCredits;
+	}
+
+
+	public Vector<Schedule> getSchedules() {
+		return schedules;
+	}
+
+
+	public void setSchedules(Vector<Schedule> schedules) {
+		this.schedules = schedules;
+	}
+
+
+	public Vector<Transcript> getTranscript() {
+		return transcript;
+	}
+
+
+	public void setTranscript(Vector<Transcript> transcript) {
+		this.transcript = transcript;
+	}
+
+
+	public Database getDatabase() {
+		return database;
+	}
+
+
+	public void setDatabase(Database database) {
+		this.database = database;
+	}
+
+
+	public Schedule getSchedule() {
+		return schedule;
+	}
+
+
+	public void setSchedule(Schedule schedule) {
+		this.schedule = schedule;
+	}
     
-    /**
-    * @generated
-    */
-    public Faculty setFaculty(Faculty faculty) {
-        this.faculty = faculty;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    public Degree getDegree () {
-        return this.degree ;
-    }
-    
-    /**
-    * @generated
-    */
-    public Degree setDegree (Degree degree ) {
-        this.degree  = degree ;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    public int getYearOfStudy() {
-        return this.yearOfStudy;
-    }
-    
-    /**
-    * @generated
-    */
-    public int setYearOfStudy(Integer yearOfStudy) {
-        this.yearOfStudy = yearOfStudy;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private Faculty getFaculty() {
-        return this.faculty;
-    }
-    
-    /**
-    * @generated
-    */
-    private Faculty setFaculty(Faculty faculty) {
-        this.faculty = faculty;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private Degree getDegree() {
-        return this.degree;
-    }
-    
-    /**
-    * @generated
-    */
-    private Degree setDegree(Degree degree) {
-        this.degree = degree;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private int getYearOfStudy() {
-        return this.yearOfStudy;
-    }
-    
-    /**
-    * @generated
-    */
-    private int setYearOfStudy(Integer yearOfStudy) {
-        this.yearOfStudy = yearOfStudy;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private Organization getOrganization() {
-        return this.organization;
-    }
-    
-    /**
-    * @generated
-    */
-    private Organization setOrganization(Organization organization) {
-        this.organization = organization;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private int getCreditsTaken() {
-        return this.creditsTaken;
-    }
-    
-    /**
-    * @generated
-    */
-    private int setCreditsTaken(Integer creditsTaken) {
-        this.creditsTaken = creditsTaken;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    public int getMaxAllowedCredits() {
-        return this.maxAllowedCredits;
-    }
-    
-    /**
-    * @generated
-    */
-    private Vector <Schedule> getSchedules() {
-        return this.schedules;
-    }
-    
-    /**
-    * @generated
-    */
-    private Vector <Schedule> setSchedules(Vector <Schedule> schedules) {
-        this.schedules = schedules;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private Vector<Transcript> getTranscript() {
-        return this.transcript;
-    }
-    
-    /**
-    * @generated
-    */
-    private Vector<Transcript> setTranscript(Vector<Transcript> transcript) {
-        this.transcript = transcript;
-    }
-    
-    
-    
-    /**
-    * @generated
-    */
-    public Schedule getSchedule() {
-        return this.schedule;
-    }
-    
-    /**
-    * @generated
-    */
-    public Schedule setSchedule(Schedule schedule) {
-        this.schedule = schedule;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    public Set<Transcript> getTranscript() {
-        if (this.transcript == null) {
-            this.transcript = new HashSet<Transcript>();
-        }
-        return this.transcript;
-    }
-    
-    /**
-    * @generated
-    */
-    public Set<Transcript> setTranscript(Transcript transcript) {
-        this.transcript = transcript;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    public Database getDatabase() {
-        return this.database;
-    }
-    
-    /**
-    * @generated
-    */
-    public Database setDatabase(Database database) {
-        this.database = database;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    public Organization getOrganization() {
-        return this.organization;
-    }
-    
-    /**
-    * @generated
-    */
-    public Organization setOrganization(Organization organization) {
-        this.organization = organization;
-    }
-    
+
+
+ 
     
     
 }

@@ -1,9 +1,5 @@
-package MAK-project21;
+package Model;
 
-
-/**
-* @generated
-*/
 public class Researcher extends User implements Researcher {
     
     /**
