@@ -1,23 +1,20 @@
 package Controller;
 
 import Model.User;
+
 public class UserControl{
-	
+ 	
 	private User user;
-	
 	
 	public UserControl() {}
 	
-    
+     
     public User getUser() {
-        return this.user;
+    	return this.user;
+    
     }
-    
-    public void setUser(User user) {
-        this.user = user;
-    }
-    
-    
+     
+     
     public void login() {
     	System.out.println("Enter your login: ");
     	
@@ -33,44 +30,35 @@ public class UserControl{
     		System.out.println("Wrong login or password! Please try again.");
     		login();
     	}
-    	
+     	
     }
     
-    public void logOut() {}
-    
-    
+
+     
     public void changePassword() {
     	System.out.println("Enter your current password: ");
     	
     	System.out.println("Enter your new password: ");
     	
-    	
+     	
     }
 
     public boolean verify(String login, String password) {
-    	
         return true;
     }
-    
+     
     public void saveLogs() {}
-    
-    
+     
+     
     public void session() {
     	System.out.println("-".repeat(30));
     	System.out.println("  Welcome to MAK University!  ");
     	System.out.println("-".repeat(30));
-    	login();
+     	login();
     }
-    
-    
-    public void viewUserInfo() {
-    	System.out.println(user.toString());
-    }
-    
-    
-    
-    
-    
+     
+     
+
    
     public void viewBooks() {
     	
@@ -81,15 +69,17 @@ public class UserControl{
     	System.out.println("             News             ");
     	System.out.println("-".repeat(30));
     	System.out.println("-some interesting news-");
-    	
-
+    }
+ 
+    public void viewRegisterPage() {
     	System.out.println("\n Enter 'M' to jump to main page: ");
     	String command = "m";
     	
-    	if(command.equals("m") || command.equals("M")) {
-    		viewMainPage();
-    	}
+	   	if(command.equals("m") || command.equals("M")) {
+	    		viewMainPage();
+	    }
     }
+ 
 
     public void viewMainPage() {
     	System.out.println("Operations: ");
@@ -99,8 +89,7 @@ public class UserControl{
 
     }
     
-    
-    
-    
-    
 }
+     
+     
+     
