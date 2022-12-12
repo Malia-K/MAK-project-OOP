@@ -10,4 +10,7 @@ public class AdminControl extends EmployeeControl {
     public void setAdmin(Admin admin) {
         this.admin = admin;
     }   
+    
+    
+    
 }

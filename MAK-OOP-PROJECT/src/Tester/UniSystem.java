@@ -1,10 +1,13 @@
 package Tester;
 
+import Controller.UserControl;
+
 public class UniSystem {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		UserControl uc = new UserControl();
+		uc.session();
+		
 	}
 
 }
