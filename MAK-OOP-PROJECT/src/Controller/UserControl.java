@@ -1,10 +1,10 @@
 package Controller;
 
 import Model.User;
-public class UserControl {
+public class UserControl{
+	
 	private User user;
     
-
     public User getUser() {
         return this.user;
     }
@@ -13,12 +13,47 @@ public class UserControl {
         this.user = user;
     }
     
+    
+    public void login() {
+    	
+    }
+    
+    public void logOut() {}
+    
+    
     public void changePassword() {
-        //TODO
+    	
     }
 
     public boolean verify() {
-        //TODO
         return false;
     }
+    
+    public void saveLogs() {}
+    
+    
+    public void session() {
+    	login();
+    }
+    
+    
+    public void viewUserInfo() {
+    	System.out.println(user.toString());
+    }
+    
+    
+    public void viewBooks() {}
+    
+    
+    public void viewNews() {}
+    
+    
+    public void viewRegisterPage() {}
+    
+    
+    public void viewMainPage() {}
+    
+    
+    
+    
 }

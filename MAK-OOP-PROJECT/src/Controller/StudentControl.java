@@ -6,8 +6,10 @@ public class StudentControl extends UserControl /*implements canSeeOrganizations
     private Student student;
     
 
-    public Student getStudent() {
-        return this.student;
-    }
+
+    
+    
+    
+    
     
 }
