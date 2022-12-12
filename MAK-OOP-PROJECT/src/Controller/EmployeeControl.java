@@ -9,8 +9,11 @@ public class EmployeeControl extends UserControl {
     public Employee getEmployee() {
         return this.employee;
     }
-
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
+    
+    
+    public void manageMessage() {
+    	MessageControl mc = new MessageControl();
+    	
     }
+
 }
