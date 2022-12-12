@@ -21,7 +21,7 @@ public class testAdmin {
 //		System.out.println(Database.getUsers());
 //		Database.databaseSave();
 		for(User u: Database.getUsers()) {
-			System.out.println(u.getPassword());
+			System.out.println(u + " " + u.getPassword());
 		}
 	}
 }

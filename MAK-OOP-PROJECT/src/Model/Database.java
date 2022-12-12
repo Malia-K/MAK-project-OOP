@@ -42,8 +42,7 @@ public class Database implements Serializable{
       organizations = new Vector <Organization>();
       logs = new Vector <String>();
       reports = new Vector <Report>();
-      
-
+     
     }
     
     public static Vector <User> getUsers(){
@@ -151,7 +150,7 @@ public class Database implements Serializable{
 
 
     public static void databaseSave() throws IOException {
-    	FileOutputStream fos = new FileOutputStream("C:\\Users\\USER\\git\\repository\\MAK-OOP-PROJECT\\src\\Model\\text.txt");
+    	FileOutputStream fos = new FileOutputStream(Connect.getInstance());
 		ObjectOutputStream oos = new ObjectOutputStream(fos);
 		oos.writeObject(users);
 		
@@ -160,7 +159,7 @@ public class Database implements Serializable{
     }
     
     static Vector<User> readDatabase() throws Exception{
-		FileInputStream fis = new FileInputStream("C:\\Users\\USER\\git\\repository\\MAK-OOP-PROJECT\\src\\Model\\text.txt");
+		FileInputStream fis = new FileInputStream(Connect.getInstance());
 		ObjectInputStream ois = new ObjectInputStream(fis);
 		@SuppressWarnings("unchecked")
 		Vector<User> database = (Vector<User>)ois.readObject();
