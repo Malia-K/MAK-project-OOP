@@ -24,6 +24,10 @@ public class Student extends User {
     }
     
     public Student() {}
+    
+    public Student(String firstName, String lastName, String password) {
+    	super(firstName, lastName, password, "S");
+    }
 
 	public Student(Faculty faculty, Degree degree) {
 		this.faculty = faculty;

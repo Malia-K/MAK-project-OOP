@@ -3,7 +3,7 @@ package Model;
 import java.util.Vector;
 
 public class Database {
-  static private Vector <User> users;
+	static private Vector <User> users;
     static private Vector <Book> library;
     static private Vector <Course> courses;
     static private Vector <Organization> organizations;
@@ -21,11 +21,13 @@ public class Database {
       
     }
     
-    public Vector <User> getUsers(){
+    public Database() {}
+    
+    public static Vector <User> getUsers(){
       return users;
     }
     
-    public Vector <Student> getStudents() {
+    public static Vector <Student> getStudents() {
       Vector <Student> students = new Vector <Student>();
       for(User u: users) {
         if(u instanceof Student) {
@@ -36,7 +38,7 @@ public class Database {
       return students;
     }
     
-    public Vector <Employee> getEmployees(){
+    public static Vector <Employee> getEmployees(){
       Vector <Employee> employees = new Vector <Employee>();
       for(User u: users) {
         if(u instanceof Employee) {
@@ -47,7 +49,7 @@ public class Database {
       return employees;
     }
     
-    public Vector <Admin> getAdmins(){
+    public static Vector <Admin> getAdmins(){
       Vector <Admin> admins = new Vector <Admin>();
       for(User u: users) {
         if(u instanceof Admin) {
@@ -58,7 +60,7 @@ public class Database {
       return admins;
     }
     
-    public Vector <Librarian> getLibrarians(){
+    public static Vector <Librarian> getLibrarians(){
       Vector <Librarian> librarians = new Vector <Librarian>();
       for(User u: users) {
         if(u instanceof Librarian) {
@@ -69,7 +71,7 @@ public class Database {
       return librarians;
     }
       
-    public Vector <Manager> getManagers(){
+    public static Vector <Manager> getManagers(){
       Vector <Manager> managers = new Vector <Manager>();
       for(User u: users) {
         if(u instanceof Manager) {
@@ -80,7 +82,7 @@ public class Database {
       return managers;
     }
     
-    public Vector <Teacher> getTeachers(){
+    public static Vector <Teacher> getTeachers(){
       Vector <Teacher> teachers = new Vector <Teacher>();
       for(User u: users) {
         if(u instanceof Teacher) {
@@ -91,5 +93,7 @@ public class Database {
       return teachers;
     }
 
-    
+    public static void addUser(User u) {
+    	users.add(u);
+    }
 }
