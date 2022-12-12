@@ -116,7 +116,10 @@ public class Database {
 
 
     
-    
+   
 
-    
+    public static void addUser(User u) {
+    	users.add(u);
+    }
 }
+

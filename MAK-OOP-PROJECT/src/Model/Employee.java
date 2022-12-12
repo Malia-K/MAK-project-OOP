@@ -16,6 +16,9 @@ public class Employee extends User {
     	super(firstName, lastName, gender, birthDate, id, login);
     	this.experience = experience;
     }
+    public Employee(String firstName, String lastName, String password, String login) {
+    	super(firstName, lastName, password, login);
+    }
     
     public int getExperience() {
 		return experience;

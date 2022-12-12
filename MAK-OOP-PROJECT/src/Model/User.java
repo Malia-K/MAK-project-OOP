@@ -28,6 +28,13 @@ public class User implements Comparable<User>, Serializable, Cloneable {
 		this.login = login;
 	}
     
+    public User(String firstName, String lastName, String password, String login) {
+    	this.firstName = firstName;
+    	this.lastName = lastName;
+    	this.password = password;
+    	this.login = login + "_" + firstName + "_" + lastName;
+    }
+    
     public User(String firstName, String lastName, Gender gender, Date birthDate, String id, String login, String phoneNumber,
 			String password, String personalMail, String corporativeMail) {
 		this(firstName, lastName, gender, birthDate, id, login);
@@ -85,6 +92,8 @@ public class User implements Comparable<User>, Serializable, Cloneable {
 	public String getPassword() {
 		return password;
 	}
+
+
 	public void setPassword(String password) {
 		this.password = password;
 	}

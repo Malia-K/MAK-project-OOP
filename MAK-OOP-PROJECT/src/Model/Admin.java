@@ -9,9 +9,8 @@ public class Admin extends Employee {
 
 	public Admin() {}
 	
-
-	public String toString() {
-		return "";
+	public Admin(String firstName, String lastName, String password) {
+		super(firstName, lastName, password, "A");
 	}
 
 	public Admin(String firstName, String lastName, Gender gender, Date birthDate, String id, String login, int experience) {

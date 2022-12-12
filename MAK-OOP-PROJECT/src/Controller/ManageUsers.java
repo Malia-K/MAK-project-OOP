@@ -1,8 +1,13 @@
 package Controller;
 
+import java.io.*;
+import java.util.StringTokenizer;
+import java.util.Vector;
+
 import Model.*;
 
 public class ManageUsers {
+	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	public ManageUsers() {}
 	
 	private void gui() {
@@ -18,7 +23,7 @@ public class ManageUsers {
 				+ "\n\t5. Student" + "\n\t6. Researcher" + "\nChoose number or print 0 if you want to leave:");
 	}
 	
-	private User createEmployee(int n) {
+	private User createEmployee(int n) throws IOException {
 		System.out.println("\tExperience");
 		if(n == 1) return createAdmin();
 		if(n == 2) return createTeacher();
@@ -26,9 +31,21 @@ public class ManageUsers {
 		return createLibrarian();
 	}
 	
-	private User createAdmin() {
-		Admin a = new Admin();
-		return a;
+	private Vector <String> par(String param) throws IOException {
+		StringTokenizer st = new StringTokenizer(param," "); 
+		Vector <String> arr = new Vector <String>();
+		while(st.hasMoreTokens())
+			arr.add(st.nextToken());
+		return arr;
+	}
+	
+	private User createAdmin() throws IOException {
+		Vector <String> arr = par(br.readLine());
+		if(!arr.isEmpty() && arr.size() == 3) {
+			Admin a = new Admin(arr.get(0), arr.get(1), arr.get(2));
+			return a;
+		}
+		return null;
 	}
 	
 	private User createTeacher() {
@@ -36,7 +53,9 @@ public class ManageUsers {
 		return t;
 }
 	
-	private User createStudent() {
+	private User createStudent() throws IOException {
+//		Vector <String> arr = par(br.readLine());
+//		Admin a = new Admin(arr.elementAt(0), arr.elementAt(1), arr.elementAt(2));
 		Student s = new Student();
 		return s;
 	}
@@ -55,13 +74,13 @@ public class ManageUsers {
 		return null;
 	}
 	
-	public void createUser() {
+	public void createUser() throws NumberFormatException, IOException {
 		gui();
 		
-		int action = 1;
+		int action = Integer.parseInt(br.readLine());
 		if(action == 0) return;
 		System.out.println("Please, add following information:\n\tFirst Name\n\tLast Name\n\tGender\n\tBirth Date");
-		User newUser;
+		User newUser = new User();
 		if(action <= 4) {
 			newUser = createEmployee(action);
 		}
@@ -71,6 +90,7 @@ public class ManageUsers {
 		else if(action == 6) {
 			newUser = createResearcher();
 		}
-		
+		if(newUser != null) Database.addUser(newUser);
+//		System.out.println(Database.getUsers());
 	}
 }
