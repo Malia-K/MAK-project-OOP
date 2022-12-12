@@ -24,6 +24,7 @@ public class Database {
     public Vector <User> getUsers(){
     	return users;
     }
+    public void s() {}
     
     public Vector <Student> getStudents() {
     	Vector <Student> students = new Vector <Student>();
