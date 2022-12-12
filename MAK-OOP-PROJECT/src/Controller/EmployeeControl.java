@@ -1,16 +1,16 @@
 package Controller;
 
 import Model.Employee;
+import Model.User;
 
 public class EmployeeControl extends UserControl {
-    private Employee employee;
-    
+	public EmployeeControl() {}
+	
+	public EmployeeControl(User u) {
+		super(u);
+	}
 
     public Employee getEmployee() {
-        return this.employee;
-    }
-
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
+        return (Employee) super.getUser();
     }
 }

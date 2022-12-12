@@ -1,6 +1,7 @@
 package Model;
 
-import enums.*;
+import java.util.Vector;
+import enums.Faculty;
 
 public class Course {
 	private String id;
@@ -8,13 +9,21 @@ public class Course {
     private int credits;
     private Faculty faculty;
     private int formula[];
-    private Course prerequisite;
+    private Vector<Course> prerequisites;
     
     {
     	formula = new int[3];
+    	prerequisites = new Vector <Course>();
     }
     
     public Course() {}
+    
+    public Course(String id, String name, int credits, Faculty faculty) {
+    	this.id = id;
+    	this.name = name;
+    	this.credits = credits;
+    	this.faculty = faculty;
+    }
     
     public String getId() {
         return this.id;
@@ -56,11 +65,15 @@ public class Course {
         this.formula = formula;
     }
 
-    public Course getPrerequisite() {
-        return this.prerequisite;
+    public Vector <Course> getPrerequisites() {
+        return this.prerequisites;
     }
 
     public void setPrerequisite(Course prerequisite) {
-        this.prerequisite = prerequisite;
-    }   
+        this.prerequisites.add(prerequisite);
+    } 
+    
+    public String toString() {
+    	return id + " " + name + ' ' + credits + " " + faculty + " " + formula + " " + prerequisites;
+    }
 }

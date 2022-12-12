@@ -1,13 +1,18 @@
 package Controller;
 import Model.Admin;
+import Model.User;
 public class AdminControl extends EmployeeControl {
-	private Admin admin;
-    
+	public AdminControl() {}
+	
+	public AdminControl(User u) {
+		super(u);
+	}
+	
     public Admin getAdmin() {
-        return this.admin;
+        return (Admin) this.getUser();
     }
     
-    public void setAdmin(Admin admin) {
-        this.admin = admin;
-    }   
+    public void manageUsers() {
+    	
+    }
 }
