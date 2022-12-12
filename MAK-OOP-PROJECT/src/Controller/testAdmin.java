@@ -12,11 +12,16 @@ public class testAdmin {
 //		Admin main = new Admin();
 		
 		
-		
-		
 		ManageUsers m = new ManageUsers();
-		m.createUser();
 		
-		System.out.println(Database.getUsers());
+//		for(int i = 0; i < 5; i++) {
+//			m.createUser();
+//		}
+		
+//		System.out.println(Database.getUsers());
+//		Database.databaseSave();
+		for(User u: Database.getUsers()) {
+			System.out.println(u.getPassword());
+		}
 	}
 }

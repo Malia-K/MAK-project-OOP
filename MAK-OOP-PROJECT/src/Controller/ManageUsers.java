@@ -54,10 +54,12 @@ public class ManageUsers {
 }
 	
 	private User createStudent() throws IOException {
-//		Vector <String> arr = par(br.readLine());
-//		Admin a = new Admin(arr.elementAt(0), arr.elementAt(1), arr.elementAt(2));
-		Student s = new Student();
-		return s;
+		Vector <String> arr = par(br.readLine());
+		if(!arr.isEmpty() && arr.size() == 3) {
+			Student s = new Student(arr.get(0), arr.get(1), arr.get(2));
+			return s;
+		}
+		return null;
 	}
 	
 	private User createManager() {
