@@ -46,11 +46,9 @@ public class UserControl{
     
     
     public void viewNews() {}
-    
-    
+
     public void viewRegisterPage() {}
-    
-    
+
     public void viewMainPage() {}
     
     
