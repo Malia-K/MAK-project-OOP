@@ -81,6 +81,10 @@ public class User implements Comparable<User>, Serializable, Cloneable {
 		this.phoneNumber = phoneNumber;
 	}
 	
+	
+	public String getPassword() {
+		return password;
+	}
 	public void setPassword(String password) {
 		this.password = password;
 	}

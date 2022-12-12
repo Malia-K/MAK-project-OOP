@@ -91,5 +91,32 @@ public class Database {
     	return teachers;
     }
 
+	public static Vector<Book> getLibrary() {
+		return library;
+	}
+
+
+	public static Vector<Course> getCourses() {
+		return courses;
+	}
+
+	public static Vector<Organization> getOrganizations() {
+		return organizations;
+	}
+
+	public static Vector<String> getLogs() {
+		return logs;
+	}
+
+
+
+	public static Vector<Report> getReports() {
+		return reports;
+	}
+
+
+    
+    
+
     
 }

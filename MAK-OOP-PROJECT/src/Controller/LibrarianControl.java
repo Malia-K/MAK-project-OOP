@@ -14,19 +14,6 @@ public class LibrarianControl extends EmployeeControl {
         return this.librarian;
     }
     
-    public void setLibrarian(Librarian librarian) {
-        this.librarian = librarian;
-    }
-    
-    public Vector <Book> getLibrary() {
-        return this.library;
-    }
 
-    public BookControl getBookControl() {
-        return this.bookControl;
-    }
-    
-    public ReaderControl getReaderControl() {
-        return this.readerControl;
-    }  
+
 }

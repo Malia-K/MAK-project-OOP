@@ -1,13 +1,15 @@
 package Controller;
 
+import Model.Book;
+
 import Model.User;
 
 public class UserControl{
- 	
 	private User user;
 	
 	
 	public UserControl () {}
+	
 	public UserControl(User u) {
 		this.user = u;
 	}
@@ -15,7 +17,6 @@ public class UserControl{
      
     public User getUser() {
     	return this.user;
-    
     }
      
      
@@ -44,11 +45,13 @@ public class UserControl{
     	
     	System.out.println("Enter your new password: ");
     	
+    	login();
+    	
      	
     }
 
     public boolean verify(String login, String password) {
-        return true;
+    	return user.getLogin().equals(login) && user.getPassword().equals(password);
     }
      
     public void saveLogs() {}
@@ -65,7 +68,9 @@ public class UserControl{
 
    
     public void viewBooks() {
-    	
+    	for(Model.Book b: Model.Database.getLibrary()) {
+    		System.out.println(b);
+    	}
     }
     
     public void viewNews() {
