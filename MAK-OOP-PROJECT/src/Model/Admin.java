@@ -9,6 +9,11 @@ public class Admin extends Employee {
 
 	public Admin() {}
 	
+
+	public String toString() {
+		return "";
+	}
+
 	public Admin(String firstName, String lastName, Gender gender, Date birthDate, String id, String login, int experience) {
 		super(firstName, lastName, gender, birthDate, id, login, experience);
 	}

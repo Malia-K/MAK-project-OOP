@@ -34,7 +34,7 @@ public class ManageUsers {
 	private User createTeacher() {
 		Teacher t = new Teacher();
 		return t;
-	}
+}
 	
 	private User createStudent() {
 		Student s = new Student();
@@ -54,7 +54,6 @@ public class ManageUsers {
 	private User createResearcher() {
 		return null;
 	}
-	
 	
 	public void createUser() {
 		gui();

@@ -11,6 +11,14 @@ public class EmployeeControl extends UserControl {
 	}
 
     public Employee getEmployee() {
-        return (Employee) super.getUser();
+    	return (Employee) super.getUser();
     }
+    
+    
+    public void manageMessage() {
+    	MessageControl mc = new MessageControl();
+    	
+
+    }
+
 }
