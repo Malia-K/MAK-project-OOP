@@ -14,6 +14,7 @@ public class AdminControl extends EmployeeControl {
     
 
     public void manageUsers() {
+    	System.out.println("Choose action:\n\t1. Add User\n\t2. Update User\n\t3. Delete User");
     	
     }
 

@@ -21,7 +21,9 @@ public class ManageUsers {
 	private User createEmployee(int n) {
 		System.out.println("\tExperience");
 		if(n == 1) return createAdmin();
-		return null;
+		if(n == 2) return createTeacher();
+		if(n == 3) return createManager();
+		return createLibrarian();
 	}
 	
 	private User createAdmin() {
@@ -31,25 +33,27 @@ public class ManageUsers {
 	
 	private User createTeacher() {
 		Teacher t = new Teacher();
-
-	}
+		return t;
+}
 	
 	private User createStudent() {
-		
+		Student s = new Student();
+		return s;
 	}
 	
 	private User createManager() {
-		
+		Manager m = new Manager();
+		return m;
 	}
 	
 	private User createLibrarian() {
-		
+		Librarian l = new Librarian();
+		return l;
 	}
 	
 	private User createResearcher() {
-		
+		return null;
 	}
-	
 	
 	public void createUser() {
 		gui();
@@ -57,14 +61,16 @@ public class ManageUsers {
 		int action = 1;
 		if(action == 0) return;
 		System.out.println("Please, add following information:\n\tFirst Name\n\tLast Name\n\tGender\n\tBirth Date");
+		User newUser;
 		if(action <= 4) {
-			createEmployee(action);
+			newUser = createEmployee(action);
 		}
 		else if(action == 5) {
-			createStudent();
+			newUser = createStudent();
 		}
 		else if(action == 6) {
-			createResearcher();
+			newUser = createResearcher();
 		}
+		
 	}
 }
