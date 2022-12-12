@@ -14,6 +14,9 @@ public class Course {
     	formula = new int[3];
     }
     
+    public String cool() {
+    	return "Miras";
+    }
     public Course() {}
     
     public String getId() {
