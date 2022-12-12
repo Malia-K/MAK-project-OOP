@@ -87,18 +87,20 @@ public class UserControl{
     	}
     }
     
-    public void viewNews() {
+    public void viewNews() throws IOException {
     	System.out.println("-".repeat(30));
     	System.out.println("             News             ");
     	System.out.println("-".repeat(30));
     	System.out.println("-some interesting news-");
+    	viewRegisterPage();
     }
  
-    public void viewRegisterPage() {
+    public void viewRegisterPage() throws IOException {
     	System.out.println("\n Enter 'M' to jump to main page: ");
-    	String command = "m";
+    	String command = br.readLine();
     	
 	   	if(command.equals("m") || command.equals("M")) {
+	   			
 	    		viewMainPage();
 	    }
     }
