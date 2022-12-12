@@ -1,12 +1,13 @@
 package Controller;
 
-import Model.Book;
+import Model.*;
 
-import Model.User;
+import java.io.*;
+import java.util.StringTokenizer;
 
 public class UserControl{
 	private User user;
-	
+	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	
 	public UserControl () {}
 	
@@ -20,15 +21,23 @@ public class UserControl{
     }
      
      
-    public void login() {
-    	System.out.println("Enter your login: ");
+    public void login() throws IOException {
+    	System.out.print("Enter your login: ");
+    	String login = br.readLine();
+    	System.out.print("Enter your password: ");
+    	String password = br.readLine();
+    	if(login.equals("Admin123") && password.equals("Admin123")) {
+        	System.out.println("\n" + "-".repeat(30));
+    		System.out.println("Welcome to Admin Page!");
+        	System.out.println("-".repeat(30));
+    		ManageUsers m = new ManageUsers();
+    		m.createUser();
+    	}
     	
-    	System.out.println("Enter your password: ");
-    	String login = " ", password = " ";
+    	user = verify(login, password);
     	
-    	boolean isVerified = verify(login, password);
-    	
-    	if(isVerified) {
+    	if(user != null) {
+    		System.out.println("Welcome " + user.getFirstName() + " " + user.getLastName());
     		viewNews();
     		
     	}else {
@@ -40,7 +49,7 @@ public class UserControl{
     
 
      
-    public void changePassword() {
+    public void changePassword() throws IOException {
     	System.out.println("Enter your current password: ");
     	
     	System.out.println("Enter your new password: ");
@@ -50,14 +59,19 @@ public class UserControl{
      	
     }
 
-    public boolean verify(String login, String password) {
-    	return user.getLogin().equals(login) && user.getPassword().equals(password);
+    public User verify(String login, String password) {   	
+    	for(User u : Database.getUsers()) {
+    		if(u.getLogin().equals(login) && u.getPassword().equals(password)) {
+    			return u;
+    		}
+    	}
+    	return null;
     }
      
     public void saveLogs() {}
      
      
-    public void session() {
+    public void session() throws IOException {
     	System.out.println("-".repeat(30));
     	System.out.println("  Welcome to MAK University!  ");
     	System.out.println("-".repeat(30));

@@ -23,13 +23,7 @@ public class ManageUsers {
 				+ "\n\t5. Student" + "\n\t6. Researcher" + "\nChoose number or print 0 if you want to leave:");
 	}
 	
-	private User createEmployee(int n) throws IOException {
-		System.out.println("\tExperience");
-		if(n == 1) return createAdmin();
-		if(n == 2) return createTeacher();
-		if(n == 3) return createManager();
-		return createLibrarian();
-	}
+
 	
 	private Vector <String> par(String param) throws IOException {
 		StringTokenizer st = new StringTokenizer(param," "); 
@@ -46,6 +40,14 @@ public class ManageUsers {
 			return a;
 		}
 		return null;
+	}
+	
+	private User createEmployee(int n) throws IOException {
+		System.out.println("\tExperience");
+		if(n == 1) return createAdmin();
+		if(n == 2) return createTeacher();
+		if(n == 3) return createManager();
+		return createLibrarian();
 	}
 	
 	private User createTeacher() {

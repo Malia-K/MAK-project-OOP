@@ -21,7 +21,7 @@ public class Database {
     	
     }
     
-    public Vector <User> getUsers(){
+    public static Vector <User> getUsers(){
     	return users;
     }
     
