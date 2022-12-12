@@ -6,7 +6,11 @@ public class UserControl{
  	
 	private User user;
 	
-	public UserControl() {}
+	
+	public UserControl () {}
+	public UserControl(User u) {
+		this.user = u;
+	}
 	
      
     public User getUser() {
