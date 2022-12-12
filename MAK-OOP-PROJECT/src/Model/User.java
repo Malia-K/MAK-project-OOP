@@ -118,4 +118,8 @@ public class User implements Comparable<User>, Serializable, Cloneable {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	
+	public String toString() {
+		return firstName + " " + lastName +" " +login;
+	}
 }

@@ -1,8 +1,16 @@
 package Model;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.Vector;
 
-public class Database {
+public class Database implements Serializable{
+	private static final long serialVersionUID = 1L;
 	static private Vector <User> users;
     static private Vector <Book> library;
     static private Vector <Course> courses;
@@ -12,6 +20,7 @@ public class Database {
    
     
     static{
+
     	users = new Vector <User>();
     	library = new Vector <Book>();
     	courses = new Vector <Course>();
@@ -19,6 +28,22 @@ public class Database {
     	logs = new Vector <String>();
     	reports = new Vector <Report>();
     	
+
+    	if(new File("database.ser").exists()) {
+    		try {
+    			users = readDatabase();
+    		} catch (Exception e) {
+				e.printStackTrace();
+    		}
+    	}
+    	else users = new Vector <User>();
+      library = new Vector <Book>();
+      courses = new Vector <Course>();
+      organizations = new Vector <Organization>();
+      logs = new Vector <String>();
+      reports = new Vector <Report>();
+      
+
     }
     
     public static Vector <User> getUsers(){
@@ -121,5 +146,26 @@ public class Database {
     public static void addUser(User u) {
     	users.add(u);
     }
-}
 
+
+
+
+    public static void databaseSave() throws IOException {
+    	FileOutputStream fos = new FileOutputStream("C:\\Users\\USER\\git\\repository\\MAK-OOP-PROJECT\\src\\Model\\text.txt");
+		ObjectOutputStream oos = new ObjectOutputStream(fos);
+		oos.writeObject(users);
+		
+		fos.close();
+		oos.close();
+    }
+    
+    static Vector<User> readDatabase() throws Exception{
+		FileInputStream fis = new FileInputStream("C:\\Users\\USER\\git\\repository\\MAK-OOP-PROJECT\\src\\Model\\text.txt");
+		ObjectInputStream ois = new ObjectInputStream(fis);
+		@SuppressWarnings("unchecked")
+		Vector<User> database = (Vector<User>)ois.readObject();
+		fis.close();
+		ois.close();
+		return database;
+	}
+}
