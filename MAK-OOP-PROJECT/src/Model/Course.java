@@ -15,7 +15,8 @@ public class Course {
     }
     
     public String cool() {
-    	return "Miras";
+    	return "Miras and m";
+    	
     }
     public Course() {}
     
