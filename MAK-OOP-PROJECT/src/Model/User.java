@@ -4,7 +4,6 @@ import java.io.Serializable;
 import enums.*;
 import java.sql.Date;
 
-
 public class User implements Comparable<User>, Serializable, Cloneable {
 	private static final long serialVersionUID = 1L;
     private String firstName;
@@ -20,13 +19,18 @@ public class User implements Comparable<User>, Serializable, Cloneable {
     
     public User() {}
     
-    public User(String firstName, String lastName, Date birthDate, String id, String login, String phoneNumber,
-			String password, String personalMail, String corporativeMail) {
+    public User(String firstName, String lastName, Gender gender, Date birthDate, String id, String login) {
 		this.firstName = firstName;
 		this.lastName = lastName;
+		this.gender = gender;
 		this.birthDate = birthDate;
 		this.id = id;
 		this.login = login;
+	}
+    
+    public User(String firstName, String lastName, Gender gender, Date birthDate, String id, String login, String phoneNumber,
+			String password, String personalMail, String corporativeMail) {
+		this(firstName, lastName, gender, birthDate, id, login);
 		this.phoneNumber = phoneNumber;
 		this.password = password;
 		this.personalMail = personalMail;
