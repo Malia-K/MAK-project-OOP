@@ -1,6 +1,5 @@
 package Model;
 
-import java.sql.Date;
 import java.util.Vector;
 
 import enums.Gender;
@@ -12,12 +11,9 @@ public class Employee extends User {
     
     public Employee() {}
     
-    public Employee(String firstName, String lastName, Gender gender, Date birthDate, String id, String login, int experience) {
-    	super(firstName, lastName, gender, birthDate, id, login);
+    public Employee(String firstName, String lastName, Gender gender, String birthDate, String password, String enrolled, String id, String login, int experience) {
+    	super(firstName, lastName, gender, birthDate, password, enrolled, id, login);
     	this.experience = experience;
-    }
-    public Employee(String firstName, String lastName, String password, String login) {
-    	super(firstName, lastName, password, login);
     }
     
     public int getExperience() {
@@ -30,5 +26,9 @@ public class Employee extends User {
 
 	public Vector<Message> getMessages() {
 		return messages;
+	}
+	
+	public String toString() {
+		return super.toString() + "\nexperience: " + experience;
 	}
 }

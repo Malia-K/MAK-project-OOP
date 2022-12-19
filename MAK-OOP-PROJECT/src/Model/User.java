@@ -2,47 +2,33 @@ package Model;
 
 import java.io.Serializable;
 import enums.*;
-import java.sql.Date;
+import java.time.LocalDate;
 
 public  class User implements Comparable<User>, Serializable, Cloneable {
 	private static final long serialVersionUID = 1L;
     private String firstName;
     private String lastName;
     private Gender gender;
-    private Date birthDate;
+    private LocalDate birthDate;
+    private String password;
+    private LocalDate enrolled;
     private String id;
     private String login;
     private String phoneNumber;
-    private String password;
-    private String personalMail;
     private String corporativeMail;
     
     public User() {}
     
-    public User(String firstName, String lastName, Gender gender, Date birthDate, String id, String login) {
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.gender = gender;
-		this.birthDate = birthDate;
-		this.id = id;
-		this.login = login;
-	}
-    
-    public User(String firstName, String lastName, String password, String login) {
+    public User(String firstName, String lastName, Gender gender, String birthDate, String password, String enrolled, String id, String login) {
     	this.firstName = firstName;
     	this.lastName = lastName;
+    	this.gender = gender;
+    	this.birthDate = LocalDate.parse(birthDate);
     	this.password = password;
-    	this.login = login + "_" + firstName + "_" + lastName;
+    	this.enrolled = LocalDate.parse(enrolled);
+    	this.id = id + (this.enrolled.getYear() % 100) + firstName.toUpperCase().charAt(0) + lastName.toUpperCase().charAt(0) + String.format("%04d", Database.getInstance().getUsers().size() % 1000);
+    	this.login = login;
     }
-    
-    public User(String firstName, String lastName, Gender gender, Date birthDate, String id, String login, String phoneNumber,
-			String password, String personalMail, String corporativeMail) {
-		this(firstName, lastName, gender, birthDate, id, login);
-		this.phoneNumber = phoneNumber;
-		this.password = password;
-		this.personalMail = personalMail;
-		this.corporativeMail = corporativeMail;
-	}
 
 	public String getFirstName() {
 		return firstName;
@@ -59,13 +45,37 @@ public  class User implements Comparable<User>, Serializable, Cloneable {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
+	
+	public Gender getGender() {
+		return gender;
+	}
+	
+	public void setGender(Gender g) {
+		gender = g;
+	}
 
-	public Date getBirthDate() {
+	public LocalDate getBirthDate() {
 		return birthDate;
 	}
 
-	public void setBirthDate(Date birthDate) {
+	public void setBirthDate(LocalDate birthDate) {
 		this.birthDate = birthDate;
+	}
+	
+	public void setBirthDate(String birthDate) {
+		setBirthDate(LocalDate.parse(birthDate));
+	}
+	
+	public LocalDate getEnrolledDate() {
+		return enrolled;
+	}
+	
+	public void setEnrolledDate(LocalDate enrolled) {
+		this.enrolled = enrolled;
+	}
+	
+	public void setEnrolledDate(String enrolled) {
+		setEnrolledDate(LocalDate.parse(enrolled));
 	}
 
 	public String getId() {
@@ -98,14 +108,6 @@ public  class User implements Comparable<User>, Serializable, Cloneable {
 		this.password = password;
 	}
 
-	public String getPersonalMail() {
-		return personalMail;
-	}
-
-	public void setPersonalMail(String personalMail) {
-		this.personalMail = personalMail;
-	}
-
 	public String getCorporativeMail() {
 		return corporativeMail;
 	}
@@ -113,44 +115,74 @@ public  class User implements Comparable<User>, Serializable, Cloneable {
 	public void setCorporativeMail(String corporativeMail) {
 		this.corporativeMail = corporativeMail;
 	}
+	
+	public void viewMainPage() {
+	    String header = "";
+	      
+	      header += formatDiv("a" + "-".repeat(43) + "c" +"\n");
+	      header += formatRow("|"+ " ".repeat(16) +  "Operations:" + " ".repeat(16) + "|\n");
+	      header += formatDiv("g" +"-".repeat(43) + "i"+ '\n');
+	      System.out.print(header);
+	      System.out.print(  " 1.  News \n"
+	               + " 2.  User's information \n"
+	               + " 3.  Library \n");
+	  }
+	  
+	  
+	  
+	   public static String formatRow(String str){
+	        return str.replace('|', '\u2502');
+	    }
+
+	    public static String formatDiv(String str){
+	        return str.replace('a', '\u250c')
+	                .replace('b', '\u252c')
+	                .replace('c', '\u2510')
+	                .replace('d', '\u251c')
+	                .replace('e', '\u253c')
+	                .replace('f', '\u2524')
+	                .replace('g', '\u2514')
+	                .replace('h', '\u2534')
+	                .replace('i', '\u2518')
+	                .replace('-', '\u2500');
+	    }
+	
+	
+	private int compareStrings(String s1, String s2) {
+		int size = Math.min(s1.length(), s2.length());
+		
+		for(int i = 0; i < size; i++) {
+			if(s1.charAt(i) != s2.charAt(i)) {
+				return (s1.charAt(i) < s2.charAt(i)) ? -1 : 1;
+			}
+		}
+		return 0;
+	}
 
 	public int compareTo(User o) {
-		// TODO Auto-generated method stub
-		return 0;
+		if(lastName.equals(o.getLastName())) {
+			return compareStrings(firstName, o.getFirstName());
+		}
+		return compareStrings(lastName, o.getLastName());
+	}
+	
+	public boolean equals(Object o) {
+		if(this == o) return true;
+		if(o == null) return false;
+		if(this.getClass() != o.getClass()) return false;
+		User u = (User) o;
+		
+		return gender == u.getGender() && firstName.equals(u.getFirstName()) && lastName.equals(u.getLastName()) 
+				&& birthDate.equals(u.getBirthDate()) && enrolled.equals(u.getEnrolledDate());
 	}
 	
 	public String toString() {
-		return firstName + " " + lastName +" " +login;
+		return "name: " + firstName + "\nlast name: " + lastName + 
+				"\ngender: " + gender + "\nbirth date: " + birthDate + 
+				"\nenrolled date: " + enrolled + "\nid: " + id + 
+				"\nlogin: " + login + "\nphone number: " + phoneNumber +  
+				"\ncorporative mail: " + corporativeMail;
 	}
-	
-	public void viewMainPage() {
-		String header = "";
-    	
-    	header += formatDiv("a" + "-".repeat(43) + "c" +"\n");
-    	header += formatRow("|"+ " ".repeat(16) +  "Operations:" + " ".repeat(16) + "|\n");
-    	header += formatDiv("g" +"-".repeat(43) + "i"+ '\n');
-    	System.out.print(header);
-    	System.out.print(  " 1.  News \n"
-    					 + " 2.  User's information \n"
-    					 + " 3.  Library \n");
-	}
-	
-	
-	
-	 public static String formatRow(String str){
-        return str.replace('|', '\u2502');
-    }
-
-    public static String formatDiv(String str){
-        return str.replace('a', '\u250c')
-                .replace('b', '\u252c')
-                .replace('c', '\u2510')
-                .replace('d', '\u251c')
-                .replace('e', '\u253c')
-                .replace('f', '\u2524')
-                .replace('g', '\u2514')
-                .replace('h', '\u2534')
-                .replace('i', '\u2518')
-                .replace('-', '\u2500');
-    }
 }
+	
+

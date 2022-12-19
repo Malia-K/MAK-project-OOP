@@ -21,18 +21,17 @@ public class Student extends User {
     
     {
     	yearOfStudy = 1;
+    	creditsTaken = 0;
     }
     
     public Student() {}
     
-    public Student(String firstName, String lastName, String password) {
-    	super(firstName, lastName, password, "S");
+    public Student(String firstName, String lastName, Gender gender, String birthDate, String password, String enrolled, String login, Faculty faculty, Degree degree, int yearOfStudy) {
+    	super(firstName, lastName, gender, birthDate, password, enrolled, "S", "s" + String.format("%02d", Database.getInstance().getStudents().size() % 100) + login);
+    	this.faculty = faculty;
+    	this.degree = degree;
+    	this.yearOfStudy = yearOfStudy;
     }
-
-	public Student(Faculty faculty, Degree degree) {
-		this.faculty = faculty;
-		this.degree = degree;
-	}
 
 	public Faculty getFaculty() {
 		return faculty;
@@ -41,7 +40,6 @@ public class Student extends User {
 	public void setFaculty(Faculty faculty) {
 		this.faculty = faculty;
 	}
-
 
 	public Degree getDegree() {
 		return degree;
@@ -97,20 +95,25 @@ public class Student extends User {
 	public Schedule getSchedule() {
 		return schedule;
 	}
-	
-	
 
-    public void viewMainPage() {
-    	super.viewMainPage();
-    	System.out.print(  " 4.  Student schedule \n"
-				 		 + " 5.  Transcript \n"
-				 		 + " 6.  Student marks \n"
-				 		 + " 7.  Library \n"
-				 		 + " 8.  Make request \n"
-				 		 + " 9.  View Courses \n"
-				 		 + " 10. Organizations \n"
-				 		 + " 11. View Teachers \n"
-				 		 + " 12. Rate Teachers \n");
 
-    }
+	public void viewMainPage() {
+	      super.viewMainPage();
+	      System.out.print(  " 4.  Student schedule \n"
+	              + " 5.  Transcript \n"
+	              + " 6.  Student marks \n"
+	              + " 7.  Library \n"
+	              + " 8.  Make request \n"
+	              + " 9.  View Courses \n"
+	              + " 10. Organizations \n"
+	              + " 11. View Teachers \n"
+	              + " 12. Rate Teachers \n");
+
+	    }
+	
+	public String toString() {
+		return super.toString() + "\nfaculty: " + faculty + "\ndegree: " + degree 
+				+ "\nyear of study: " + yearOfStudy;
+	}
+
 }

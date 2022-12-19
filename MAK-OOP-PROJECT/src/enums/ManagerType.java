@@ -1,5 +1,5 @@
 package enums;
 
 public enum ManagerType {
-	OR, RECTOR, DEP_RECTOR, DEAN, DEP_DEAN
+	OR, RECTOR, DEPUTY_RECTOR, DEAN, DEPUTY_DEAN
 }

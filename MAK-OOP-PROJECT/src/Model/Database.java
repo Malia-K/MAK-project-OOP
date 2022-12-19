@@ -1,28 +1,22 @@
 package Model;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
+import java.io.*;
 import java.util.Vector;
 
-public class Database implements Serializable{
-	private static final long serialVersionUID = 1L;
-	static private Vector <User> users;
-    static private Vector <Book> library;
-    static private Vector <Course> courses;
-    static private Vector <Organization> organizations;
-    static private Vector <String> logs;
-    static private Vector <Report> reports;
-    static private Vector <New> news;
-    static private Vector <Teacher> teachers;
-   
-    
-    static{
+public final class Database implements Serializable{
 
+	private static final long serialVersionUID = 1L;
+	private static Database instance = new Database();	
+	private Vector <User> users;
+    private Vector <Book> library;
+    private Vector <Course> courses;
+    private Vector <Organization> organizations;
+    private Vector <String> logs;
+    private Vector <Report> reports;
+    private Vector <New> news;
+
+    
+    {
     	users = new Vector <User>();
     	library = new Vector <Book>();
     	courses = new Vector <Course>();
@@ -31,30 +25,26 @@ public class Database implements Serializable{
     	reports = new Vector <Report>();
     	news = new Vector<New>();
     	
-
-    	if(new File("database.ser").exists()) {
-    		try {
-    			users = readDatabase();
-    		} catch (Exception e) {
-				e.printStackTrace();
-    		}
-    	}
-    	else users = new Vector <User>();
-      library = new Vector <Book>();
-      courses = new Vector <Course>();
-      organizations = new Vector <Organization>();
-      logs = new Vector <String>();
-      reports = new Vector <Report>();
-     
     }
     
-    public static Vector <User> getUsers(){
-    	return users;
+    private Database() {}
+    
+    public static Database getInstance() {
+    	try {
+			readDatabase();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+    	return instance;
+    }
+    
+    public Vector <User> getUsers(){
+    	return instance.users;
     }
     
     public Vector <Student> getStudents() {
     	Vector <Student> students = new Vector <Student>();
-    	for(User u: users) {
+    	for(User u: instance.users) {
     		if(u instanceof Student) {
     			Student s = (Student) u;
     			students.add(s);
@@ -65,7 +55,7 @@ public class Database implements Serializable{
     
     public Vector <Employee> getEmployees(){
     	Vector <Employee> employees = new Vector <Employee>();
-    	for(User u: users) {
+    	for(User u: instance.users) {
     		if(u instanceof Employee) {
     			Employee e = (Employee) u;
     			employees.add(e);
@@ -76,7 +66,7 @@ public class Database implements Serializable{
     
     public Vector <Admin> getAdmins(){
     	Vector <Admin> admins = new Vector <Admin>();
-    	for(User u: users) {
+    	for(User u: instance.users) {
     		if(u instanceof Admin) {
     			Admin a = (Admin) u;
     			admins.add(a);
@@ -87,7 +77,7 @@ public class Database implements Serializable{
     
     public Vector <Librarian> getLibrarians(){
     	Vector <Librarian> librarians = new Vector <Librarian>();
-    	for(User u: users) {
+    	for(User u: instance.users) {
     		if(u instanceof Librarian) {
     			Librarian l = (Librarian) u;
     			librarians.add(l);
@@ -98,7 +88,7 @@ public class Database implements Serializable{
       
     public Vector <Manager> getManagers(){
     	Vector <Manager> managers = new Vector <Manager>();
-    	for(User u: users) {
+    	for(User u: instance.users) {
     		if(u instanceof Manager) {
     			Manager m = (Manager) u;
     			managers.add(m);
@@ -109,7 +99,7 @@ public class Database implements Serializable{
     
     public static Vector <Teacher> getTeachers(){
     	Vector <Teacher> teachers = new Vector <Teacher>();
-    	for(User u: users) {
+    	for(User u: instance.users) {
     		if(u instanceof Teacher) {
     			Teacher t = (Teacher) u;
     			teachers.add(t);
@@ -118,64 +108,55 @@ public class Database implements Serializable{
     	return teachers;
     }
 
-	public static Vector<Book> getLibrary() {
-		return library;
+	public Vector<Book> getLibrary() {
+		return instance.library;
 	}
 
 
-	public static Vector<Course> getCourses() {
-		return courses;
+	public Vector<Course> getCourses() {
+		return instance.courses;
 	}
 
-	public static Vector<Organization> getOrganizations() {
-		return organizations;
+	public Vector<Organization> getOrganizations() {
+		return instance.organizations;
 	}
 
-	public static Vector<String> getLogs() {
-		return logs;
+	public Vector<String> getLogs() {
+		return instance.logs;
 	}
 
-
-
-	public static Vector<Report> getReports() {
-		return reports;
-	}
-
-	
-	public static Vector<New> getNews() {
-		return news;
-	}
-
-	public static void addNews(New n) {
-		news.add(n);
+	public Vector<Report> getReports() {
+		return instance.reports;
 	}
 
     
-   
+	public Vector <New> getNews() {
+		return instance.news;
+	}
+	
+	public void addNews(New n) {
+		news.add(n);
+	}
+	
+    public void addUser(User u) {
+    	getInstance().users.add(u);
 
-    public static void addUser(User u) {
-    	users.add(u);
     }
-
-
-
 
     public static void databaseSave() throws IOException {
     	FileOutputStream fos = new FileOutputStream(Connect.getInstance());
 		ObjectOutputStream oos = new ObjectOutputStream(fos);
-		oos.writeObject(users);
+		oos.writeObject(instance);
 		
 		fos.close();
 		oos.close();
     }
     
-    static Vector<User> readDatabase() throws Exception{
+    public static void readDatabase() throws Exception{
 		FileInputStream fis = new FileInputStream(Connect.getInstance());
 		ObjectInputStream ois = new ObjectInputStream(fis);
-		@SuppressWarnings("unchecked")
-		Vector<User> database = (Vector<User>)ois.readObject();
+		instance = (Database)ois.readObject();
 		fis.close();
 		ois.close();
-		return database;
 	}
 }

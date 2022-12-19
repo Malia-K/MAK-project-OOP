@@ -19,11 +19,9 @@ public class UserControl{
 		this.user = u;
 	}
 	
-     
     public User getUser() {
     	return this.user;
     }
-     
      
     public void login() throws IOException {
     	System.out.print("  Enter your login: ");
@@ -32,11 +30,17 @@ public class UserControl{
     	String password = br.readLine();
     	
     	if(login.equals("Admin123") && password.equals("Admin123")) {
+
     		System.out.print(formatDiv("-".repeat(45) + '\n'));
     		System.out.println("     Welcome to Admin Page!");
     		System.out.print(formatDiv("-".repeat(45) + '\n'));
     		ManageUsers m = new ManageUsers();
-    		m.createUser();
+
+        	System.out.println("\n" + "-".repeat(30));
+    		System.out.println("Welcome to Admin Page!");
+        	System.out.println("-".repeat(30));
+    		(new AddUsers()).createUser();
+
     	}
     	
     	user = verify(login, password);
@@ -71,7 +75,7 @@ public class UserControl{
     }
 
     public User verify(String login, String password) {   	
-    	for(User u : Database.getUsers()) {
+    	for(User u : Database.getInstance().getUsers()) {
     		if(u.getLogin().equals(login) && u.getPassword().equals(password)) {
     			return u;
     		}
@@ -80,8 +84,12 @@ public class UserControl{
     }
      
     public void saveLogs() {}
-     
-     
+    
+    
+    
+	/**
+	* this is a method to execute users session in uni system
+	*/
     public void session() throws IOException {
     	String header = "";
     	
@@ -94,38 +102,6 @@ public class UserControl{
      
      
 
-   
-    public void viewBooks() {
-    	for(Book b: Database.getLibrary()) {
-    		System.out.println(b);
-    	}
-    }
-    
-    public void viewNews() throws IOException {
-    	String header = "";
-    	
-    	header += formatDiv("a" + "-".repeat(43) + "c" +"\n");
-    	header += formatRow("|" + " ".repeat(19) + "News" + " ".repeat(19) + " |\n");
-    	header += formatDiv("g" +"-".repeat(43) + "i"+ '\n');
-    	System.out.print(header);
-
-    	//just for testing
-    	String title = "OMG";
-    	User author = new User("Alima", "Kusmanova", "wasd", "S");
-    	Database.addUser(author);
-    	
-    	New n = new New(title, author, LocalDateTime.now(), "This is a test new. wish it will work!");
-    	
-    	Database.addNews(n);
-    	
-    	for(New nw : Database.getNews()) {
-    		nw.printNew();
-    	}
-    	
-    	
-    	viewRegisterPage();
-    }
- 
     public void viewRegisterPage() throws IOException {
     	System.out.println("\n Enter 'M' to jump to main page: ");
     	String command = br.readLine();
@@ -144,31 +120,55 @@ public class UserControl{
 		   		}else if(action == 3) {
 		   			this.viewBooks();
 		   		}
-	   		}
-	   		
-	   		
+	   		}	
 	    }
-    }
- 
-       
-    
-    public static String formatRow(String str){
-        return str.replace('|', '\u2502');
+
     }
 
-    public static String formatDiv(String str){
-        return str.replace('a', '\u250c')
-                .replace('b', '\u252c')
-                .replace('c', '\u2510')
-                .replace('d', '\u251c')
-                .replace('e', '\u253c')
-                .replace('f', '\u2524')
-                .replace('g', '\u2514')
-                .replace('h', '\u2534')
-                .replace('i', '\u2518')
-                .replace('-', '\u2500');
-    }
-    
+
+
+    public void viewBooks() {
+        for(Book b: Database.getInstance().getLibrary()) {
+          System.out.println(b);
+        }
+      }
+      
+      public void viewNews() throws IOException {
+        String header = "";
+        
+        header += formatDiv("a" + "-".repeat(43) + "c" +"\n");
+        header += formatRow("|" + " ".repeat(19) + "News" + " ".repeat(19) + " |\n");
+        header += formatDiv("g" +"-".repeat(43) + "i"+ '\n');
+        System.out.print(header);
+
+
+
+       
+        for(New nw : Database.getInstance().getNews()) {
+          nw.printNew();
+        }
+        
+        
+        viewRegisterPage();
+      }
+      
+      public static String formatRow(String str){
+          return str.replace('|', '\u2502');
+      }
+      
+      public static String formatDiv(String str){
+          return str.replace('a', '\u250c')
+                  .replace('b', '\u252c')
+                  .replace('c', '\u2510')
+                  .replace('d', '\u251c')
+                  .replace('e', '\u253c')
+                  .replace('f', '\u2524')
+                  .replace('g', '\u2514')
+                  .replace('h', '\u2534')
+                  .replace('i', '\u2518')
+                  .replace('-', '\u2500');
+      }
+
 }
      
      

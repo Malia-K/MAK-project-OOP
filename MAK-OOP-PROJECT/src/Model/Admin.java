@@ -1,7 +1,5 @@
 package Model;
 
-import java.sql.Date;
-
 import enums.Gender;
 
 public class Admin extends Employee {
@@ -9,11 +7,9 @@ public class Admin extends Employee {
 
 	public Admin() {}
 	
-	public Admin(String firstName, String lastName, String password) {
-		super(firstName, lastName, password, "A");
+	public Admin(String firstName, String lastName, Gender gender, String birthDate, String password, String enrolled, String login, int experience) {
+		super(firstName, lastName, gender, birthDate, password, enrolled, "A", "a" +String.format("%02d", Database.getInstance().getAdmins().size() % 100) + login, experience);
 	}
-
-	public Admin(String firstName, String lastName, Gender gender, Date birthDate, String id, String login, int experience) {
-		super(firstName, lastName, gender, birthDate, id, login, experience);
-	}
+	
+	
 }
