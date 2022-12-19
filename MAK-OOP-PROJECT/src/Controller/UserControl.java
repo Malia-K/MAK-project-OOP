@@ -2,11 +2,15 @@ package Controller;
 
 import Model.*;
 
+
 import java.io.*;
-import java.util.StringTokenizer;
+import java.time.LocalDateTime;
+
 
 public class UserControl{
 	private User user;
+	
+
 	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	
 	public UserControl () {}
@@ -22,14 +26,15 @@ public class UserControl{
      
      
     public void login() throws IOException {
-    	System.out.print("Enter your login: ");
+    	System.out.print("  Enter your login: ");
     	String login = br.readLine();
-    	System.out.print("Enter your password: ");
+    	System.out.print("  Enter your password: ");
     	String password = br.readLine();
+    	
     	if(login.equals("Admin123") && password.equals("Admin123")) {
-        	System.out.println("\n" + "-".repeat(30));
-    		System.out.println("Welcome to Admin Page!");
-        	System.out.println("-".repeat(30));
+    		System.out.print(formatDiv("-".repeat(45) + '\n'));
+    		System.out.println("     Welcome to Admin Page!");
+    		System.out.print(formatDiv("-".repeat(45) + '\n'));
     		ManageUsers m = new ManageUsers();
     		m.createUser();
     	}
@@ -37,11 +42,17 @@ public class UserControl{
     	user = verify(login, password);
     	
     	if(user != null) {
-    		System.out.println("Welcome " + user.getFirstName() + " " + user.getLastName());
+    		System.out.print(formatDiv( "-".repeat(45) + '\n'));
+    		System.out.println("        Welcome " + user.getFirstName() + " " + user.getLastName() + "!");
     		viewNews();
     		
-    	}else {
-    		System.out.println("Wrong login or password! Please try again.");
+    	}else{
+    		String error = "";
+    		error += formatDiv("a" + "-".repeat(44) + "c" +"\n");
+    		error += formatRow("| Wrong login or password! Please try again: |\n");
+    		error += formatDiv("g" + "-".repeat(44) + "i" +"\n");
+    		System.err.print(error);
+    		
     		login();
     	}
      	
@@ -50,9 +61,9 @@ public class UserControl{
 
      
     public void changePassword() throws IOException {
-    	System.out.println("Enter your current password: ");
+    	System.out.println("   Enter your current password: ");
     	
-    	System.out.println("Enter your new password: ");
+    	System.out.println("   Enter your new password: ");
     	
     	login();
     	
@@ -72,9 +83,12 @@ public class UserControl{
      
      
     public void session() throws IOException {
-    	System.out.println("-".repeat(30));
-    	System.out.println("  Welcome to MAK University!  ");
-    	System.out.println("-".repeat(30));
+    	String header = "";
+    	
+    	header += formatDiv("a" + "-".repeat(43) + "c" +"\n");
+    	header += formatRow("|        Welcome to MAK University!         |\n");
+    	header += formatDiv("g" +"-".repeat(43) + "i"+ '\n');
+    	System.out.print(header);
      	login();
     }
      
@@ -82,16 +96,33 @@ public class UserControl{
 
    
     public void viewBooks() {
-    	for(Model.Book b: Model.Database.getLibrary()) {
+    	for(Book b: Database.getLibrary()) {
     		System.out.println(b);
     	}
     }
     
     public void viewNews() throws IOException {
-    	System.out.println("-".repeat(30));
-    	System.out.println("             News             ");
-    	System.out.println("-".repeat(30));
-    	System.out.println("-some interesting news-");
+    	String header = "";
+    	
+    	header += formatDiv("a" + "-".repeat(43) + "c" +"\n");
+    	header += formatRow("|" + " ".repeat(19) + "News" + " ".repeat(19) + " |\n");
+    	header += formatDiv("g" +"-".repeat(43) + "i"+ '\n');
+    	System.out.print(header);
+
+    	//just for testing
+    	String title = "OMG";
+    	User author = new User("Alima", "Kusmanova", "wasd", "S");
+    	Database.addUser(author);
+    	
+    	New n = new New(title, author, LocalDateTime.now(), "This is a test new. wish it will work!");
+    	
+    	Database.addNews(n);
+    	
+    	for(New nw : Database.getNews()) {
+    		nw.printNew();
+    	}
+    	
+    	
     	viewRegisterPage();
     }
  
@@ -100,18 +131,42 @@ public class UserControl{
     	String command = br.readLine();
     	
 	   	if(command.equals("m") || command.equals("M")) {
+	   		while(true) {
+	   			user.viewMainPage();
 	   			
-	    		viewMainPage();
+	   			
+		   		System.out.print(" Enter the operation number:");
+		   		int action = Integer.parseInt(br.readLine());
+		   		if(action == 1) {
+		   			this.viewNews();
+		   		}else if(action == 2) {
+		   			System.out.println(this);
+		   		}else if(action == 3) {
+		   			this.viewBooks();
+		   		}
+	   		}
+	   		
+	   		
 	    }
     }
  
+       
+    
+    public static String formatRow(String str){
+        return str.replace('|', '\u2502');
+    }
 
-    public void viewMainPage() {
-    	System.out.println("Operations: ");
-    	System.out.println("1. News \n"
-    					 + "2. User's information \n"
-    					 + "3. Library \n ");
-
+    public static String formatDiv(String str){
+        return str.replace('a', '\u250c')
+                .replace('b', '\u252c')
+                .replace('c', '\u2510')
+                .replace('d', '\u251c')
+                .replace('e', '\u253c')
+                .replace('f', '\u2524')
+                .replace('g', '\u2514')
+                .replace('h', '\u2534')
+                .replace('i', '\u2518')
+                .replace('-', '\u2500');
     }
     
 }

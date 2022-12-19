@@ -1,7 +1,7 @@
 package Controller;
 
-import Model.Student;
-import Model.User;
+import Model.*;
+
 
 public class StudentControl extends UserControl /*implements canSeeOrganizations, canViewCourses, canMakeRequest, viewCourseData, hasSchedule*/ {
 	
@@ -21,7 +21,12 @@ public class StudentControl extends UserControl /*implements canSeeOrganizations
 	
 	public void rateTeacher() {}
 	
-	public void viewTeachers() {}
+	public void viewTeachers() {
+		for(Teacher t: Database.getTeachers()) {
+			
+			System.out.println(t);
+		}
+	}
 	
 	public void viewTranscipt() {}
 	
@@ -36,17 +41,4 @@ public class StudentControl extends UserControl /*implements canSeeOrganizations
 	public void viewCourses() {}
 		
 
-    public void viewMainPage() {
-    	super.viewMainPage();
-    	System.out.println("4.  Student schedule \n"
-				 		 + "5.  Transcript \n"
-				 		 + "6.  Student marks \n"
-				 		 + "7.  Library \n"
-				 		 + "8.  Make request \n"
-				 		 + "9.  View Courses \n"
-				 		 + "10. Organizations \n"
-				 		 + "11. View Teachers \n"
-				 		 + "12. Rate Teachers \n");
-
-    }
 }

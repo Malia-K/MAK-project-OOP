@@ -17,6 +17,8 @@ public class Database implements Serializable{
     static private Vector <Organization> organizations;
     static private Vector <String> logs;
     static private Vector <Report> reports;
+    static private Vector <New> news;
+    static private Vector <Teacher> teachers;
    
     
     static{
@@ -27,6 +29,7 @@ public class Database implements Serializable{
     	organizations = new Vector <Organization>();
     	logs = new Vector <String>();
     	reports = new Vector <Report>();
+    	news = new Vector<New>();
     	
 
     	if(new File("database.ser").exists()) {
@@ -104,7 +107,7 @@ public class Database implements Serializable{
     	return managers;
     }
     
-    public Vector <Teacher> getTeachers(){
+    public static Vector <Teacher> getTeachers(){
     	Vector <Teacher> teachers = new Vector <Teacher>();
     	for(User u: users) {
     		if(u instanceof Teacher) {
@@ -138,6 +141,14 @@ public class Database implements Serializable{
 		return reports;
 	}
 
+	
+	public static Vector<New> getNews() {
+		return news;
+	}
+
+	public static void addNews(New n) {
+		news.add(n);
+	}
 
     
    

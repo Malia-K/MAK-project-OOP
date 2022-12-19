@@ -97,4 +97,20 @@ public class Student extends User {
 	public Schedule getSchedule() {
 		return schedule;
 	}
+	
+	
+
+    public void viewMainPage() {
+    	super.viewMainPage();
+    	System.out.print(  " 4.  Student schedule \n"
+				 		 + " 5.  Transcript \n"
+				 		 + " 6.  Student marks \n"
+				 		 + " 7.  Library \n"
+				 		 + " 8.  Make request \n"
+				 		 + " 9.  View Courses \n"
+				 		 + " 10. Organizations \n"
+				 		 + " 11. View Teachers \n"
+				 		 + " 12. Rate Teachers \n");
+
+    }
 }

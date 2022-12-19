@@ -1,6 +1,8 @@
 package Controller;
 
-import Model.Manager;
+import java.time.LocalDateTime;
+
+import Model.*;
 
 public class ManagerControl extends EmployeeControl /*implements canSeeOrganizations, canViewCourses, canMakeReport*/ {
     private Manager manager;
@@ -12,4 +14,9 @@ public class ManagerControl extends EmployeeControl /*implements canSeeOrganizat
     public void setManager(Manager manager) {
         this.manager = manager;
     } 
+    
+    
+    public void manageNews() {
+    	
+    }
 }

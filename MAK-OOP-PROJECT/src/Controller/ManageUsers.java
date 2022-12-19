@@ -83,8 +83,8 @@ public class ManageUsers {
 		
 		int action = Integer.parseInt(br.readLine());
 		if(action == 0) return;
-		System.out.println("Please, add following information:\n\tFirst Name\n\tLast Name\n\tGender\n\tBirth Date");
-		User newUser = new User();
+			System.out.println("Please, add following information:\n\tFirst Name\n\tLast Name\n\tGender\n\tBirth Date");
+			User newUser = new User();
 		if(action <= 4) {
 			newUser = createEmployee(action);
 		}
@@ -94,7 +94,9 @@ public class ManageUsers {
 		else if(action == 6) {
 			newUser = createResearcher();
 		}
-		if(newUser != null) Database.addUser(newUser);
+		if(newUser != null) 
+			Database.addUser(newUser);
+		
 //		System.out.println(Database.getUsers());
 	}
 }

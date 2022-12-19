@@ -4,7 +4,7 @@ import java.io.Serializable;
 import enums.*;
 import java.sql.Date;
 
-public class User implements Comparable<User>, Serializable, Cloneable {
+public  class User implements Comparable<User>, Serializable, Cloneable {
 	private static final long serialVersionUID = 1L;
     private String firstName;
     private String lastName;
@@ -122,4 +122,35 @@ public class User implements Comparable<User>, Serializable, Cloneable {
 	public String toString() {
 		return firstName + " " + lastName +" " +login;
 	}
+	
+	public void viewMainPage() {
+		String header = "";
+    	
+    	header += formatDiv("a" + "-".repeat(43) + "c" +"\n");
+    	header += formatRow("|"+ " ".repeat(16) +  "Operations:" + " ".repeat(16) + "|\n");
+    	header += formatDiv("g" +"-".repeat(43) + "i"+ '\n');
+    	System.out.print(header);
+    	System.out.print(  " 1.  News \n"
+    					 + " 2.  User's information \n"
+    					 + " 3.  Library \n");
+	}
+	
+	
+	
+	 public static String formatRow(String str){
+        return str.replace('|', '\u2502');
+    }
+
+    public static String formatDiv(String str){
+        return str.replace('a', '\u250c')
+                .replace('b', '\u252c')
+                .replace('c', '\u2510')
+                .replace('d', '\u251c')
+                .replace('e', '\u253c')
+                .replace('f', '\u2524')
+                .replace('g', '\u2514')
+                .replace('h', '\u2534')
+                .replace('i', '\u2518')
+                .replace('-', '\u2500');
+    }
 }
