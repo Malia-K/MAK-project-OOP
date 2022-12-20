@@ -44,7 +44,8 @@ public class LibrarianControl extends EmployeeControl {
     public void manageBooks() throws NumberFormatException, IOException {
     	System.out.println("Choose action: \n\t0. Return to menu\n\t1. Add book\n\t2. Delete Book");
     	try {
-    		int action = Integet.parseInt(br.readLine())
+    		int action = Integet.parseInt(br.readLine());
+    		
     	}
     }
     

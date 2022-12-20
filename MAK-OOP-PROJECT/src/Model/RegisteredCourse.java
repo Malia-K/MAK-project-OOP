@@ -23,6 +23,7 @@ public class RegisteredCourse extends Course {
     }
     
     public Mark getMark() {
+    	
     	return mark;
     }
 
