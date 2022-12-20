@@ -83,7 +83,6 @@ public class UserControl{
 	*/
     public void session() throws IOException, InterruptedException {
 //    	ManagerControl mc = new ManagerControl();
-//    	
 //    	mc.viewAllTeachers();
     	
     	String header = "";
