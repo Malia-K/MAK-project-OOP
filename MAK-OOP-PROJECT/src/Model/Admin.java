@@ -1,5 +1,7 @@
 package Model;
 
+import Controller.AddUsers;
+import Controller.ManageUsers;
 import enums.Gender;
 
 public class Admin extends Employee {
@@ -11,5 +13,8 @@ public class Admin extends Employee {
 		super(firstName, lastName, gender, birthDate, password, enrolled, "A", "a" +String.format("%02d", Database.getInstance().getAdmins().size() % 100) + login, experience);
 	}
 	
+	
+	
+
 	
 }

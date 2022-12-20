@@ -6,7 +6,8 @@ import java.util.Vector;
 public final class Database implements Serializable{
 
 	private static final long serialVersionUID = 1L;
-	private static Database instance = new Database();	
+	private static Database instance = new Database();
+	
 	private Vector <User> users;
     private Vector <Book> library;
     private Vector <Course> courses;

@@ -1,28 +1,34 @@
 package Model;
 
+import java.io.Serializable;
 import java.util.Vector;
 import enums.Faculty;
 
-public class Course {
+public class Course implements Serializable, Cloneable, Comparable<Course> {
+	private static final long serialVersionUID = 1L;
 	private String id;
     private String name;
     private int credits;
     private Faculty faculty;
-    private int formula[];
+    private String formula;
     private Vector<Course> prerequisites;
     
     {
-    	formula = new int[3];
     	prerequisites = new Vector <Course>();
     }
     
     public Course() {}
     
-    public Course(String id, String name, int credits, Faculty faculty) {
+    public Course(String id, String name, int credits, Faculty faculty, String formula) {
     	this.id = id;
     	this.name = name;
     	this.credits = credits;
     	this.faculty = faculty;
+    	this.formula = formula;
+    }
+    public Course(String id, String name, int credits, Faculty faculty, String formula, Vector <Course> prerequisites) {
+    	this(id, name, credits, faculty, formula);
+    	this.prerequisites = prerequisites;
     }
     
     public String getId() {
@@ -57,11 +63,11 @@ public class Course {
         this.faculty = faculty;
     }
 
-    public int[] getFormula() {
+    public String getFormula() {
         return this.formula;
     }
 
-    public void setFormula(int[] formula) {
+    public void setFormula(String formula) {
         this.formula = formula;
     }
 
@@ -72,8 +78,32 @@ public class Course {
     public void setPrerequisite(Course prerequisite) {
         this.prerequisites.add(prerequisite);
     } 
+
+	public int compareTo(Course o) {
+		int size = Math.min(id.length(), o.getId().length());
+		for(int i = 0; i < size; i++) {
+			if(id.charAt(i) != o.getId().charAt(i)) {
+				return (id.charAt(i) < o.getId().charAt(i)) ? -1 : 1;
+			}
+		}
+		return 0;
+	}
+    
+    public boolean equals(Object o) {
+    	if(this == o) return true;
+    	if(o == null) return false;
+    	if(this.getClass() != o.getClass()) return false;
+    	
+    	Course c = (Course) o;
+    	return credits == c.getCredits() && faculty == c.getFaculty() && id.equals(c.getId()) && name.equals(c.getName()) && formula.equals(c.getFormula()) && prerequisites.equals(c.getPrerequisites()); 
+    }
     
     public String toString() {
-    	return id + " " + name + ' ' + credits + " " + faculty + " " + formula + " " + prerequisites;
+    	String prereqs = new String();
+    	for(Course c: prerequisites) {
+    		prereqs += c.getId() + " ";
+    	}
+    	return "id: " + id + "\nname: " + name + "\ncredits: " + credits + "\nfaculty: " + faculty + "\nformula: " + formula + "\nprerequisites: " + ((prerequisites.isEmpty()) ? "" : prereqs);
     }
+
 }

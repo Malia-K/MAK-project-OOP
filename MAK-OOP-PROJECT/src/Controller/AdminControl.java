@@ -1,6 +1,5 @@
 package Controller;
 import java.io.BufferedReader;
-
 import java.io.IOException;
 import java.io.InputStreamReader;
 
@@ -42,7 +41,7 @@ public class AdminControl extends EmployeeControl {
     	try {
     		int action = Integer.parseInt(br.readLine());
 	    	if(action == 0) {
-	    		(new UserControl(getAdmin())).viewMainPage();
+//	    		(new UserControl(getAdmin())).viewMainPage();
 	    		return;
 	    	}
 	    	else if(action == 1) {

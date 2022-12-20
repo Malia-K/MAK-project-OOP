@@ -1,7 +1,6 @@
 package Controller;
 
-import Model.Employee;
-import Model.User;
+import Model.*;
 
 public class EmployeeControl extends UserControl {
 	public EmployeeControl() {}
@@ -27,6 +26,8 @@ public class EmployeeControl extends UserControl {
     }
     
     
-    public void viewMessage() {}
+    public void viewMessage() {
+    	
+    }
 
 }

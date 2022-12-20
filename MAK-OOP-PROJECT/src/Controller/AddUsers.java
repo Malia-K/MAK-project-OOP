@@ -1,7 +1,6 @@
 package Controller;
 
 import java.io.*;
-
 import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
 import java.util.Vector;
@@ -33,6 +32,13 @@ public class AddUsers extends ManageUsers{
 		System.out.println("\t1. Admin" + "\n\t2. Teacher" + "\n\t3. Manager" + "\n\t4. Librarian" + "\n\t5. Student\n" + s);
 	}
 	
+	private boolean goBack(String input) throws IOException {
+		if(input.equals("0")) {
+			return true;
+		}
+		return false;
+	}
+	
 	private boolean checkDateFormat(String date) {
 		Pattern p = Pattern.compile("^[0-9]{4}-(1[0-2]|0[1-9])-(3[01]|[12][0-9]|0[1-9])$");
 		return p.matcher(date).matches();
@@ -43,18 +49,15 @@ public class AddUsers extends ManageUsers{
 				+ "\nCommon information:\n\tFirst Name\n\tLast Name\n\tGender: male/female\n\t"
 				+ "Birth Date: YYYY-MM-DD\n\tPassword\n\tEnrolled: YYYY-MM-DD\n" + s);
 		try {
-			st = new StringTokenizer(br.readLine(), " ");
+			String input = br.readLine();
+			if(goBack(input)) {
+				createUser();
+				return null;
+			}
+			st = new StringTokenizer(input, " ");
 			String firstName = st.nextToken();
 			String lastName = st.nextToken();
-			String g = st.nextToken();
-			
-			Gender gender = (g.toLowerCase().equals("female")) ? Gender.FEMALE : (g.toLowerCase().equals("male")) ? Gender.MALE : null;	
-			
-			if(gender == null) {
-				System.out.println("This gender doesn't exist in system, try again");
-				return create(act);
-			}
-		
+			Gender gender = Gender.valueOf(st.nextToken().toUpperCase());	
 			String birthDate = st.nextToken();
 			String password = st.nextToken();
 			String enrolled = st.nextToken();
@@ -67,7 +70,9 @@ public class AddUsers extends ManageUsers{
 			
 			if(act <= 4) return createEmployee(act, firstName, lastName, gender, birthDate, password, enrolled, login);
 			return createStudent(firstName, lastName, gender, birthDate, password, enrolled, login);
-		} catch(NoSuchElementException nsee) {
+		}  catch(IllegalArgumentException iae) {
+			System.out.println("Format is not the same! Please, try again");
+		}catch(NoSuchElementException nsee) {
 			System.out.println("You forgot some inputs! Please, try again!");
 		}
 		return create(act);
@@ -137,13 +142,18 @@ public class AddUsers extends ManageUsers{
 	private User createManager(String firstName, String lastName, Gender gender, String birthDate, String password, String enrolled, int experience, String login) throws IOException {
 		System.out.println("Manager information:\n" + s + "\n\tChoose manager's type:\n"
 				+"\tRector\n\tDeputy_Rector\n\tOR\n\tDean\n\tDeputy_Dean\n" + s);
-		String type = br.readLine();
-		
-		return (new Manager(firstName, lastName, gender, birthDate, password, enrolled, login, experience, ManagerType.valueOf(type.toUpperCase())));
+		try {
+			String type = br.readLine();
+			return (new Manager(firstName, lastName, gender, birthDate, password, enrolled, login, experience, ManagerType.valueOf(type.toUpperCase())));
+		}
+		catch(IllegalArgumentException iae) {
+			System.out.println("You forgot some inputs! Please, try again!");
+		}
+		return createManager(firstName, lastName, gender, birthDate, password, enrolled, experience, login);
 	}
 	
 	private User createLibrarian(String firstName, String lastName, Gender gender, String birthDate, String password, String enrolled, int experience, String login) {
-		return (new Admin(firstName, lastName, gender, birthDate, password, enrolled, login, experience));
+		return (new Librarian(firstName, lastName, gender, birthDate, password, enrolled, login, experience));
 	}
 	
 	private User createResearcher() {
@@ -158,7 +168,7 @@ public class AddUsers extends ManageUsers{
 				new AdminControl(activeAdmin).manageUsers();
 				return;
 			}
-			if(action < 0 || action > 6) {
+			if(action < 0 || action > 5) {
 				System.err.println("Sorry, this option doesn't exist\nPlease, try again!");
 				createUser();
 				return;

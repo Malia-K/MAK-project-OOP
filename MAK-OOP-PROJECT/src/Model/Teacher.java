@@ -1,6 +1,6 @@
 package Model;
 
-import java.sql.Date;
+
 
 import enums.*;
 public class Teacher extends Employee {
@@ -10,6 +10,7 @@ public class Teacher extends Employee {
     private double rating;
     Schedule schedule;
     
+
     public Teacher() {}
     
     public Teacher(String firstName, String lastName, Gender gender, String birthDate, String password, String enrolled, String login, int experience, Faculty faculty, TeacherType teacherType) {
@@ -18,6 +19,7 @@ public class Teacher extends Employee {
     	this.teacherType = teacherType;
     }
     
+
     
    public Faculty getFaculty() {
         return this.faculty;
@@ -35,6 +37,7 @@ public class Teacher extends Employee {
         this.rating = rating;
     }
 
+
 	public TeacherType getTeacherType() {
 		return teacherType;
 	}
@@ -42,4 +45,35 @@ public class Teacher extends Employee {
 	public void setTeacherType(TeacherType teacherType) {
 		this.teacherType = teacherType;
 	}
+
+    
+    public int compareTo(Teacher o) {
+    	if(this.getRating() == o.getRating()) {
+    		return 0;
+    	}
+    	else if(this.getRating() > o.getRating()) {
+    		return 1;
+    	}
+    	else return 0;
+    }
+    
+    public boolean equals(Object o) {
+    	if(this == o) {
+    		return true;
+    	}
+    	if(!super.equals(o)) {
+    		return false;
+    	}
+    	if(getClass() != o.getClass()) {
+    		return false;
+    	}
+    	Teacher other = (Teacher) o;
+    	return getRating() == other.getRating();
+    }
+    
+    public Object clone() throws CloneNotSupportedException{
+    	Teacher copy = (Teacher) super.clone();
+
+    	return copy;
+    }
 }

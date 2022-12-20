@@ -23,25 +23,15 @@ public class UserControl{
     	return this.user;
     }
      
-    public void login() throws IOException {
+    public void login() throws IOException, InterruptedException {
+//    	for(User a : Database.getInstance().getUsers()) {
+//    		System.out.println(a.getLogin() + " " + a.getPassword());
+//    	}
     	System.out.print("  Enter your login: ");
     	String login = br.readLine();
     	System.out.print("  Enter your password: ");
     	String password = br.readLine();
-    	
-    	if(login.equals("Admin123") && password.equals("Admin123")) {
 
-    		System.out.print(formatDiv("-".repeat(45) + '\n'));
-    		System.out.println("     Welcome to Admin Page!");
-    		System.out.print(formatDiv("-".repeat(45) + '\n'));
-    		ManageUsers m = new ManageUsers();
-
-        	System.out.println("\n" + "-".repeat(30));
-    		System.out.println("Welcome to Admin Page!");
-        	System.out.println("-".repeat(30));
-    		(new AddUsers()).createUser();
-
-    	}
     	
     	user = verify(login, password);
     	
@@ -55,8 +45,9 @@ public class UserControl{
     		error += formatDiv("a" + "-".repeat(44) + "c" +"\n");
     		error += formatRow("| Wrong login or password! Please try again: |\n");
     		error += formatDiv("g" + "-".repeat(44) + "i" +"\n");
-    		System.err.print(error);
+    		System.err.println(error);
     		
+    		Thread.sleep(100);
     		login();
     	}
      	
@@ -64,7 +55,7 @@ public class UserControl{
     
 
      
-    public void changePassword() throws IOException {
+    public void changePassword() throws IOException, InterruptedException {
     	System.out.println("   Enter your current password: ");
     	
     	System.out.println("   Enter your new password: ");
@@ -90,14 +81,18 @@ public class UserControl{
 	/**
 	* this is a method to execute users session in uni system
 	*/
-    public void session() throws IOException {
-    	String header = "";
+    public void session() throws IOException, InterruptedException {
+    	ManagerControl mc = new ManagerControl();
     	
-    	header += formatDiv("a" + "-".repeat(43) + "c" +"\n");
-    	header += formatRow("|        Welcome to MAK University!         |\n");
-    	header += formatDiv("g" +"-".repeat(43) + "i"+ '\n');
-    	System.out.print(header);
-     	login();
+    	mc.viewAllStudents();
+    	
+//    	String header = "";
+//    	
+//    	header += formatDiv("a" + "-".repeat(43) + "c" +"\n");
+//    	header += formatRow("|        Welcome to MAK University!         |\n");
+//    	header += formatDiv("g" +"-".repeat(43) + "i"+ '\n');
+//    	System.out.print(header);
+//     	login();
     }
      
      
@@ -143,10 +138,13 @@ public class UserControl{
 
 
 
-       
-        for(New nw : Database.getInstance().getNews()) {
-          nw.printNew();
-        }
+       try {
+	       for(New nw : Database.getInstance().getNews()) {
+	    	   nw.printNew();
+	       }
+       } catch(NullPointerException npe) {
+    	   System.out.println("  No news yet..");
+       }
         
         
         viewRegisterPage();
