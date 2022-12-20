@@ -43,17 +43,36 @@ public class ManagerControl extends EmployeeControl /*implements canSeeOrganizat
 
     public void viewAllStudents() {
     	String list = "";
-        list += formatDiv("a-----------b---------------------------b-----------b-------c\n");
-        list += formatRow("|    ID     |        FULL NAME          |  FACULTY  |  GPA  |\n");
-        list += formatDiv("d-----------e---------------------------e-----------e-------f\n");
+        list += formatDiv("a-----------b---------------------------b----------b-----------b------------b-------c\n");
+        list += formatRow("|    ID     |        FULL NAME          | FACULTY  |  DEGREE   | STUDY YEAR |  GPA  |\n");
+        list += formatDiv("d-----------e---------------------------e----------e-----------e------------e-------f\n");
         System.out.print(list);
     	for(Student s : Database.getInstance().getStudents()) {
     		String fullName = s.getLastName() + " "+ s.getFirstName();
-    		String str1 = String.format("| %9s | %25s | %9s | %5x |", 
-    									s.getId(), fullName, s.getFaculty(), 4);
+    		String str1 = String.format("| %9s | %-25s | %-8s | %-9s | %10x | %5x |", 
+    									s.getId(), fullName, s.getFaculty(), s.getDegree(), s.getYearOfStudy(), 4);
             System.out.println(formatRow(str1));
     	}
-    	System.out.println(formatDiv("g-----------h---------------------------h-----------h-------i"));
+    	System.out.println(
+    			formatDiv("g-----------h---------------------------h----------h-----------h------------h-------i"));
     	
+    }
+    
+    
+    
+    public void viewAllTeachers() {
+    	String list = "";
+        list += formatDiv("a-----------b---------------------------b----------b--------------c\n");
+        list += formatRow("|    ID     |        FULL NAME          | FACULTY  | TEACHER TYPE |\n");
+        list += formatDiv("d-----------e---------------------------e----------e--------------f\n");
+        System.out.print(list);
+    	for(Teacher t : Database.getTeachers()) {
+    		String fullName = t.getLastName() + " "+ t.getFirstName();
+    		String str1 = String.format("| %9s | %-25s | %-8s |%-14s |", 
+    									t.getId(), fullName, t.getFaculty(), t.getTeacherType());
+            System.out.println(formatRow(str1));
+    	}
+    	System.out.println(
+    			formatDiv("g-----------h---------------------------h----------h--------------i"));
     }
 }

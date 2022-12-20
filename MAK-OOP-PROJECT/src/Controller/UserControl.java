@@ -82,17 +82,17 @@ public class UserControl{
 	* this is a method to execute users session in uni system
 	*/
     public void session() throws IOException, InterruptedException {
-    	ManagerControl mc = new ManagerControl();
-    	
-    	mc.viewAllStudents();
-    	
-//    	String header = "";
+//    	ManagerControl mc = new ManagerControl();
 //    	
-//    	header += formatDiv("a" + "-".repeat(43) + "c" +"\n");
-//    	header += formatRow("|        Welcome to MAK University!         |\n");
-//    	header += formatDiv("g" +"-".repeat(43) + "i"+ '\n');
-//    	System.out.print(header);
-//     	login();
+//    	mc.viewAllTeachers();
+    	
+    	String header = "";
+    	
+    	header += formatDiv("a" + "-".repeat(43) + "c" +"\n");
+    	header += formatRow("|        Welcome to MAK University!         |\n");
+    	header += formatDiv("g" +"-".repeat(43) + "i"+ '\n');
+    	System.out.print(header);
+     	login();
     }
      
      
