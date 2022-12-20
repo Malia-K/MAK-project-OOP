@@ -45,7 +45,7 @@ public class LibrarianControl extends EmployeeControl {
     	System.out.println("Choose action: \n\t0. Return to menu\n\t1. Add book\n\t2. Delete Book");
     	try {
     		int action = Integet.parseInt(br.readLine());
-    		if(action )
+    		if(action == 0)
     	}
     }
     
