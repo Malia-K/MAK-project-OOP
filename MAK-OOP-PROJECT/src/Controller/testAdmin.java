@@ -23,6 +23,7 @@ public class testAdmin {
 		
 		User k = new User("Karina", "Zhykbayeva", Gender.FEMALE, "2004-06-17", "abcd", "2021-09-01", "S", "S_Karina_Zhykbayeva");
 		
+		Database.getInstance();
 //		System.out.println(k.getId());
 		
 //		System.out.println(k.compareTo(Database.getInstance().getUsers().get(0)));
@@ -55,7 +56,9 @@ public class testAdmin {
 		
 		System.out.println(me);
 		
-		
+//		Database.getInstance().addUser(get);
+//		Database.getInstance().addUser(send);
+//		Database.databaseSave();
 		AdminControl ac = new AdminControl();
 //		for(int i = 0; i < 10; i++) {
 //			ac.manageUsers();
@@ -66,8 +69,8 @@ public class testAdmin {
 //		System.out.println(d.getYear() % 100);
 //		Collections.sort(Database.getInstance().getUsers());
 //		Database.databaseSave();
-//		for(User u: Database.getInstance().getUsers()) {
-//			System.out.println(u + "\n");
-//		}
+		for(User u: Database.getInstance().getUsers()) {
+			System.out.println(u + "\n");
+		}
 	}
 }

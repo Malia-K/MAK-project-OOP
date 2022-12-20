@@ -15,7 +15,6 @@ public final class Database implements Serializable{
     private Vector <String> logs;
     private Vector <Report> reports;
     private Vector <New> news;
-
     
     {
     	users = new Vector <User>();
@@ -31,11 +30,11 @@ public final class Database implements Serializable{
     private Database() {}
     
     public static Database getInstance() {
-    	try {
-			readDatabase();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	    try {
+				readDatabase();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
     	return instance;
     }
     
@@ -98,7 +97,7 @@ public final class Database implements Serializable{
     	return managers;
     }
     
-    public static Vector <Teacher> getTeachers(){
+    public Vector <Teacher> getTeachers(){
     	Vector <Teacher> teachers = new Vector <Teacher>();
     	for(User u: instance.users) {
     		if(u instanceof Teacher) {
