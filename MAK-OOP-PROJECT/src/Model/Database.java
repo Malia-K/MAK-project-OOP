@@ -3,8 +3,14 @@ package Model;
 import java.io.*;
 import java.util.Vector;
 
-public final class Database implements Serializable{
 
+public final class Database implements Serializable{
+	
+	/**
+		 * 
+		 * The class contains all the data used in the system
+		 * 
+		 */
 	private static final long serialVersionUID = 1L;
 	private static Database instance;
 	

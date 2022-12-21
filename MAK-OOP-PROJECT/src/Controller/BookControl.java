@@ -1,5 +1,7 @@
 package Controller;
 
+import Model.Book;
+
 public class BookControl {
     private LibrarianControl librarianControl;
     private Book book;

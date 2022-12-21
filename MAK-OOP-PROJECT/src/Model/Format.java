@@ -3,6 +3,13 @@ package Model;
 import java.util.StringTokenizer;
 import java.util.regex.Pattern;
 
+
+/**
+	 * 
+	 * A class that describes the output standard for some data
+	 * 
+	 */
+
 public class Format {
 	 public static String formatRow(String str){
 	        return str.replace('|', '\u2502');

@@ -8,7 +8,11 @@ import java.time.LocalDateTime;
 import java.util.Vector;
 import java.util.stream.Collectors;
 
-
+/**
+	 * 
+	 * Describes the functionality and actions of an ordinary user
+	 * 
+	 */
 public class UserControl{
 	private User user;
 	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));

@@ -5,6 +5,12 @@ import enums.*;
 import java.time.LocalDate;
 import java.util.Objects;
 
+/**
+	 * 
+	 * Class describing the most primitive user
+	 * 
+	 */
+
 public  class User implements Comparable<User>, Serializable, Cloneable {
 	private static final long serialVersionUID = 1L;
     private String firstName;

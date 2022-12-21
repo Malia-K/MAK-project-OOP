@@ -1,11 +1,19 @@
 package Controller;
 import java.io.BufferedReader;
+
+
 import java.io.IOException;
 import java.io.InputStreamReader;
 
 import Model.Admin;
 import Model.Database;
 import Model.User;
+
+/**
+	 * 
+	 * Describes the functionality and actions of the admin
+	 * 
+	 */
 public class AdminControl extends EmployeeControl {
 	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	public AdminControl() {}
