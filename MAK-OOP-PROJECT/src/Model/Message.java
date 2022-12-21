@@ -1,10 +1,12 @@
 package Model;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
-public class Message {
-    private Employee sender;
+public class Message implements Serializable{
+	private static final long serialVersionUID = 1L;
+	private Employee sender;
     private Employee recipient;
     private String topic;
     private String message;

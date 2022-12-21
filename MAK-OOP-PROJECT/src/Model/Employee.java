@@ -7,7 +7,6 @@ import enums.Gender;
 public class Employee extends User {
     private static final long serialVersionUID = 1L; 
 	private int experience;
-    private Vector<Message> messages;
     
     public Employee() {}
     
@@ -24,8 +23,12 @@ public class Employee extends User {
 		this.experience = experience;
 	}
 
-	public Vector<Message> getMessages() {
-		return messages;
+	public boolean equals(Object o) {
+		if(super.equals(o)) {
+			Employee e = (Employee) o;
+			return experience == e.getExperience();
+		}
+		return false;
 	}
 	
 	public String toString() {

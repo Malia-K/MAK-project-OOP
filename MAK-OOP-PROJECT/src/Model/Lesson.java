@@ -3,7 +3,7 @@ package Model;
 import enums.*;
 
 public class Lesson {
-    private RegisteredCourse course;
+    private OpenCourse course;
     private Days day;
     private Time startTime;
     private String room;
@@ -11,11 +11,11 @@ public class Lesson {
     private LessonType lessonType;
     private Time finishTime;
 
-    public RegisteredCourse getCourse() {
+    public OpenCourse getCourse() {
         return this.course;
     }
 
-    public void setCourse(RegisteredCourse course) {
+    public void setCourse(OpenCourse course) {
         this.course = course;
     }
     

@@ -6,7 +6,7 @@ import java.util.Vector;
 public final class Database implements Serializable{
 
 	private static final long serialVersionUID = 1L;
-	private static Database instance = new Database();
+	private static Database instance;
 	
 	private Vector <User> users;
     private Vector <Book> library;
@@ -15,6 +15,18 @@ public final class Database implements Serializable{
     private Vector <String> logs;
     private Vector <Report> reports;
     private Vector <New> news;
+    private Vector <Message> messages;
+    private Vector <OpenCourse> openCourses;
+    
+    static {
+    	if(new File(Connect.getInstance().getPath()).exists()) {
+    		try {
+				instance = readDatabase();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+    	} else instance = new Database();
+    }
     
     {
     	users = new Vector <User>();
@@ -24,17 +36,13 @@ public final class Database implements Serializable{
     	logs = new Vector <String>();
     	reports = new Vector <Report>();
     	news = new Vector<New>();
-    	
+    	messages = new Vector<Message>();
+    	openCourses = new Vector <OpenCourse>();
     }
     
     private Database() {}
     
     public static Database getInstance() {
-	    try {
-				readDatabase();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
     	return instance;
     }
     
@@ -134,6 +142,14 @@ public final class Database implements Serializable{
 		return instance.news;
 	}
 	
+	public Vector <Message> getMessages() {
+		return instance.messages;
+	}
+	
+	public void set() {
+		messages = new Vector <Message>();
+	}
+	
 	public void addNews(New n) {
 		news.add(n);
 	}
@@ -144,7 +160,7 @@ public final class Database implements Serializable{
     }
 
     public static void databaseSave() throws IOException {
-    	FileOutputStream fos = new FileOutputStream(Connect.getInstance());
+    	FileOutputStream fos = new FileOutputStream(Connect.getInstance().getPath());
 		ObjectOutputStream oos = new ObjectOutputStream(fos);
 		oos.writeObject(instance);
 		
@@ -152,11 +168,13 @@ public final class Database implements Serializable{
 		oos.close();
     }
     
-    public static void readDatabase() throws Exception{
-		FileInputStream fis = new FileInputStream(Connect.getInstance());
+    public static Database readDatabase() throws Exception{
+		FileInputStream fis = new FileInputStream(Connect.getInstance().getPath());
 		ObjectInputStream ois = new ObjectInputStream(fis);
-		instance = (Database)ois.readObject();
-		fis.close();
-		ois.close();
+		return (Database)ois.readObject();
+	}
+
+	public Vector <OpenCourse> getOpenCourses() {
+		return openCourses;
 	}
 }
