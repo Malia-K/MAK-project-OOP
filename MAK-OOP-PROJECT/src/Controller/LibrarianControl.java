@@ -50,7 +50,7 @@ public class LibrarianControl extends EmployeeControl {
     		}
     		
     		else if(action == 1) {
-    			(new addBook())
+    			(new addBook(getBook())).
     		}
     	}
     	
