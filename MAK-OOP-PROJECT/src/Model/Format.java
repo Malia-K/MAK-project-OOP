@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 
 /**
 	 * 
-	 * A class that describes the output standard for some data
+	 * A class that describes the output standard for some data.
 	 * 
 	 */
 

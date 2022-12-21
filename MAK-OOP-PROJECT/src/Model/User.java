@@ -27,6 +27,11 @@ public  class User implements Comparable<User>, Serializable, Cloneable {
     private String id;
     private String login;
     
+    /**
+     * 
+     * Default constructor.
+     * 
+     */
     public User() {}
     
 
@@ -185,7 +190,7 @@ public  class User implements Comparable<User>, Serializable, Cloneable {
 	
 	/**
 	 * 
-	 * Simple comparison of users. by last name and first name.
+	 * Simple comparison of users by last name and first name.
 	 * 
 	 */
 
@@ -199,7 +204,7 @@ public  class User implements Comparable<User>, Serializable, Cloneable {
 	
 	/**
 	 * 
-	 * Create a user's clone.
+	 * Create an user's clone.
 	 * 
 	 */
 	public Object clone() throws CloneNotSupportedException {
@@ -238,7 +243,7 @@ public  class User implements Comparable<User>, Serializable, Cloneable {
 	
 	/**
 	 * 
-	 * ToString method to display all user parameters correctly.
+	 * ToString method to display all user's parameters correctly.
 	 * 
 	 */
 	public String toString() {
