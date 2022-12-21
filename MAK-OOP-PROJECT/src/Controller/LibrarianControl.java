@@ -48,7 +48,12 @@ public class LibrarianControl extends EmployeeControl {
     		if(action == 0) {
     			return;
     		}
+    		
+    		else if(action == 1) {
+    			(new addBook())
+    		}
     	}
+    	
     	
     }
     
