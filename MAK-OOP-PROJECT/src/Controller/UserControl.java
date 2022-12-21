@@ -17,6 +17,11 @@ public class UserControl{
 	private User user;
 	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	
+	/**
+	 * 
+	 * Default constructor.
+	 * 
+	 */
 	public UserControl () {}
 	/**
 	 * 

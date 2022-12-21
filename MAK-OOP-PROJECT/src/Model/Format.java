@@ -11,16 +11,22 @@ import java.util.regex.Pattern;
 	 */
 
 public class Format {
-	/*
+	/**
 	 * 
-	 * A class that describes the output standard for some data
-	 * 
+	 * Replacing vertical characters with unicode.
+	 * @param str
+	 * @return
 	 */
 	 public static String formatRow(String str){
 	        return str.replace('|', '\u2502');
 	 }
 	 
-	 
+	 /**
+	  * 
+	  * Replacing horizontal characters with unicode.
+	  * @param str
+	  * @return
+	  */
 	 public static String formatDiv(String str){
 		 return str.replace('a', '\u250c')
 	                .replace('b', '\u252c')
@@ -33,7 +39,14 @@ public class Format {
 	                .replace('i', '\u2518')
 	                .replace('-', '\u2500');
 	 }
-
+	/**
+	 * 
+	 * Returns a block of text with the same width.
+	 * @param s
+	 * @param delimiter
+	 * @param size
+	 * @return
+	 */
 	public static StringTokenizer getFormattedString(String s, String delimiter, int size) {
 		StringTokenizer st = new StringTokenizer(s, delimiter);
 		String formatted = new String();
@@ -55,7 +68,7 @@ public class Format {
 	
 	/**
 		 * 
-		 *  
+		 * A method that takes a string as a date and checks if it matches the format.
 		 * @param date
 		 * @return
 		 */

@@ -16,6 +16,12 @@ import Model.User;
 	 */
 public class AdminControl extends EmployeeControl {
 	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	
+	/**
+	 * 
+	 * Default constructor.
+	 * 
+	 */
 	public AdminControl() {}
 	
 	/**
