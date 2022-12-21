@@ -13,6 +13,7 @@ public class Format {
 	        return str.replace('|', '\u2502');
 	 }
 	 
+	 
 	 public static String formatDiv(String str){
 		 return str.replace('a', '\u250c')
 	                .replace('b', '\u252c')
