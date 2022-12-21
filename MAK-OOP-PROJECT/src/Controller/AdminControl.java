@@ -11,21 +11,35 @@ import Model.User;
 
 /**
 	 * 
-	 * Describes the functionality and actions of the admin
+	 * Describes the functionality and actions of the admin.
 	 * 
 	 */
 public class AdminControl extends EmployeeControl {
 	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	public AdminControl() {}
 	
+	/**
+	 * 
+	 * Class constructor.
+	 * @param u
+	 */
 	public AdminControl(User u) {
 		super(u);
 	}
-	
+	/**
+	 * 
+	 * Returns the admin.
+	 * @return
+	 */
     public Admin getAdmin() {
         return (Admin) this.getUser();
     }
     
+    /**
+     * 
+     * Method for deleting users from the system.
+     * @throws IOException
+     */
     public void deleteUser() throws IOException {
     	System.out.println("Please, give the ID of user that you want to delete");
 		String id = br.readLine();
@@ -43,7 +57,12 @@ public class AdminControl extends EmployeeControl {
 		}
 		System.out.println("User " + id + " wasn't found");
     }
-    
+    /**
+     * 
+     * A method that describes all possible manipulations on the user that the admin can do (delete, add, etc.).
+     * @throws NumberFormatException
+     * @throws IOException
+     */
     public void manageUsers() throws NumberFormatException, IOException {
     	System.out.println("Choose action:\n\t0. Return to menu\n\t1. Add User\n\t2. Delete User");
     	try {
