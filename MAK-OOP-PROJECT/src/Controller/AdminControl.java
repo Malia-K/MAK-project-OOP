@@ -7,6 +7,11 @@ import Model.Admin;
 import Model.Database;
 import Model.User;
 public class AdminControl extends EmployeeControl {
+	/*
+	 * 
+	 * Describes the functionality and actions of the admin
+	 * 
+	 */
 	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	public AdminControl() {}
 	

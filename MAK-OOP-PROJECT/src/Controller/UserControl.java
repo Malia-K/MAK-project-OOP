@@ -8,6 +8,11 @@ import java.time.LocalDateTime;
 
 
 public class UserControl{
+	/*
+	 * 
+	 * Describes the functionality and actions of an ordinary user
+	 * 
+	 */
 	private User user;
 	
 

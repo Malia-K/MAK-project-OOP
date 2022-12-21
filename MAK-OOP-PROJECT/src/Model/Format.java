@@ -1,6 +1,11 @@
 package Model;
 
 public class Format {
+	/*
+	 * 
+	 * A class that describes the output standard for some data
+	 * 
+	 */
 	 public static String formatRow(String str){
 	        return str.replace('|', '\u2502');
 	    }
