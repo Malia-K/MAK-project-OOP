@@ -66,7 +66,7 @@ public class ManagerControl extends EmployeeControl /*implements canSeeOrganizat
         list += formatRow("|    ID     |        FULL NAME          | FACULTY  | TEACHER TYPE |\n");
         list += formatDiv("d-----------e---------------------------e----------e--------------f\n");
         System.out.print(list);
-    	for(Teacher t : Database.getTeachers()) {
+    	for(Teacher t : Database.getInstance().getTeachers()) {
     		String fullName = t.getLastName() + " "+ t.getFirstName();
     		String str1 = String.format("| %9s | %-25s | %-8s |%-14s |", 
     									t.getId(), fullName, t.getFaculty(), t.getTeacherType());

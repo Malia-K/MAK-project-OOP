@@ -70,6 +70,15 @@ public class OpenCourse implements Serializable {
 		return false;
 	}
 	
+	public boolean equals(Object o) {
+		if(this == o) return true;
+		if(o == null) return false;
+		if(this.getClass() != o.getClass()) return false;
+		
+		OpenCourse oc = (OpenCourse) o;
+		return course.equals(oc.getCourse()) && groupId.equals(oc.getGroupId()) && studyPeriod.equals(oc.getStudyPeriod()) && teachers.equals(oc.getTeachers()) && students.equals(oc.getStudents());                             
+	}
+	
 	public String toString() {
 		String teachs = new String();
 		for(Teacher t: teachers) {

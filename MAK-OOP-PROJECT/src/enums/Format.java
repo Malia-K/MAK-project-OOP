@@ -1,5 +1,5 @@
 package enums;
 
 public enum Format {
-	ONLINE, OFFLINE
+	OFFLINE, ONLINE
 }

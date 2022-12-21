@@ -47,8 +47,8 @@ public class Message implements Serializable{
     	setEdited();
     }
     
-    public LocalDateTime getSendTime() {
-        return this.sendTime;
+    public String getSendTime() {
+        return this.sendTime.toString().replace('T', ' ');
     }
 
 	public String getTopic() {
@@ -87,9 +87,7 @@ public class Message implements Serializable{
       
       String recipientInfo = String.format("%.1s. %s", sender.getFirstName(), sender.getLastName());
       mess += empty + Format.formatRow(("|" + " ".repeat(62 - recipientInfo.length() - 4) + recipientInfo + " ".repeat(4) + "|\n"));  
-      String time = sendTime.toString().replace('T', ' ');
-      mess += (edited) ? Format.formatRow("|" + " ".repeat(51 - time.length()) + "edited " + time + " ".repeat(4) + "|\n") : Format.formatRow("|" + " ".repeat(62 - time.length() - 4) + time + " ".repeat(4) + "|\n");
-      
+      mess += (edited) ? Format.formatRow("|" + " ".repeat(51 - getSendTime().length()) + "edited " + getSendTime() + " ".repeat(4) + "|\n") : Format.formatRow("|" + " ".repeat(62 - getSendTime().length() - 4) + getSendTime() + " ".repeat(4) + "|\n");
       mess += Format.formatDiv("a" + "-".repeat(62) + "c" + "\n");
       
       return mess;

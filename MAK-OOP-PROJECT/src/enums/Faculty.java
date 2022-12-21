@@ -1,5 +1,5 @@
 package enums;
 
 public enum Faculty {
-	FIT, KBS, FGE, KMA, SECAEN, SCE, RECMC, ISE, DEF, FEOGI
+	BF, DEF, FEOGI, FGE, FIT, ISE, KBS, KMA, RECMC, SECAEN, SCE
 }

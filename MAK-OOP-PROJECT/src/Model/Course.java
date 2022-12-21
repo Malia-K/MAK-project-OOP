@@ -80,13 +80,7 @@ public class Course implements Serializable, Cloneable, Comparable<Course> {
     } 
 
 	public int compareTo(Course o) {
-		int size = Math.min(id.length(), o.getId().length());
-		for(int i = 0; i < size; i++) {
-			if(id.charAt(i) != o.getId().charAt(i)) {
-				return (id.charAt(i) < o.getId().charAt(i)) ? -1 : 1;
-			}
-		}
-		return 0;
+		return id.compareTo(o.getId());
 	}
     
     public boolean equals(Object o) {

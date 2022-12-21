@@ -1,6 +1,8 @@
 package Controller;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.Collections;
 import java.util.Date;
 import java.util.Vector;
@@ -45,6 +47,8 @@ public class testAdmin {
 //		Database.getInstance().databaseSave();
 //		Database.getInstance().readDatabase();
 //		
+//		System.out.println(LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES).toString().replace('T', ' '));
+		System.out.println("=".repeat(10) + " ".repeat(4) + "some new title" + " ".repeat(4) + "=".repeat(10) + "\n" + Format.formatRow("|\n"));
 //		while(!Database.getInstance().getUsers().isEmpty()) {
 //			Database.getInstance().getUsers().remove(0);
 //			Database.databaseSave();
@@ -84,17 +88,35 @@ public class testAdmin {
 		
 		oc3.addTeacher(t);
 		
-		Database.getInstance().getOpenCourses().add(oc1);
-		Database.databaseSave();
-		Database.getInstance().getOpenCourses().add(oc2);
-		Database.databaseSave();
-		Database.getInstance().getOpenCourses().add(oc3);
-		Database.databaseSave();
+		Vector <Course> c = new Vector<Course>();
+		for(int i = 0; i < 5; i++) {
+			c.add(new Course());
+		}
 		
+		c.get(0).setId("hebv");
+		c.get(1).setId("2nhebv");
+		c.get(2).setId("asvhebv");
+		c.get(3).setId("fbhebv");
+		c.get(4).setId("v");
+//		
+		Collections.sort(c);
+		for(Course co: c) {
+			System.out.println(co.getId());
+		}
+//		Database.getInstance().getOpenCourses().add(oc1);
+//		Database.databaseSave();
+//		Database.getInstance().getOpenCourses().add(oc2);
+//		Database.databaseSave();
+//		Database.getInstance().getOpenCourses().add(oc3);
+//		Database.databaseSave();
+//		System.out.println("oello".compareTo("o"));
 //		System.out.println(Database.getInstance().getOpenCourses());
 //		
-		System.out.println(t.getCourses());
+//		System.out.println(t.getCourses());
 		
+		New news = new New("one more big title to check if it's okay gjbn vjser klse buh", new User(), "hello everyone today we are gonna try to make it all in time even though we don't have enough time to make it all woooooork let's see what we will get after all hello miras how you doing ");
+		
+		System.out.println(news.toString());
 //		LocalDate d = LocalDate.of(2022, 12, 12);
 //		System.out.println(d.getYear() % 100);
 //		Collections.sort(Database.getInstance().getUsers());

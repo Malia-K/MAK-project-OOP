@@ -14,8 +14,6 @@ public  class User implements Comparable<User>, Serializable, Cloneable {
     private LocalDate enrolled;
     private String id;
     private String login;
-    private String phoneNumber;
-    private String corporativeMail;
     
     public User() {}
     
@@ -26,7 +24,7 @@ public  class User implements Comparable<User>, Serializable, Cloneable {
     	this.birthDate = LocalDate.parse(birthDate);
     	this.password = password;
     	this.enrolled = LocalDate.parse(enrolled);
-    	this.id = id + String.format("%02d", this.enrolled.getYear() % 100) + firstName.toUpperCase().charAt(0) + lastName.toUpperCase().charAt(0) + String.format("%04d", Database.getInstance().getUsers().size() % 1000);
+    	this.id = id + String.format("%02d", this.enrolled.getYear() % 100) + firstName.toUpperCase().charAt(0) + lastName.toUpperCase().charAt(0) + String.format("%04d", (Database.getUsers().size() + 1) % 1000);
     	this.login = login;
     }
 
@@ -69,14 +67,6 @@ public  class User implements Comparable<User>, Serializable, Cloneable {
 	public LocalDate getEnrolledDate() {
 		return enrolled;
 	}
-	
-	public void setEnrolledDate(LocalDate enrolled) {
-		this.enrolled = enrolled;
-	}
-	
-	public void setEnrolledDate(String enrolled) {
-		setEnrolledDate(LocalDate.parse(enrolled));
-	}
 
 	public String getId() {
 		return id;
@@ -85,35 +75,13 @@ public  class User implements Comparable<User>, Serializable, Cloneable {
 	public String getLogin() {
 		return login;
 	}
-
-	public void setLogin(String login) {
-		this.login = login;
-	}
-
-	public String getPhoneNumber() {
-		return phoneNumber;
-	}
-
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
-	}
-	
 	
 	public String getPassword() {
 		return password;
 	}
 
-
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public String getCorporativeMail() {
-		return corporativeMail;
-	}
-
-	public void setCorporativeMail(String corporativeMail) {
-		this.corporativeMail = corporativeMail;
 	}
 	
 	public void viewMainPage() {
@@ -146,24 +114,12 @@ public  class User implements Comparable<User>, Serializable, Cloneable {
 	                .replace('i', '\u2518')
 	                .replace('-', '\u2500');
 	    }
-	
-	
-	private int compareStrings(String s1, String s2) {
-		int size = Math.min(s1.length(), s2.length());
-		
-		for(int i = 0; i < size; i++) {
-			if(s1.charAt(i) != s2.charAt(i)) {
-				return (s1.charAt(i) < s2.charAt(i)) ? -1 : 1;
-			}
-		}
-		return 0;
-	}
 
 	public int compareTo(User o) {
-		if(lastName.equals(o.getLastName())) {
-			return compareStrings(firstName, o.getFirstName());
+		if(lastName.compareTo(o.getLastName()) == 0) {
+			return firstName.compareTo(o.getFirstName());
 		}
-		return compareStrings(lastName, o.getLastName());
+		return lastName.compareTo(o.getLastName());
 	}
 	
 	public boolean equals(Object o) {
@@ -180,8 +136,7 @@ public  class User implements Comparable<User>, Serializable, Cloneable {
 		return "name: " + firstName + "\nlast name: " + lastName + 
 				"\ngender: " + gender + "\nbirth date: " + birthDate + 
 				"\nenrolled date: " + enrolled + "\nid: " + id + 
-				"\nlogin: " + login + "\nphone number: " + phoneNumber +  
-				"\ncorporative mail: " + corporativeMail;
+				"\nlogin: " + login;
 	}
 }
 	
