@@ -32,8 +32,8 @@ public class ManagerControl extends EmployeeControl /*implements canSeeOrganizat
 			}
 			else if(action == 1) {
 				Course newCourse = (new CourseControl(getManager())).createCourse();
-				if(newCourse != null && !Database.getInstance().getCourses().contains(newCourse)) {
-					Database.getInstance().getCourses().add(newCourse);
+				if(newCourse != null && !Database.getCourses().contains(newCourse)) {
+					Database.getCourses().add(newCourse);
 				}
 			}
 			else if(action == 2) {
@@ -48,18 +48,18 @@ public class ManagerControl extends EmployeeControl /*implements canSeeOrganizat
 
     public void viewAllStudents() {
     	String list = "";
-        list += formatDiv("a-----------b---------------------------b----------b-----------b------------b-------c\n");
-        list += formatRow("|    ID     |        FULL NAME          | FACULTY  |  DEGREE   | STUDY YEAR |  GPA  |\n");
-        list += formatDiv("d-----------e---------------------------e----------e-----------e------------e-------f\n");
+        list += Format.formatDiv("a-----------b---------------------------b----------b-----------b------------b-------c\n");
+        list += Format.formatRow("|    ID     |        FULL NAME          | FACULTY  |  DEGREE   | STUDY YEAR |  GPA  |\n");
+        list += Format.formatDiv("d-----------e---------------------------e----------e-----------e------------e-------f\n");
         System.out.print(list);
-    	for(Student s : Database.getInstance().getStudents()) {
+    	for(Student s : Database.getStudents()) {
     		String fullName = s.getLastName() + " "+ s.getFirstName();
     		String str1 = String.format("| %9s | %-25s | %-8s | %-9s | %10x | %5x |", 
     									s.getId(), fullName, s.getFaculty(), s.getDegree(), s.getYearOfStudy(), 4);
-            System.out.println(formatRow(str1));
+            System.out.println(Format.formatRow(str1));
     	}
     	System.out.println(
-    			formatDiv("g-----------h---------------------------h----------h-----------h------------h-------i"));
+    			Format.formatDiv("g-----------h---------------------------h----------h-----------h------------h-------i"));
     	
     }
     
@@ -67,24 +67,25 @@ public class ManagerControl extends EmployeeControl /*implements canSeeOrganizat
     
     public void viewAllTeachers() {
     	String list = "";
-        list += formatDiv("a-----------b---------------------------b----------b--------------c\n");
-        list += formatRow("|    ID     |        FULL NAME          | FACULTY  | TEACHER TYPE |\n");
-        list += formatDiv("d-----------e---------------------------e----------e--------------f\n");
+        list += Format.formatDiv("a-----------b---------------------------b----------b--------------c\n");
+        list += Format.formatRow("|    ID     |        FULL NAME          | FACULTY  | TEACHER TYPE |\n");
+        list += Format.formatDiv("d-----------e---------------------------e----------e--------------f\n");
         System.out.print(list);
     	for(Teacher t : Database.getInstance().getTeachers()) {
     		String fullName = t.getLastName() + " "+ t.getFirstName();
     		String str1 = String.format("| %9s | %-25s | %-8s |%-14s |", 
     									t.getId(), fullName, t.getFaculty(), t.getTeacherType());
-            System.out.println(formatRow(str1));
+            System.out.println(Format.formatRow(str1));
     	}
     	System.out.println(
-    			formatDiv("g-----------h---------------------------h----------h--------------i"));
+    			Format.formatDiv("g-----------h---------------------------h----------h--------------i"));
     }
     
     
     
     public void viewAllOrganizations() {
     	String list = "";
+<<<<<<< HEAD
         list += formatDiv("a-------------b---------------------------b----------b-------------------c\n");
         list += formatRow("|    NAME     |       DESCRIPTION         | FACULTY  | ORGANIZATION HEAD |\n");
         list += formatDiv("d-------------e---------------------------e----------e-------------------f\n");
@@ -96,6 +97,19 @@ public class ManagerControl extends EmployeeControl /*implements canSeeOrganizat
     	}
     	System.out.println(
     			formatDiv("g-------------h---------------------------h----------h-------------------i"));
+=======
+        list += Format.formatDiv("a-------------b---------------------------b----------b-------------------c\n");
+        list += Format.formatRow("|    NAME     |       DESCRIPTION         | FACULTY  | ORGANIZATION HEAD |\n");
+        list += Format.formatDiv("d-------------e---------------------------e----------e-------------------f\n");
+        System.out.print(list);
+    	for(Organization o : Database.getOrganizations()) {
+    		String str1 = String.format("| %9s | %-25s | %-8s |%-20s |", 
+    									o.getName(), o.getDescription(), o.getFaculty(), o.getHead());
+            System.out.println(Format.formatRow(str1));
+    	}
+    	System.out.println(
+    			Format.formatDiv("g-------------h---------------------------h----------h-------------------i"));
+>>>>>>> branch 'newNewBranch' of https://github.com/Malia-K/MAK-project-OOP.git
     }
     
     

@@ -22,7 +22,11 @@ public class Employee extends User {
 	public void setExperience(int experience) {
 		this.experience = experience;
 	}
-
+	
+	public int compareTo(User o) {
+		return super.compareTo(o);
+	}
+	
 	public boolean equals(Object o) {
 		if(super.equals(o)) {
 			Employee e = (Employee) o;

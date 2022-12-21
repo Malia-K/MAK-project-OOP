@@ -75,18 +75,24 @@ public class Course implements Serializable, Cloneable, Comparable<Course> {
         return this.prerequisites;
     }
 
-    public void setPrerequisite(Course prerequisite) {
-        this.prerequisites.add(prerequisite);
+    public void addPrerequisite(Course prerequisite) {
+    	if(!prerequisites.contains(prerequisite)) {
+    		this.prerequisites.add(prerequisite);
+    		System.out.println(prerequisite.getId() + " was added to prerequisites");
+    	}
+    	System.out.println(prerequisite.getId() + " prerequisite already exists");
     } 
+    
+    public void deletePrerequisite(Course prerequisite) {
+    	if(prerequisites.contains(prerequisite)) {
+    		this.prerequisites.remove(prerequisite);
+    		System.out.println(prerequisite.getId() + " was deleted from prerequisites");
+    	}
+    	System.out.println(prerequisite.getId() + " wasn't found");
+    }
 
 	public int compareTo(Course o) {
-		int size = Math.min(id.length(), o.getId().length());
-		for(int i = 0; i < size; i++) {
-			if(id.charAt(i) != o.getId().charAt(i)) {
-				return (id.charAt(i) < o.getId().charAt(i)) ? -1 : 1;
-			}
-		}
-		return 0;
+		return id.compareTo(o.getId());
 	}
     
     public boolean equals(Object o) {
@@ -97,6 +103,12 @@ public class Course implements Serializable, Cloneable, Comparable<Course> {
     	Course c = (Course) o;
     	return credits == c.getCredits() && faculty == c.getFaculty() && id.equals(c.getId()) && name.equals(c.getName()) && formula.equals(c.getFormula()) && prerequisites.equals(c.getPrerequisites()); 
     }
+    
+    public Object clone() throws CloneNotSupportedException {
+		Course c = (Course) super.clone();
+		c.prerequisites = new Vector<Course>(prerequisites);
+		return c;
+	}
     
     public String toString() {
     	String prereqs = new String();

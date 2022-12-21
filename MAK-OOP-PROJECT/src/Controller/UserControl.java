@@ -5,6 +5,8 @@ import Model.*;
 
 import java.io.*;
 import java.time.LocalDateTime;
+import java.util.Vector;
+import java.util.stream.Collectors;
 
 
 public class UserControl{
@@ -14,8 +16,6 @@ public class UserControl{
 	 * 
 	 */
 	private User user;
-	
-
 	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	
 	public UserControl () {}
@@ -27,6 +27,7 @@ public class UserControl{
     public User getUser() {
     	return this.user;
     }
+<<<<<<< HEAD
     
 	private boolean goBack(String input) throws IOException {
 		if(input.equals("0")) {
@@ -65,21 +66,19 @@ public class UserControl{
     	}
      	
     }
+=======
+>>>>>>> branch 'newNewBranch' of https://github.com/Malia-K/MAK-project-OOP.git
     
-
-     
+    
+      
     public void changePassword() throws IOException, InterruptedException {
     	System.out.println("   Enter your current password: ");
     	
-    	System.out.println("   Enter your new password: ");
-    	
-    	login();
-    	
-     	
+    	System.out.println("   Enter your new password: ");     	
     }
 
     public User verify(String login, String password) {   	
-    	for(User u : Database.getInstance().getUsers()) {
+    	for(User u : Database.getUsers()) {
     		if(u.getLogin().equals(login) && u.getPassword().equals(password)) {
     			return u;
     		}
@@ -89,6 +88,7 @@ public class UserControl{
      
     public void saveLogs() {}
     
+<<<<<<< HEAD
     
     
 	/**
@@ -134,51 +134,55 @@ public class UserControl{
 
 
 
+=======
+>>>>>>> branch 'newNewBranch' of https://github.com/Malia-K/MAK-project-OOP.git
     public void viewBooks() {
-        for(Book b: Database.getInstance().getLibrary()) {
+        for(Book b: Database.getLibrary()) {
           System.out.println(b);
         }
       }
       
-      public void viewNews() throws IOException {
-        String header = "";
-        
-        header += formatDiv("a" + "-".repeat(43) + "c" +"\n");
-        header += formatRow("|" + " ".repeat(19) + "News" + " ".repeat(19) + " |\n");
-        header += formatDiv("g" +"-".repeat(43) + "i"+ '\n');
-        System.out.print(header);
-
-
-
-       try {
-	       for(New nw : Database.getInstance().getNews()) {
-	    	   nw.printNew();
-	       }
-       } catch(NullPointerException npe) {
-    	   System.out.println("  No news yet..");
-       }
-        
-        
-        viewRegisterPage();
-      }
+    public void viewNews() throws IOException {
+    	String header = "";
+	        
+    	header += Format.formatDiv("a" + "-".repeat(43) + "c" +"\n");
+	    header += Format.formatRow("|" + " ".repeat(19) + "News" + " ".repeat(19) + " |\n");
+	    header += Format.formatDiv("g" +"-".repeat(43) + "i"+ '\n');
+	    System.out.print(header);
+	
+        for(New news: (Vector <New>) Database.getNews().stream().sorted().collect(Collectors.toCollection(Vector::new))) {
+	      	System.out.println(news + "\n\n");
+        }
+    }
       
-      public static String formatRow(String str){
-          return str.replace('|', '\u2502');
-      }
-      
-      public static String formatDiv(String str){
-          return str.replace('a', '\u250c')
-                  .replace('b', '\u252c')
-                  .replace('c', '\u2510')
-                  .replace('d', '\u251c')
-                  .replace('e', '\u253c')
-                  .replace('f', '\u2524')
-                  .replace('g', '\u2514')
-                  .replace('h', '\u2534')
-                  .replace('i', '\u2518')
-                  .replace('-', '\u2500');
-      }
-
+      public void viewMainPage() throws InterruptedException {
+  	    String header = "";
+  	    
+  	    header += Format.formatDiv("a" + "-".repeat(43) + "c" +"\n");
+  	    header += Format.formatRow("|"+ " ".repeat(16) +  "Menu:" + " ".repeat(22) + "|\n");
+  	    header += Format.formatDiv("g" +"-".repeat(43) + "i"+ '\n');
+  	    System.out.print(header);
+  	    System.out.print(" 0. Log out"
+  	    		   + " 1.  News \n"
+  	               + " 2.  User's information \n"
+  	               + " 3.  Library \n");
+  	    try {
+			int action = br.read();
+			if(action == 0) {
+				(new Session()).session();
+				return;
+			}
+			else if(action == 1) {
+				viewNews();
+			}
+			else if(action == 2) {
+				System.out.println
+			}
+		} catch (IOException e) {
+			System.out.println("Smth went wrong! Please, try again!");
+			viewMainPage();
+		}
+  	  }
 }
      
      

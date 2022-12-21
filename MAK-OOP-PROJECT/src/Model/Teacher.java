@@ -23,8 +23,6 @@ public class Teacher extends Employee {
     	this.teacherType = teacherType;
     }
     
-
-    
    public Faculty getFaculty() {
         return this.faculty;
     }
@@ -41,7 +39,6 @@ public class Teacher extends Employee {
         this.rating = rating;
     }
 
-
 	public TeacherType getTeacherType() {
 		return teacherType;
 	}
@@ -51,18 +48,19 @@ public class Teacher extends Employee {
 	}
 	
 	public Vector<OpenCourse> getCourses() {
-		return Database.getInstance().getOpenCourses().stream().filter(c -> c.getTeachers().contains(this)).collect(Collectors.toCollection(Vector::new));
+		return Database.getOpenCourses().stream().filter(c -> c.getTeachers().contains(this)).collect(Collectors.toCollection(Vector::new));
 	}
-
     
     public int compareTo(Teacher o) {
-    	if(this.getRating() == o.getRating()) {
-    		return 0;
-    	}
-    	else if(this.getRating() > o.getRating()) {
-    		return 1;
-    	}
-    	else return 0;
+    	if(faculty.compareTo(o.getFaculty()) == 0) {
+    		if(teacherType.compareTo(o.getTeacherType()) == 0) {
+    			if(rating > o.getRating()) return 1;
+    			else if(rating < o.getRating()) return -1;
+   				return 0;
+   			}
+   			return teacherType.compareTo(o.getTeacherType());
+   		}
+   		return faculty.compareTo(o.getFaculty()); 
     }
     
     public boolean equals(Object o) {

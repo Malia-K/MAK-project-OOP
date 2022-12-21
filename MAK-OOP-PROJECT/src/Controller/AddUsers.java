@@ -14,15 +14,16 @@ import enums.Gender;
 import enums.ManagerType;
 import enums.TeacherType;
 
-public class AddUsers extends ManageUsers{
+public class AddUsers{
 	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	String s = new String();
 	StringTokenizer st;
+	Admin activeAdmin;
 	
 	public AddUsers() {}
 	
 	public AddUsers(Admin a) {
-		super(a);
+		activeAdmin = a;
 	}
 	
 	private void gui() {
@@ -37,11 +38,6 @@ public class AddUsers extends ManageUsers{
 			return true;
 		}
 		return false;
-	}
-	
-	private boolean checkDateFormat(String date) {
-		Pattern p = Pattern.compile("^[0-9]{4}-(1[0-2]|0[1-9])-(3[01]|[12][0-9]|0[1-9])$");
-		return p.matcher(date).matches();
 	}
 
 	private User create(int act) throws IOException {
@@ -62,7 +58,7 @@ public class AddUsers extends ManageUsers{
 			String password = st.nextToken();
 			String enrolled = st.nextToken();
 			
-			if(!checkDateFormat(birthDate) || !checkDateFormat(enrolled)) {
+			if(!Format.checkDateFormat(birthDate) || !Format.checkDateFormat(enrolled)) {
 				System.out.println("Date format is not correct, please, try again!");
 				return create(act);
 			}
@@ -174,8 +170,8 @@ public class AddUsers extends ManageUsers{
 				return;
 			}
 			User newUser = create(action);
-			if(newUser != null && !Database.getInstance().getUsers().contains(newUser)) {
-				Database.getInstance().addUser(newUser);
+			if(newUser != null && !Database.getUsers().contains(newUser)) {
+				Database.addUser(newUser);
 				Database.databaseSave();
 			}
 		} catch (NumberFormatException nfe) {

@@ -31,9 +31,9 @@ public class AdminControl extends EmployeeControl {
 			deleteUser();
 			return;
 		}
-		for(User u: Database.getInstance().getUsers()) {
+		for(User u: Database.getUsers()) {
 			if(u.getId().equals(id)) {
-				Database.getInstance().getUsers().remove(u);
+				Database.getUsers().remove(u);
 				System.out.println("User " + id + " deleted");
 				return;
 			}

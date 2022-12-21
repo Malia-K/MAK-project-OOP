@@ -1,22 +1,25 @@
 package Model;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+import java.util.StringTokenizer;
 
-public class New{
+public class New implements Serializable, Comparable<New>{
+	private static final long serialVersionUID = 1L;
 	private String title;
 	private User author;
-	private LocalDateTime now;
+	private String time;
 	private String description;
 	
 		
-	public New(String title, User author, LocalDateTime now, String description) {
+	public New(String title, User author, String description) {
 		this.title = title;
 		this.author = author;
-		this.now = now;
+		this.time = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES).toString().replace('T', ' ');
 		this.description = description;
 	}
-	
 	
 	public String getTitle() {
 		return title;
@@ -26,60 +29,53 @@ public class New{
 		this.title = title;
 	}
 
-
 	public User getAuthor() {
 		return author;
 	}
 
-	public void setAuthor(User author) {
-		this.author = author;
-	}
-
 	public String getTime() {
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-		now = LocalDateTime.now();
-		return dtf.format(now);
+		return time;
 	}
-
-	public void setNow(LocalDateTime now) {
-		this.now = now;
-	}
-
 
 	public String getDescription() {
 		return description;
 	}
 
-
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
-	
-	
-	public void printNew() {
-		System.out.print(" ========  " + this.getTitle() + "  ========" + "\n ");
-		System.out.println(this.getDescription() + "\n");
-		System.out.println(" ".repeat(15) + this.getAuthor().getFirstName() + " " + this.getAuthor().getLastName() + "  "+ this.getTime());
-		System.out.println(formatDiv( "-".repeat(45) + '\n'));
-	}
-	
-	
-	public static String formatRow(String str){
-	        return str.replace('|', '\u2502');
-	}
 
-    public static String formatDiv(String str){
-        return str.replace('a', '\u250c')
-                .replace('b', '\u252c')
-                .replace('c', '\u2510')
-                .replace('d', '\u251c')
-                .replace('e', '\u253c')
-                .replace('f', '\u2524')
-                .replace('g', '\u2514')
-                .replace('h', '\u2534')
-                .replace('i', '\u2518')
-                .replace('-', '\u2500');
-    }
+	public int compareTo(New o) {
+		return time.compareTo(o.getTime());
+	}
+	
+	
+	public boolean equals(Object o) {
+		if(this == o) return true;
+		if(o == null) return false;
+		if(this.getClass() != o.getClass()) return false;
+		
+		New nw = (New) o;
+		return title.equals(nw.getTitle()) && author.equals(nw.getAuthor()) && time.equals(nw.getTime()) && description.equals(nw.getDescription());
+	}
+	
+	public String toString() {
+		String news = new String();
+		StringTokenizer st = Format.getFormattedString(title, " ", 35);
+		while(st.hasMoreTokens()) {
+			String token = st.nextToken();
+			news += " " + "=".repeat(10) + " ".repeat(4) + token + " ".repeat(35 - token.length()) + "=".repeat(10) + "\n";
+		}
+		
+		news += Format.formatRow("|\n");
+		st = Format.getFormattedString(description, " ", 54);
+		
+		while(st.hasMoreTokens()) {
+			news += Format.formatRow("|") + " ".repeat(4) + st.nextToken() + "\n";
+		}
+		news += Format.formatRow("|\n" + "|" + " ".repeat(57 - getTime().length()) + getTime());
+		
+		return news;
+	}
 }
 

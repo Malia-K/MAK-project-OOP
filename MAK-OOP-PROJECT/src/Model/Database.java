@@ -46,15 +46,25 @@ public final class Database implements Serializable{
     
     private Database() {}
     
+    
+    /*
+     * returns instance of class Database
+     */
     public static Database getInstance() {
     	return instance;
     }
     
-    public Vector <User> getUsers(){
+    /*
+     * returns vector of all users
+     */
+    public static Vector <User> getUsers(){
     	return instance.users;
     }
     
-    public Vector <Student> getStudents() {
+    /*
+     * returns vector of all students
+     */
+    public static Vector <Student> getStudents() {
     	Vector <Student> students = new Vector <Student>();
     	for(User u: instance.users) {
     		if(u instanceof Student) {
@@ -65,18 +75,10 @@ public final class Database implements Serializable{
     	return students;
     }
     
-    public Vector <Employee> getEmployees(){
-    	Vector <Employee> employees = new Vector <Employee>();
-    	for(User u: instance.users) {
-    		if(u instanceof Employee) {
-    			Employee e = (Employee) u;
-    			employees.add(e);
-    		}
-    	}
-    	return employees;
-    }
-    
-    public Vector <Admin> getAdmins(){
+    /*
+     * returns vector of all admins
+     */
+    public static Vector <Admin> getAdmins(){
     	Vector <Admin> admins = new Vector <Admin>();
     	for(User u: instance.users) {
     		if(u instanceof Admin) {
@@ -87,7 +89,10 @@ public final class Database implements Serializable{
     	return admins;
     }
     
-    public Vector <Librarian> getLibrarians(){
+    /*
+     * returns vector of all librarians
+     */
+    public static Vector <Librarian> getLibrarians(){
     	Vector <Librarian> librarians = new Vector <Librarian>();
     	for(User u: instance.users) {
     		if(u instanceof Librarian) {
@@ -98,7 +103,11 @@ public final class Database implements Serializable{
     	return librarians;
     }
       
-    public Vector <Manager> getManagers(){
+    
+    /*
+     * returns vector of all managers
+     */
+    public static Vector <Manager> getManagers(){
     	Vector <Manager> managers = new Vector <Manager>();
     	for(User u: instance.users) {
     		if(u instanceof Manager) {
@@ -109,7 +118,11 @@ public final class Database implements Serializable{
     	return managers;
     }
     
-    public Vector <Teacher> getTeachers(){
+    
+    /*
+     * returns vector of all teachers
+     */
+    public static Vector <Teacher> getTeachers(){
     	Vector <Teacher> teachers = new Vector <Teacher>();
     	for(User u: instance.users) {
     		if(u instanceof Teacher) {
@@ -120,49 +133,79 @@ public final class Database implements Serializable{
     	return teachers;
     }
 
-	public Vector<Book> getLibrary() {
+    /*
+     * returns vector of all books
+     */
+	public static Vector<Book> getLibrary() {
 		return instance.library;
 	}
 
-
-	public Vector<Course> getCourses() {
+	/*
+     * returns vector of all courses
+     */
+	public static Vector<Course> getCourses() {
 		return instance.courses;
 	}
-
-	public Vector<Organization> getOrganizations() {
+	
+	/*
+     * returns vector of all organizations
+     */
+	public static Vector<Organization> getOrganizations() {
 		return instance.organizations;
 	}
 
-	public Vector<String> getLogs() {
+	/*
+     * returns vector of all logs
+     */
+	public static Vector<String> getLogs() {
 		return instance.logs;
 	}
-
-	public Vector<Report> getReports() {
+	
+	/*
+     * returns vector of all reports
+     */
+	public static Vector<Report> getReports() {
 		return instance.reports;
 	}
 
-    
-	public Vector <New> getNews() {
+	/*
+     * returns vector of all news
+     */
+	public static Vector <New> getNews() {
 		return instance.news;
 	}
 	
-	public Vector <Message> getMessages() {
+	/*
+     * returns vector of all messages
+     */
+	public static Vector <Message> getMessages() {
 		return instance.messages;
 	}
 	
-	public void set() {
-		messages = new Vector <Message>();
+	/*
+     * returns vector of all open courses
+     */
+	public static Vector <OpenCourse> getOpenCourses() {
+		return instance.openCourses;
 	}
 	
-	public void addNews(New n) {
-		news.add(n);
+	/*
+	 * adds news to database
+	 */
+	public static void addNews(New n) {
+		getInstance().news.add(n);
 	}
 	
-    public void addUser(User u) {
+	/*
+	 * add user to database
+	 */
+    public static void addUser(User u) {
     	getInstance().users.add(u);
-
     }
 
+    /*
+     * method that saves database instance to the file
+     */
     public static void databaseSave() throws IOException {
     	FileOutputStream fos = new FileOutputStream(Connect.getInstance().getPath());
 		ObjectOutputStream oos = new ObjectOutputStream(fos);
@@ -172,13 +215,14 @@ public final class Database implements Serializable{
 		oos.close();
     }
     
+    
+    /*
+     * reads saved data from the file and returns it to database
+     */
     public static Database readDatabase() throws Exception{
 		FileInputStream fis = new FileInputStream(Connect.getInstance().getPath());
 		ObjectInputStream ois = new ObjectInputStream(fis);
 		return (Database)ois.readObject();
 	}
 
-	public Vector <OpenCourse> getOpenCourses() {
-		return openCourses;
-	}
 }

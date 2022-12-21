@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Vector;
 import enums.*;
 
-public class OpenCourse implements Serializable {
+public class OpenCourse implements Serializable, Comparable<OpenCourse>, Cloneable {
 	private static final long serialVersionUID = 1L;
 	private int maxNumOfStudents;
 	private Course course;
@@ -68,6 +68,25 @@ public class OpenCourse implements Serializable {
 			return true;
 		}
 		return false;
+	}
+	
+	public boolean equals(Object o) {
+		if(this == o) return true;
+		if(o == null) return false;
+		if(this.getClass() != o.getClass()) return false;
+		
+		OpenCourse oc = (OpenCourse) o;
+		return course.equals(oc.getCourse()) && groupId.equals(oc.getGroupId()) && studyPeriod.equals(oc.getStudyPeriod()) && teachers.equals(oc.getTeachers()) && students.equals(oc.getStudents());                             
+	}
+
+	public int compareTo(OpenCourse o) {
+		if(studyPeriod.compareTo(o.getStudyPeriod()) == 0)  {
+			if(course.compareTo(o.getCourse()) == 0) {
+				return groupId.compareTo(o.getGroupId());
+			}
+			return course.compareTo(o.getCourse());
+		}
+		return studyPeriod.compareTo(o.getStudyPeriod());
 	}
 	
 	public String toString() {

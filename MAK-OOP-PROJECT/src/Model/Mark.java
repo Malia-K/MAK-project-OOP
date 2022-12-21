@@ -1,18 +1,32 @@
 package Model;
 
+import java.util.Vector;
+
 public class Mark {
+	private static final String marks[];
+	private OpenCourse course;
     private double firstAttestation;
     private double secondAttestation;
     private double finalExam;
     private String mark;
-    private double gpa ;
+    
+    static {
+    	marks = new String[]{"F", "F", "F", "F", "F", "F", "F", "F", "F", "F", "D", "D+", "C-", "C", "C+", "B-", "B", "B+", "A-", "A"};
+    }
+    
+    public Mark() {}
+    
+    public Mark(OpenCourse course) {
+    	this.course = course;
+    }
     
     public double getFirstAttestation() {
         return this.firstAttestation;
     }
 
     public void setFirstAttestation(double firstAttestation) {
-        this.firstAttestation = firstAttestation;
+        this.firstAttestation = firstAttestation % 30;
+        this.secondAttestation = Math.max(0, firstAttestation - 30);
     }
     
     public double getSecondAttestation() {
@@ -20,7 +34,7 @@ public class Mark {
     }
     
     public void setSecondAttestation(double secondAttestation) {
-        this.secondAttestation = secondAttestation;
+        this.secondAttestation = (this.secondAttestation + secondAttestation) % 30;
     }
 
     public double getFinal() {
@@ -31,12 +45,11 @@ public class Mark {
         this.finalExam = finalExam;
     }
     
-    
     public String getMark() {
-        return this.mark;
+        return marks[(int)(Math.round((firstAttestation + secondAttestation + finalExam) / 5))];
     }
 
     public double getGpa() {
-        return this.gpa ;
+        return 0;
     } 
 }
