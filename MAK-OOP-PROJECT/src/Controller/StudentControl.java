@@ -23,20 +23,19 @@ public class StudentControl extends UserControl /*implements canSeeOrganizations
 	
 	public void viewTeachers() {
 		String list = "";
-<<<<<<< HEAD
-        list += formatDiv("a-----------b---------------------------b----------b--------------c\n");
-        list += formatRow("|    ID     |        FULL NAME          | FACULTY  | TEACHER TYPE |\n");
-        list += formatDiv("d-----------e---------------------------e----------e--------------f\n");
+        list += Format.formatDiv("a-----------b---------------------------b----------b--------------c\n");
+        list += Format.formatRow("|    ID     |        FULL NAME          | FACULTY  | TEACHER TYPE |\n");
+        list += Format.formatDiv("d-----------e---------------------------e----------e--------------f\n");
         System.out.print(list);
     	for(Teacher t : Database.getInstance().getTeachers()) {
     		String fullName = t.getLastName() + " "+ t.getFirstName();
     		String str1 = String.format("| %9s | %-25s | %-8s |%-14s |", 
     									t.getId(), fullName, t.getFaculty(), t.getTeacherType());
-            System.out.println(formatRow(str1));
+            System.out.println(Format.formatRow(str1));
     	}
     	System.out.println(
-    			formatDiv("g-----------h---------------------------h----------h--------------i"));
-=======
+    			Format.formatDiv("g-----------h---------------------------h----------h--------------i"));
+
         list += Format.formatDiv("a-----------b---------------------------b----------b--------------c\n");
         list += Format.formatRow("|    ID     |        FULL NAME          | FACULTY  | TEACHER TYPE |\n");
         list += Format.formatDiv("d-----------e---------------------------e----------e--------------f\n");
@@ -48,8 +47,7 @@ public class StudentControl extends UserControl /*implements canSeeOrganizations
             System.out.println(Format.formatRow(str1));
     	}
     	System.out.println(
-Format.formatDiv("g-----------h---------------------------h----------h--------------i"));
->>>>>>> branch 'newNewBranch' of https://github.com/Malia-K/MAK-project-OOP.git
+    			Format.formatDiv("g-----------h---------------------------h----------h--------------i"));
 	}
 	
 	public void viewTranscipt() {}
@@ -65,7 +63,7 @@ Format.formatDiv("g-----------h---------------------------h----------h----------
 	public void viewCourses() {}
 	
 	public void viewMainPage() {
-	      super.viewMainPage();
+//	      super.viewMainPage();
 	      System.out.print(  " 4.  Student schedule \n"
 	              + " 5.  Transcript \n"
 	              + " 6.  Student marks \n"

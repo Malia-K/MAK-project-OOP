@@ -2,6 +2,7 @@ package Controller;
 
 import java.io.*;
 
+
 import Model.*;
 
 public class Session {
@@ -11,11 +12,11 @@ public class Session {
 	
 	public User verify(String login, String password) {   	
 	    for(User u : Database.getUsers()) {
-	   		if(u.getLogin().equals(login) && u.getPassword().equals(password)) {
+	   		if(u.getLogin().equals(login) && u.getPassword().equals(Integer.toString(User.hashCode(password)))) {
 	   			return u;
 	   		}
 	   	}
-    return null;
+	    return null;
    	}
 	
 	public UserControl login() throws IOException, InterruptedException {

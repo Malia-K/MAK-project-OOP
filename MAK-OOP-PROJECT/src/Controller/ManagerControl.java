@@ -9,6 +9,7 @@ import Model.*;
 import enums.Faculty;
 import enums.Gender;
 
+
 public class ManagerControl extends EmployeeControl /*implements canSeeOrganizations, canViewCourses, canMakeReport*/ {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     StringTokenizer st;
@@ -85,19 +86,19 @@ public class ManagerControl extends EmployeeControl /*implements canSeeOrganizat
     
     public void viewAllOrganizations() {
     	String list = "";
-<<<<<<< HEAD
-        list += formatDiv("a-------------b---------------------------b----------b-------------------c\n");
-        list += formatRow("|    NAME     |       DESCRIPTION         | FACULTY  | ORGANIZATION HEAD |\n");
-        list += formatDiv("d-------------e---------------------------e----------e-------------------f\n");
+
+        list += Format.formatDiv("a-------------b---------------------------b----------b-------------------c\n");
+        list += Format.formatRow("|    NAME     |       DESCRIPTION         | FACULTY  | ORGANIZATION HEAD |\n");
+        list += Format.formatDiv("d-------------e---------------------------e----------e-------------------f\n");
         System.out.print(list);
     	for(Organization o : Database.getInstance().getOrganizations()) {
     		String str1 = String.format("| %9s | %-25s | %-8s |%-20s |", 
     									o.getName(), o.getDescription(), o.getFaculty(), o.getHead());
-            System.out.println(formatRow(str1));
+            System.out.println(Format.formatRow(str1));
     	}
     	System.out.println(
-    			formatDiv("g-------------h---------------------------h----------h-------------------i"));
-=======
+    			Format.formatDiv("g-------------h---------------------------h----------h-------------------i"));
+
         list += Format.formatDiv("a-------------b---------------------------b----------b-------------------c\n");
         list += Format.formatRow("|    NAME     |       DESCRIPTION         | FACULTY  | ORGANIZATION HEAD |\n");
         list += Format.formatDiv("d-------------e---------------------------e----------e-------------------f\n");
@@ -109,7 +110,7 @@ public class ManagerControl extends EmployeeControl /*implements canSeeOrganizat
     	}
     	System.out.println(
     			Format.formatDiv("g-------------h---------------------------h----------h-------------------i"));
->>>>>>> branch 'newNewBranch' of https://github.com/Malia-K/MAK-project-OOP.git
+
     }
     
     

@@ -3,6 +3,7 @@ package Model;
 import java.io.Serializable;
 import enums.*;
 import java.time.LocalDate;
+import java.util.Objects;
 
 public  class User implements Comparable<User>, Serializable, Cloneable {
 	/*
@@ -22,12 +23,13 @@ public  class User implements Comparable<User>, Serializable, Cloneable {
     
     public User() {}
     
+
     public User(String firstName, String lastName, Gender gender, String birthDate, String password, String enrolled, String id, String login) {
     	this.firstName = firstName;
     	this.lastName = lastName;
     	this.gender = gender;
     	this.birthDate = LocalDate.parse(birthDate);
-    	this.password = password;
+    	this.password = Integer.toString(hashCode(password));
     	this.enrolled = LocalDate.parse(enrolled);
     	this.id = id + String.format("%02d", this.enrolled.getYear() % 100) + firstName.toUpperCase().charAt(0) + lastName.toUpperCase().charAt(0) + String.format("%04d", (Database.getUsers().size() + 1) % 1000);
     	this.login = login;
@@ -116,6 +118,11 @@ public  class User implements Comparable<User>, Serializable, Cloneable {
 				"\ngender: " + gender + "\nbirth date: " + birthDate + 
 				"\nenrolled date: " + enrolled + "\nid: " + id + 
 				"\nlogin: " + login;
+	}
+	
+	
+	public static int hashCode(String password) {
+		return Objects.hash(password);
 	}
 }
 	
