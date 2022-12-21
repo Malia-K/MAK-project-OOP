@@ -2,7 +2,7 @@ package Model;
 
 public final class Connect {
 
-	private final static String BASE_PATH = "C:\\Users\\USER\\git\\repository\\MAK-OOP-PROJECT\\src\\Model\\text.txt";
+	private final static String BASE_PATH = "C:\\Users\\Karina\\OOP\\MAK-project-OOP\\MAK-OOP-PROJECT\\data.ser";
 	private static Connect instance = new Connect(BASE_PATH);
 	private String path;
 	
@@ -11,10 +11,10 @@ public final class Connect {
 	}
 	
 	public String getPath() {
-		return this.path;
+		return getInstance().path;
 	}
 
-	public static String getInstance() {
-		return instance.getPath();
+	public static Connect getInstance() {
+		return instance;
 	}
 }

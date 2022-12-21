@@ -26,7 +26,7 @@ public  class User implements Comparable<User>, Serializable, Cloneable {
     	this.birthDate = LocalDate.parse(birthDate);
     	this.password = password;
     	this.enrolled = LocalDate.parse(enrolled);
-    	this.id = id + (this.enrolled.getYear() % 100) + firstName.toUpperCase().charAt(0) + lastName.toUpperCase().charAt(0) + String.format("%04d", Database.getInstance().getUsers().size() % 1000);
+    	this.id = id + String.format("%02d", this.enrolled.getYear() % 100) + firstName.toUpperCase().charAt(0) + lastName.toUpperCase().charAt(0) + String.format("%04d", Database.getInstance().getUsers().size() % 1000);
     	this.login = login;
     }
 

@@ -1,9 +1,12 @@
 package Model;
 
 import enums.Semester;
+
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class StudyPeriod {
+public class StudyPeriod implements Serializable {
+	private static final long serialVersionUID = 1L;
 	private Semester semester;
 	private int year;
 	

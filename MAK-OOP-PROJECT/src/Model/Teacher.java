@@ -2,6 +2,10 @@ package Model;
 
 
 
+import java.util.List;
+import java.util.Vector;
+import java.util.stream.Collectors;
+
 import enums.*;
 public class Teacher extends Employee {
 	private static final long serialVersionUID = 1L;
@@ -45,6 +49,10 @@ public class Teacher extends Employee {
 	public void setTeacherType(TeacherType teacherType) {
 		this.teacherType = teacherType;
 	}
+	
+	public Vector<OpenCourse> getCourses() {
+		return Database.getInstance().getOpenCourses().stream().filter(c -> c.getTeachers().contains(this)).collect(Collectors.toCollection(Vector::new));
+	}
 
     
     public int compareTo(Teacher o) {
@@ -58,17 +66,11 @@ public class Teacher extends Employee {
     }
     
     public boolean equals(Object o) {
-    	if(this == o) {
-    		return true;
+    	if(super.equals(o)) {
+    		Teacher t = (Teacher) o;
+    		return rating == t.getRating() && faculty.equals(t.getFaculty()) && teacherType.equals(t.getTeacherType());
     	}
-    	if(!super.equals(o)) {
-    		return false;
-    	}
-    	if(getClass() != o.getClass()) {
-    		return false;
-    	}
-    	Teacher other = (Teacher) o;
-    	return getRating() == other.getRating();
+    	return false;
     }
     
     public Object clone() throws CloneNotSupportedException{
