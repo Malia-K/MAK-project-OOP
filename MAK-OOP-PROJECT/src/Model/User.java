@@ -7,14 +7,14 @@ import java.util.Objects;
 
 /**
 	 * 
-	 * Class describing the most primitive user
+	 * Class describing the most primitive user.
 	 * 
 	 */
 
 public  class User implements Comparable<User>, Serializable, Cloneable {
 	/*
 	 * 
-	 * Class describing the most primitive user
+	 * Class describing the most primitive user.
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;

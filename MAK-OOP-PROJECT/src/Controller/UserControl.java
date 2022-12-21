@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 
 /**
 	 * 
-	 * Describes the functionality and actions of an ordinary user
+	 * Describes the functionality and actions of an ordinary user.
 	 * 
 	 */
 public class UserControl{
@@ -18,11 +18,20 @@ public class UserControl{
 	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	
 	public UserControl () {}
-	
+	/**
+	 * 
+	 * Class constructor.
+	 * @param u
+	 */
 	public UserControl(User u) {
 		this.user = u;
 	}
 	
+	/**
+	 * 
+	 * Returns the user.
+	 * @return
+	 */
     public User getUser() {
     	return this.user;
     }
@@ -32,7 +41,13 @@ public class UserControl{
 //    	
 //    	System.out.println("   Enter your new password: ");     	
     }
-
+    /**
+     * 
+     * Method describing user verification in the system.
+     * @param login
+     * @param password
+     * @return
+     */
     public User verify(String login, String password) {   	
     	for(User u : Database.getUsers()) {
     		if(u.getLogin().equals(login) && u.getPassword().equals(Integer.toString(User.hashCode(password)))) {
@@ -43,13 +58,21 @@ public class UserControl{
     }
      
     public void saveLogs() {}
-    
+    /**
+     * 
+     * Check books in the library.
+     * 
+     */
     public void viewBooks() {
         for(Book b: Database.getLibrary()) {
           System.out.println(b);
         }
       }
-      
+      /**
+       * 
+       * Watch news.
+       * @throws IOException
+       */
     public void viewNews() throws IOException {
     	Vector <New> allNews = (Vector <New>) Database.getNews().stream().sorted().collect(Collectors.toCollection(Vector::new));
         int i = 0;
@@ -73,7 +96,11 @@ public class UserControl{
         }
         return;
     }
-    
+    /**
+     * 
+     * Action selection system.
+     * @throws InterruptedException
+     */
     public void operation() throws InterruptedException  {
     	try {
 			int action = br.read();
@@ -92,7 +119,11 @@ public class UserControl{
 		}
     	return;
     }
-      
+      /**
+       * 
+       * View main page.
+       * @throws InterruptedException
+       */
       public void viewMainPage() throws InterruptedException {
   	    String header = "";
   	    
