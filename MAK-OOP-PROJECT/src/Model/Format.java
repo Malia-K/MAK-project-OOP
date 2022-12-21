@@ -11,9 +11,15 @@ import java.util.regex.Pattern;
 	 */
 
 public class Format {
+	/*
+	 * 
+	 * A class that describes the output standard for some data
+	 * 
+	 */
 	 public static String formatRow(String str){
 	        return str.replace('|', '\u2502');
 	 }
+	 
 	 
 	 public static String formatDiv(String str){
 		 return str.replace('a', '\u250c')

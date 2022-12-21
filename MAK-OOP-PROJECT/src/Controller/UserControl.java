@@ -28,9 +28,9 @@ public class UserControl{
     }
       
     public void changePassword() throws IOException, InterruptedException {
-    	System.out.println("   Enter your current password: ");
-    	
-    	System.out.println("   Enter your new password: ");     	
+//    	System.out.println("   Enter your current password: ");
+//    	
+//    	System.out.println("   Enter your new password: ");     	
     }
 
     public User verify(String login, String password) {   	

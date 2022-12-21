@@ -12,6 +12,11 @@ import java.util.Objects;
 	 */
 
 public  class User implements Comparable<User>, Serializable, Cloneable {
+	/*
+	 * 
+	 * Class describing the most primitive user
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
     private String firstName;
     private String lastName;
@@ -24,6 +29,7 @@ public  class User implements Comparable<User>, Serializable, Cloneable {
     
     public User() {}
     
+
     /**
      * 
      * Class constructor.
@@ -47,12 +53,12 @@ public  class User implements Comparable<User>, Serializable, Cloneable {
     	this.login = login;
     }
     
-    
     /**
      * 
      * Returns the user's first name.
      * @return
      */
+
 	public String getFirstName() {
 		return firstName;
 	}
@@ -80,7 +86,7 @@ public  class User implements Comparable<User>, Serializable, Cloneable {
 	
 	/**
 	 * 
-	 * Sets the user's lase name. 
+	 * Sets the user's last name. 
 	 * @param lastName
 	 */
 	public void setLastName(String lastName) {
@@ -182,6 +188,7 @@ public  class User implements Comparable<User>, Serializable, Cloneable {
 	 * Simple comparison of users. by last name and first name.
 	 * 
 	 */
+
 	public int compareTo(User o) {
 		if(lastName.compareTo(o.getLastName()) == 0) {
 			return firstName.compareTo(o.getFirstName());
@@ -197,6 +204,7 @@ public  class User implements Comparable<User>, Serializable, Cloneable {
 	 */
 	public Object clone() throws CloneNotSupportedException {
 		User u = (User) super.clone();
+		u.gender = (Gender)this.gender;
 		return u;
 	}
 	
@@ -215,6 +223,7 @@ public  class User implements Comparable<User>, Serializable, Cloneable {
 		return gender == u.getGender() && firstName.equals(u.getFirstName()) && lastName.equals(u.getLastName()) 
 				&& birthDate.equals(u.getBirthDate()) && enrolled.equals(u.getEnrolledDate());
 	}
+
 	
 	/**
 	 * 
@@ -233,11 +242,13 @@ public  class User implements Comparable<User>, Serializable, Cloneable {
 	 * 
 	 */
 	public String toString() {
-		return "name: " + firstName + "\nlast name: " + lastName + 
-				"\ngender: " + gender + "\nbirth date: " + birthDate + 
-				"\nenrolled date: " + enrolled + "\nid: " + id + 
-				"\nlogin: " + login;
+		return "Name: " + firstName + "\nLast name: " + lastName + 
+				"\nGender: " + gender + "\nBirth date: " + birthDate + 
+				"\nEnrolled date: " + enrolled + "\nID: " + id + 
+				"\nLogin: " + login;
 	}
+	
+
 }
 	
 

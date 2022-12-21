@@ -57,6 +57,12 @@ public class testAdmin {
 //		Employee send = new Employee("Trustworth", "Gay", Gender.MALE, "2000-10-10", "", "2020-08-12", "", "", 2);
 //		Employee get = new Employee("Pakita", "Shamoi", Gender.FEMALE, "1986-08-12", "", "2007-08-12", "", "", 12);
 //		
+//		Message me = new Message(send, "One more strange text that i would like to write since you haven't answered for previous one. I now it may be strange and yet i won't give up and keep going to write you until i get proper answer", get);
+//		Database.getInstance().set();
+//		Database.getInstance().getMessages().add(me);
+//		Database.databaseSave();		me.setTopic("You will like it maybe or not well at least i tries");
+
+
 //		
 //		User u1 = send;
 //		User u2 = (User) u1.clone();

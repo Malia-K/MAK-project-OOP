@@ -1,12 +1,11 @@
 package Model;
-
-
-
 import java.util.List;
+import java.util.Objects;
 import java.util.Vector;
 import java.util.stream.Collectors;
 
 import enums.*;
+
 public class Teacher extends Employee {
 	private static final long serialVersionUID = 1L;
 	private Faculty faculty;
@@ -23,7 +22,7 @@ public class Teacher extends Employee {
     	this.teacherType = teacherType;
     }
     
-   public Faculty getFaculty() {
+    public Faculty getFaculty() {
         return this.faculty;
     }
     
@@ -31,7 +30,7 @@ public class Teacher extends Employee {
         this.faculty = faculty;
     }
     
-   public double getRating() {
+    public double getRating() {
         return this.rating;
     }
     
@@ -51,6 +50,8 @@ public class Teacher extends Employee {
 		return Database.getOpenCourses().stream().filter(c -> c.getTeachers()[0].equals(this) || c.getTeachers()[1].equals(this)).collect(Collectors.toCollection(Vector::new));
 	}
     
+	
+	
     public int compareTo(Teacher o) {
     	if(faculty.compareTo(o.getFaculty()) == 0) {
     		if(teacherType.compareTo(o.getTeacherType()) == 0) {
@@ -73,7 +74,18 @@ public class Teacher extends Employee {
     
     public Object clone() throws CloneNotSupportedException{
     	Teacher copy = (Teacher) super.clone();
-
+    	copy.faculty =(Faculty) this.faculty;
+    	copy.teacherType = (TeacherType)this.teacherType; 			
     	return copy;
     }
+    
+	public int hashCode() {
+		return Objects.hash(this.getFirstName(), this.getLastName(), this.faculty, this.teacherType);
+	}
+	
+	
+	public String toString() {
+		return super.toString() + "\nFaculty: " + faculty + "\nRating: " + rating
+								+ "\nTeacher type: " + teacherType;
+	}
 }

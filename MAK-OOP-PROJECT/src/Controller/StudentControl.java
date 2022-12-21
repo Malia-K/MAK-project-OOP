@@ -45,18 +45,50 @@ public class StudentControl extends UserControl /*implements canSeeOrganizations
         list += Format.formatRow("|    ID     |        FULL NAME          | FACULTY  | TEACHER TYPE |\n");
         list += Format.formatDiv("d-----------e---------------------------e----------e--------------f\n");
         System.out.print(list);
+    	for(Teacher t : Database.getInstance().getTeachers()) {
+    		String fullName = t.getLastName() + " "+ t.getFirstName();
+    		String str1 = String.format("| %9s | %-25s | %-8s |%-14s |", 
+    									t.getId(), fullName, t.getFaculty(), t.getTeacherType());
+            System.out.println(Format.formatRow(str1));
+    	}
+    	System.out.println(
+    			Format.formatDiv("g-----------h---------------------------h----------h--------------i"));
+
+        list += Format.formatDiv("a-----------b---------------------------b----------b--------------c\n");
+        list += Format.formatRow("|    ID     |        FULL NAME          | FACULTY  | TEACHER TYPE |\n");
+        list += Format.formatDiv("d-----------e---------------------------e----------e--------------f\n");
+        System.out.print(list);
     	for(Teacher t : Database.getTeachers()) {
     		String fullName = t.getLastName() + " "+ t.getFirstName();
     		String str1 = String.format("| %9s | %-25s | %-8s |%-14s |", 
     									t.getId(), fullName, t.getFaculty(), t.getTeacherType());
             System.out.println(Format.formatRow(str1));
     	}
+
+    	System.out.println(
+    			Format.formatDiv("g-----------h---------------------------h----------h--------------i"));
+
     	System.out.println(Format.formatDiv("g-----------h---------------------------h----------h--------------i"));
+
 	}
 	
 	public void viewTranscipt() {}
 	
-	public void viewOrganizations() {}
+	public void viewOrganizations() {
+		String list = "";
+
+        list += Format.formatDiv("a-------------b---------------------------b----------b-------------------c\n");
+        list += Format.formatRow("|    NAME     |       DESCRIPTION         | FACULTY  | ORGANIZATION HEAD |\n");
+        list += Format.formatDiv("d-------------e---------------------------e----------e-------------------f\n");
+        System.out.print(list);
+    	for(Organization o : Database.getOrganizations()) {
+    		String str1 = String.format("| %9s | %-25s | %-8s |%-20s |", 
+    									o.getName(), o.getDescription(), o.getFaculty(), o.getHead());
+            System.out.println(Format.formatRow(str1));
+    	}
+    	System.out.println(
+    			Format.formatDiv("g-------------h---------------------------h----------h-------------------i"));
+	}
 	
 	public void viewSchedule() {}
 	
@@ -79,6 +111,7 @@ public class StudentControl extends UserControl /*implements canSeeOrganizations
     	System.out.println(Format.formatDiv("g-----------h---------------------------h----------h--------------i"));	
 	}
 	
+
 	public void viewMainPage() throws InterruptedException {
 	      super.viewMainPage();
 	      System.out.print(  " 4.  Student schedule \n"

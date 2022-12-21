@@ -1,6 +1,5 @@
 package Model;
 
-import java.util.Vector;
 
 import enums.Gender;
 
@@ -24,7 +23,14 @@ public class Employee extends User {
 	}
 	
 	public int compareTo(User o) {
-		return super.compareTo(o);
+		if (super.compareTo(o) == 0) {
+			Employee e = (Employee)o;
+			if(this.experience > e.experience) return 1;
+			if(this.experience < e.experience) return -1;
+			return 0;
+		}else {
+			return super.compareTo(o);
+		}
 	}
 	
 	public boolean equals(Object o) {
@@ -36,6 +42,11 @@ public class Employee extends User {
 	}
 	
 	public String toString() {
-		return super.toString() + "\nexperience: " + experience;
+		return super.toString() + "\nExperience: " + experience;
+	}
+	
+	public Object clone() throws CloneNotSupportedException {
+		Employee e = (Employee) super.clone();
+		return e;
 	}
 }

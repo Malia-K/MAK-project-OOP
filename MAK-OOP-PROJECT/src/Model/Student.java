@@ -1,6 +1,7 @@
 package Model;
 
 import java.util.HashMap;
+import java.util.Objects;
 import java.util.Vector;
 import enums.*;
 
@@ -84,8 +85,44 @@ public class Student extends User {
 	}
 
 	public String toString() {
-		return super.toString() + "\nfaculty: " + faculty + "\ndegree: " + degree 
-				+ "\nyear of study: " + yearOfStudy;
+		return super.toString() + "\nFaculty: " + faculty + "\nDegree: " + degree 
+				+ "\nYear of study: " + yearOfStudy;
+	}
+	
+	
+	public int compareTo(User o) {
+		if (super.compareTo(o) == 0) {
+			Student s = (Student)o;
+			if(this.yearOfStudy > s.yearOfStudy) return 1;
+			if(this.yearOfStudy < s.yearOfStudy) return -1;
+			return 0;
+		}else {
+			return super.compareTo(o);
+		}
+	}
+	
+	public boolean equals(Object o) {
+		if(super.equals(o)) {
+			Student s = (Student) o;
+			return yearOfStudy == s.yearOfStudy &&
+				   creditsTaken == s.creditsTaken &&
+				   faculty.equals(s.getFaculty()) &&
+				   degree.equals(s.getDegree());
+				   
+		}
+		return false;
+	}
+	
+	public Object clone() throws CloneNotSupportedException {
+		Student s = (Student)super.clone();
+		s.faculty = (Faculty)this.faculty;
+		s.degree = (Degree)this.degree;
+		s.organization = (Organization) this.organization;
+		s.registeredCourses = (HashMap<OpenCourse, Mark>) this.registeredCourses.clone();
+		return s;
+	}
+	public int hashCode() {
+		return Objects.hash(this.getFirstName(), this.getLastName(), this.faculty, this.yearOfStudy, this.degree);
 	}
 
 }

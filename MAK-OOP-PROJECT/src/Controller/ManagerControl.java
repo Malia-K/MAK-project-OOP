@@ -101,18 +101,6 @@ public class ManagerControl extends EmployeeControl /*implements canSeeOrganizat
     	System.out.println(
     			Format.formatDiv("g-------------h---------------------------h----------h-------------------i"));
 
-        list += Format.formatDiv("a-------------b---------------------------b----------b-------------------c\n");
-        list += Format.formatRow("|    NAME     |       DESCRIPTION         | FACULTY  | ORGANIZATION HEAD |\n");
-        list += Format.formatDiv("d-------------e---------------------------e----------e-------------------f\n");
-        System.out.print(list);
-    	for(Organization o : Database.getOrganizations()) {
-    		String str1 = String.format("| %9s | %-25s | %-8s |%-20s |", 
-    									o.getName(), o.getDescription(), o.getFaculty(), o.getHead());
-            System.out.println(Format.formatRow(str1));
-    	}
-    	System.out.println(
-    			Format.formatDiv("g-------------h---------------------------h----------h-------------------i"));
-
     }
     
     
