@@ -1,14 +1,18 @@
 package Model;
 
+import java.util.Objects;
+
+import enums.Faculty;
 import enums.Gender;
 import enums.ManagerType;
+import enums.TeacherType;
 
 public class Manager extends Employee {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	ManagerType managerType;
+	private ManagerType managerType;
 	
 	public Manager() {}
 	
@@ -17,7 +21,43 @@ public class Manager extends Employee {
 		this.managerType = managerType;
 	}
 	
-	public String toString() {
-		return super.toString() + "\nmanager type: " + managerType;
+	
+	public ManagerType getManagerType() {
+		return managerType;
 	}
+
+	public void setManagerType(ManagerType managerType) {
+		this.managerType = managerType;
+	}
+
+	public String toString() {
+		return super.toString() + "\nManager type: " + managerType;
+	}
+	
+
+    public int compareTo(Manager m) {
+    	if(super.compareTo(m) == 0) {
+    		return this.managerType.compareTo(m.managerType);
+    	}
+    	return super.compareTo(m);
+    }
+    
+    public boolean equals(Object o) {
+    	if(super.equals(o)) {
+    		Manager t = (Manager) o;
+    		return this.managerType.equals(t.managerType);
+    	}
+    	return false;
+    }
+    
+    public Object clone() throws CloneNotSupportedException{
+    	Manager copy = (Manager) super.clone();
+    	copy.managerType= (ManagerType)this.managerType; 			
+    	return copy;
+    }
+    
+	public int hashCode() {
+		return Objects.hash(this.getFirstName(), this.getLastName(), this.managerType);
+	}
+	
 }
