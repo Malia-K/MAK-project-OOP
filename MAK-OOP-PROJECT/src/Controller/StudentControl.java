@@ -22,10 +22,19 @@ public class StudentControl extends UserControl /*implements canSeeOrganizations
 	public void rateTeacher() {}
 	
 	public void viewTeachers() {
-		for(Teacher t: Database.getTeachers()) {
-			
-			System.out.println(t);
-		}
+		String list = "";
+        list += formatDiv("a-----------b---------------------------b----------b--------------c\n");
+        list += formatRow("|    ID     |        FULL NAME          | FACULTY  | TEACHER TYPE |\n");
+        list += formatDiv("d-----------e---------------------------e----------e--------------f\n");
+        System.out.print(list);
+    	for(Teacher t : Database.getInstance().getTeachers()) {
+    		String fullName = t.getLastName() + " "+ t.getFirstName();
+    		String str1 = String.format("| %9s | %-25s | %-8s |%-14s |", 
+    									t.getId(), fullName, t.getFaculty(), t.getTeacherType());
+            System.out.println(formatRow(str1));
+    	}
+    	System.out.println(
+    			formatDiv("g-----------h---------------------------h----------h--------------i"));
 	}
 	
 	public void viewTranscipt() {}

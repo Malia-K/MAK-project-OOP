@@ -1,22 +1,32 @@
 package Model;
 
-import java.util.Date;
-import java.util.Set;
+
 import java.util.Vector;
 
 import enums.Faculty;
 
-public class Organization {
+public class Organization implements Cloneable{
     private String name;
     private String description;
     private Student head;
     private Vector<Student> members;
-    private Date dateOfCreation;
+    private String dateOfCreation;
     private Faculty faculty;
-    private Set<Student> student;
+    
+    
+    public Organization() {}
     
   
-    public String getName() {
+    public Organization(String name, String description, Student head, String dateOfCreation2, Faculty faculty) {
+		super();
+		this.name = name;
+		this.description = description;
+		this.head = head;
+		this.dateOfCreation = dateOfCreation2;
+		this.faculty = faculty;
+	}
+
+	public String getName() {
         return this.name;
     }
 
@@ -44,16 +54,27 @@ public class Organization {
         return this.members;
     }
     
-    public Date getDateOfCreation() {
+    public String getDateOfCreation() {
         return this.dateOfCreation;
     }
 
-    public void setDateOfCreation(Date dateOfCreation) {
+    public void setDateOfCreation(String dateOfCreation) {
         this.dateOfCreation = dateOfCreation;
     }
     
     public Faculty getFaculty() {
         return this.faculty;
     }
+    
+    
+    public Object clone() throws CloneNotSupportedException {
+    	Organization copy = (Organization)super.clone();
+    	copy.members.addAll(this.members);
+		return copy;
+    }
+    
+    
+
+    
 
 }

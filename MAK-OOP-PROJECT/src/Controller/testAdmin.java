@@ -55,8 +55,7 @@ public class testAdmin {
 //		Message me = new Message(send, "One more strange text that i would like to write since you haven't answered for previous one. I now it may be strange and yet i won't give up and keep going to write you until i get proper answer", get);
 //		Database.getInstance().set();
 //		Database.getInstance().getMessages().add(me);
-		Database.databaseSave();
-//		me.setTopic("You will like it maybe or not well at least i tries");
+//		Database.databaseSave();		me.setTopic("You will like it maybe or not well at least i tries");
 //		
 //		System.out.println(me);
 		

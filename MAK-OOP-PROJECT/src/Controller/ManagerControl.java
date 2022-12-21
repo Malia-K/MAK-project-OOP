@@ -1,12 +1,17 @@
 package Controller;
 
 import java.io.*;
+import java.util.NoSuchElementException;
+import java.util.StringTokenizer;
+import java.util.regex.Pattern;
 
 import Model.*;
+import enums.Faculty;
+import enums.Gender;
 
 public class ManagerControl extends EmployeeControl /*implements canSeeOrganizations, canViewCourses, canMakeReport*/ {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-    
+    StringTokenizer st;
     public ManagerControl() {}
     
     public ManagerControl(User user) {
@@ -66,7 +71,7 @@ public class ManagerControl extends EmployeeControl /*implements canSeeOrganizat
         list += formatRow("|    ID     |        FULL NAME          | FACULTY  | TEACHER TYPE |\n");
         list += formatDiv("d-----------e---------------------------e----------e--------------f\n");
         System.out.print(list);
-    	for(Teacher t : Database.getTeachers()) {
+    	for(Teacher t : Database.getInstance().getTeachers()) {
     		String fullName = t.getLastName() + " "+ t.getFirstName();
     		String str1 = String.format("| %9s | %-25s | %-8s |%-14s |", 
     									t.getId(), fullName, t.getFaculty(), t.getTeacherType());
@@ -75,4 +80,96 @@ public class ManagerControl extends EmployeeControl /*implements canSeeOrganizat
     	System.out.println(
     			formatDiv("g-----------h---------------------------h----------h--------------i"));
     }
+    
+    
+    
+    public void viewAllOrganizations() {
+    	String list = "";
+        list += formatDiv("a-------------b---------------------------b----------b-------------------c\n");
+        list += formatRow("|    NAME     |       DESCRIPTION         | FACULTY  | ORGANIZATION HEAD |\n");
+        list += formatDiv("d-------------e---------------------------e----------e-------------------f\n");
+        System.out.print(list);
+    	for(Organization o : Database.getInstance().getOrganizations()) {
+    		String str1 = String.format("| %9s | %-25s | %-8s |%-20s |", 
+    									o.getName(), o.getDescription(), o.getFaculty(), o.getHead());
+            System.out.println(formatRow(str1));
+    	}
+    	System.out.println(
+    			formatDiv("g-------------h---------------------------h----------h-------------------i"));
+    }
+    
+    
+    
+    
+    public void addNewOrganization() throws IOException {
+    	System.out.println("Please, add following information of a new organization in one line separated by space\n" 
+				+ "\n\tName of organization:\n\tFaculty:\n\t"
+				+ "Date of creation(YYYY-MM-DD):\n\tID of head of organization\n\t");
+		try {
+			String input = br.readLine();
+//			if(goBack(input)) {
+//				createUser();
+//				return null;
+//			}
+			st = new StringTokenizer(input, " ");
+			String name = st.nextToken();
+			Faculty faculty = Faculty.valueOf(st.nextToken().toUpperCase());
+			String dateOfCreation = st.nextToken();
+			String headId = st.nextToken();
+			
+			Student head = new Student();
+			for(Student s : Database.getInstance().getStudents()) {
+				if(s.getId().equals(headId)) {
+					head = s;
+				}
+			}
+			
+			if(!checkDateFormat(dateOfCreation)) {
+				System.out.println("Date format is not correct, please, try again!");
+				addNewOrganization();
+			}
+			
+			System.out.println("Please, add a description");
+			String description = br.readLine();
+			
+			Organization newOne = new Organization(name, description, head, dateOfCreation, faculty);
+			Database.getInstance().getOrganizations().add(newOne);
+		}  catch(IllegalArgumentException iae) {
+			System.out.println("Format is not the same! Please, try again");
+		}catch(NoSuchElementException nsee) {
+			System.out.println("You forgot some inputs! Please, try again!");
+		}
+
+    }
+    
+    
+    public void deleteOrganization() throws IOException {
+    	System.out.println("Please enter the name of an organization to delete:");
+    	String name = br.readLine();
+    	boolean isFind = false;
+    	Organization toDelete = new Organization();
+    	for(Organization o : Database.getInstance().getOrganizations()) {
+    		if(o.getName().equals(name)) {
+    			toDelete = o;
+    			isFind = true;
+    		}
+    	}
+    	
+    	if(isFind) {
+    		Database.getInstance().getOrganizations().remove(toDelete);
+    		System.out.println("Organization " + toDelete.getName() + " is deleted.");
+    	}else {
+    		System.out.println("Error! There is no such organization. Please try again");
+    		deleteOrganization();
+    	}
+    }
+    
+	private boolean checkDateFormat(String date) {
+		Pattern p = Pattern.compile("^[0-9]{4}-(1[0-2]|0[1-9])-(3[01]|[12][0-9]|0[1-9])$");
+		return p.matcher(date).matches();
+	}
+    
+    
+    
+    
 }

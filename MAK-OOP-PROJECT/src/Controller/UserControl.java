@@ -22,6 +22,13 @@ public class UserControl{
     public User getUser() {
     	return this.user;
     }
+    
+	private boolean goBack(String input) throws IOException {
+		if(input.equals("0")) {
+			return true;
+		}
+		return false;
+	}
      
     public void login() throws IOException, InterruptedException {
 //    	for(User a : Database.getInstance().getUsers()) {
@@ -82,16 +89,16 @@ public class UserControl{
 	* this is a method to execute users session in uni system
 	*/
     public void session() throws IOException, InterruptedException {
-//    	ManagerControl mc = new ManagerControl();
-//    	mc.viewAllTeachers();
-    	
-    	String header = "";
-    	
-    	header += formatDiv("a" + "-".repeat(43) + "c" +"\n");
-    	header += formatRow("|        Welcome to MAK University!         |\n");
-    	header += formatDiv("g" +"-".repeat(43) + "i"+ '\n');
-    	System.out.print(header);
-     	login();
+    	ManagerControl mc = new ManagerControl();
+    	mc.viewAllOrganizations();
+//    	
+//    	String header = "";
+//    	
+//    	header += formatDiv("a" + "-".repeat(43) + "c" +"\n");
+//    	header += formatRow("|        Welcome to MAK University!         |\n");
+//    	header += formatDiv("g" +"-".repeat(43) + "i"+ '\n');
+//    	System.out.print(header);
+//     	login();
     }
      
      

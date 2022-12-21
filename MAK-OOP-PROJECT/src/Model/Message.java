@@ -68,12 +68,12 @@ public class Message implements Serializable{
     	  if(i + 27 > topic.length()) {
     		  mess += Format.formatRow("|" + " ".repeat(31) + topic.substring(i, topic.length()) + " ".repeat(31 - topic.length() + i) + "|\n");
     	  }
-    	  else mess += Format.formatRow("|" + " ".repeat(31) + topic.substring(i, i + 27) + " ".repeat(4) + "|\n");
+    	  else mess += Format.formatRow("|"+ " ".repeat(31) + topic.substring(i, i + 27) + " ".repeat(4) + "|\n");
     	  i += 26;
       }
       String senderInfo = "sent to: " + String.format("%.1s. %s", recipient.getFirstName(), recipient.getLastName());
       mess += Format.formatRow(("|" + " ".repeat(62 - senderInfo.length() - 4) + senderInfo +" ".repeat(4) + "|\n"));
-      mess += Format.formatDiv("a" + "-".repeat(62) + "c" + "\n") + empty;
+      mess += Format.formatDiv("d" + "-".repeat(62) + "f" + "\n") + empty;
       
       for(int i = 0; i < message.length(); i++) {
         if(i + 50 > message.length()) {
@@ -90,7 +90,7 @@ public class Message implements Serializable{
       String time = sendTime.toString().replace('T', ' ');
       mess += (edited) ? Format.formatRow("|" + " ".repeat(51 - time.length()) + "edited " + time + " ".repeat(4) + "|\n") : Format.formatRow("|" + " ".repeat(62 - time.length() - 4) + time + " ".repeat(4) + "|\n");
       
-      mess += Format.formatDiv("a" + "-".repeat(62) + "c" + "\n");
+      mess += Format.formatDiv("g" + "-".repeat(62) + "i" + "\n");
       
       return mess;
     }
