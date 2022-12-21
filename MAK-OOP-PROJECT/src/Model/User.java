@@ -35,6 +35,7 @@ public  class User implements Comparable<User>, Serializable, Cloneable {
     	this.login = login;
     }
 
+    
 	public String getFirstName() {
 		return firstName;
 	}
@@ -90,6 +91,8 @@ public  class User implements Comparable<User>, Serializable, Cloneable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	
 
 	public int compareTo(User o) {
 		if(lastName.compareTo(o.getLastName()) == 0) {
@@ -100,6 +103,7 @@ public  class User implements Comparable<User>, Serializable, Cloneable {
 	
 	public Object clone() throws CloneNotSupportedException {
 		User u = (User) super.clone();
+		u.gender = (Gender)this.gender;
 		return u;
 	}
 	
@@ -114,10 +118,10 @@ public  class User implements Comparable<User>, Serializable, Cloneable {
 	}
 	
 	public String toString() {
-		return "name: " + firstName + "\nlast name: " + lastName + 
-				"\ngender: " + gender + "\nbirth date: " + birthDate + 
-				"\nenrolled date: " + enrolled + "\nid: " + id + 
-				"\nlogin: " + login;
+		return "Name: " + firstName + "\nLast name: " + lastName + 
+				"\nGender: " + gender + "\nBirth date: " + birthDate + 
+				"\nEnrolled date: " + enrolled + "\nID: " + id + 
+				"\nLogin: " + login;
 	}
 	
 	
