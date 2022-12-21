@@ -23,8 +23,6 @@ public class CourseControl {
 		activeManager = m;
 	}
 	
-	
-	
 	private Vector <Course> prereqs(String ids) {
 		Vector <Course> prereqs = new Vector <Course>();
 		st = new StringTokenizer(ids, " ");
@@ -46,33 +44,41 @@ public class CourseControl {
 		return false;
 	}
 	
-	public Course createCourse() throws IOException {
+	public void createCourse() throws IOException {
 		System.out.println("Print 0 to go back\n\nTo add course add following information separated by space:"
 				+ "\n\tcourse id\n\tcourse name\n\tcredits\n\tfaculty: \n\tformula: hours of lecture/hours of practice\n\tprerequisite id");
 		try {
 			String input = br.readLine();
 			if(goBack(input)) {
-				return null;
+				return;
 			}
 			
 			StringTokenizer st = new StringTokenizer(input, " ");
 			String id = st.nextToken();
 			String name = st.nextToken();
 			int credits = Integer.parseInt(st.nextToken());
-			String faculty = st.nextToken().toUpperCase();
+			Faculty faculty = Faculty.valueOf(st.nextToken().toUpperCase());
 			String formula = st.nextToken();
 			String prereqsId = new String();
 			while(st.hasMoreTokens()) {
 				prereqsId += st.nextToken() + " ";
 			}
 			
+			Course newCourse = null;
 			if(prereqsId.length() != 0) {
 				Vector <Course> prerequisites = prereqs(prereqsId);
 				
-				return new Course(id, name, credits, Faculty.valueOf(faculty), formula, prerequisites);
+				newCourse = new Course(id, name, credits, faculty, formula, prerequisites);
 			}
-			return new Course(id, name, credits, Faculty.valueOf(faculty), formula);
-			
+			newCourse = new Course(id, name, credits, faculty, formula);
+			if(!Database.getCourses().contains(newCourse)) {
+				Database.getCourses().add(newCourse);
+				System.out.println("New course was added");
+			}
+			else {
+				System.out.println("Course already exists");
+			}
+			return;
 		} catch(NumberFormatException nfe) {
 			System.out.println("Not an integer! Please, try again");
 		}catch(IllegalArgumentException iae) {
@@ -81,7 +87,7 @@ public class CourseControl {
 		catch(NoSuchElementException nsee) {
 			System.out.println("You forgot some inputs! Please, try again!");
 			}
-		return createCourse();
+		createCourse();
 	}
 	
 	public void deleteCourse() throws IOException {

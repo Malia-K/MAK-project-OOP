@@ -89,7 +89,7 @@ public  class User implements Comparable<User>, Serializable, Cloneable {
 	}
 
 	public void setPassword(String password) {
-		this.password = password;
+		this.password = Integer.toString(hashCode(password));
 	}
 	
 	
@@ -116,7 +116,7 @@ public  class User implements Comparable<User>, Serializable, Cloneable {
 		return gender == u.getGender() && firstName.equals(u.getFirstName()) && lastName.equals(u.getLastName()) 
 				&& birthDate.equals(u.getBirthDate()) && enrolled.equals(u.getEnrolledDate());
 	}
-	
+
 	public String toString() {
 		return "Name: " + firstName + "\nLast name: " + lastName + 
 				"\nGender: " + gender + "\nBirth date: " + birthDate + 

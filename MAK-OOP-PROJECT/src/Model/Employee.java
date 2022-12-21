@@ -44,4 +44,9 @@ public class Employee extends User {
 	public String toString() {
 		return super.toString() + "\nExperience: " + experience;
 	}
+	
+	public Object clone() throws CloneNotSupportedException {
+		Employee e = (Employee) super.clone();
+		return e;
+	}
 }

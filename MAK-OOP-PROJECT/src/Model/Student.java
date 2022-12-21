@@ -1,5 +1,7 @@
 package Model;
 
+import java.util.HashMap;
+import java.util.Objects;
 import java.util.Vector;
 import enums.*;
 
@@ -11,9 +13,7 @@ public class Student extends User {
     private Organization organization;
     private int creditsTaken;
     private static final int maxAllowedCredits;
-    private Vector <Schedule> schedules;
-    private Vector<Transcript> transcript;
-    private Schedule schedule; 
+    private HashMap <OpenCourse, Mark> registeredCourses;
     
     static {
     	maxAllowedCredits = 21;
@@ -22,6 +22,7 @@ public class Student extends User {
     {
     	yearOfStudy = 1;
     	creditsTaken = 0;
+    	registeredCourses = new HashMap <OpenCourse, Mark>();
     }
     
     public Student() {}
@@ -45,16 +46,17 @@ public class Student extends User {
 		return degree;
 	}
 
-
 	public void setDegree(Degree degree) {
 		this.degree = degree;
 	}
 
-
+	public HashMap <OpenCourse, Mark> getRegisteredCourses() {
+		return registeredCourses;
+	}
+	
 	public int getYearOfStudy() {
 		return yearOfStudy;
 	}
-
 
 	public void setYearOfStudy(int yearOfStudy) {
 		this.yearOfStudy = yearOfStudy;
@@ -65,40 +67,62 @@ public class Student extends User {
 		return organization;
 	}
 
-
 	public void setOrganization(Organization organization) {
 		this.organization = organization;
 	}
 
+	public void addCourse(OpenCourse oc) throws CloneNotSupportedException {
+		registeredCourses.put((OpenCourse) oc.clone(), new Mark());
+		creditsTaken += oc.getCourse().getCredits();
+	}
 
 	public int getCreditsTaken() {
 		return creditsTaken;
-	}
-
-
-	public void setCreditsTaken(int creditsTaken) {
-		this.creditsTaken = creditsTaken;
 	}
 
 	public int getMaxAllowedCredits() {
 		return maxAllowedCredits;
 	}
 
-	public Vector<Schedule> getSchedules() {
-		return schedules;
-	}
-
-	public Vector<Transcript> getTranscript() {
-		return transcript;
-	}
-	
-	public Schedule getSchedule() {
-		return schedule;
-	}
-	
 	public String toString() {
-		return super.toString() + "\nfaculty: " + faculty + "\ndegree: " + degree 
-				+ "\nyear of study: " + yearOfStudy;
+		return super.toString() + "\nFaculty: " + faculty + "\nDegree: " + degree 
+				+ "\nYear of study: " + yearOfStudy;
+	}
+	
+	
+	public int compareTo(User o) {
+		if (super.compareTo(o) == 0) {
+			Student s = (Student)o;
+			if(this.yearOfStudy > s.yearOfStudy) return 1;
+			if(this.yearOfStudy < s.yearOfStudy) return -1;
+			return 0;
+		}else {
+			return super.compareTo(o);
+		}
+	}
+	
+	public boolean equals(Object o) {
+		if(super.equals(o)) {
+			Student s = (Student) o;
+			return yearOfStudy == s.yearOfStudy &&
+				   creditsTaken == s.creditsTaken &&
+				   faculty.equals(s.getFaculty()) &&
+				   degree.equals(s.getDegree());
+				   
+		}
+		return false;
+	}
+	
+	public Object clone() throws CloneNotSupportedException {
+		Student s = (Student)super.clone();
+		s.faculty = (Faculty)this.faculty;
+		s.degree = (Degree)this.degree;
+		s.organization = (Organization) this.organization;
+		s.registeredCourses = (HashMap<OpenCourse, Mark>) this.registeredCourses.clone();
+		return s;
+	}
+	public int hashCode() {
+		return Objects.hash(this.getFirstName(), this.getLastName(), this.faculty, this.yearOfStudy, this.degree);
 	}
 
 }

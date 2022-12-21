@@ -1,24 +1,17 @@
 package Model;
 
-import java.util.Vector;
+import java.io.Serializable;
 
-public class Mark {
-	private static final String marks[];
-	private OpenCourse course;
-    private double firstAttestation;
+public class Mark implements Serializable {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private double firstAttestation;
     private double secondAttestation;
     private double finalExam;
-    private String mark;
-    
-    static {
-    	marks = new String[]{"F", "F", "F", "F", "F", "F", "F", "F", "F", "F", "D", "D+", "C-", "C", "C+", "B-", "B", "B+", "A-", "A"};
-    }
     
     public Mark() {}
-    
-    public Mark(OpenCourse course) {
-    	this.course = course;
-    }
     
     public double getFirstAttestation() {
         return this.firstAttestation;
@@ -44,12 +37,12 @@ public class Mark {
     public void setFinal(double finalExam) {
         this.finalExam = finalExam;
     }
-    
-    public String getMark() {
-        return marks[(int)(Math.round((firstAttestation + secondAttestation + finalExam) / 5))];
-    }
 
-    public double getGpa() {
-        return 0;
+    public double getTotal() {
+        return firstAttestation + secondAttestation + finalExam;
     } 
+    
+    public String toString() {
+    	return "" + firstAttestation + " " + secondAttestation + " " + finalExam;
+    }
 }

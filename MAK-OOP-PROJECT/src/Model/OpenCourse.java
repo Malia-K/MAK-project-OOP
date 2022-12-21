@@ -6,32 +6,25 @@ import enums.*;
 
 public class OpenCourse implements Serializable, Comparable<OpenCourse>, Cloneable {
 	private static final long serialVersionUID = 1L;
-	private int maxNumOfStudents;
 	private Course course;
 	private String groupId;
-	private Vector <Teacher> teachers;
+	private Teacher teachers[];
 	private Vector <Student> students;
     private StudyPeriod studyPeriod;
     
     {
-    	teachers = new Vector <Teacher>();
+    	teachers = new Teacher[2];
     	students = new Vector <Student>();
     }
     
-    public OpenCourse() {
-    	maxNumOfStudents = 50;
-    }
+    public OpenCourse() {}
     
-    public OpenCourse(Course course, StudyPeriod studyPeriod) {
+    public OpenCourse(Course course, StudyPeriod studyPeriod, Teacher[] teachers) {
     	this();
     	this.course = course;
     	this.studyPeriod = studyPeriod;
     	groupId = "" + (studyPeriod.getYear() % 100) + studyPeriod.getSemester().name().charAt(0) + "_" + course.getId();
-    }
-    
-    public OpenCourse(Course course, StudyPeriod studyPeriod, int maxNumOf) {
-    	this(course, studyPeriod);
-    	maxNumOfStudents = maxNumOf;
+    	this.teachers = teachers;
     }
     
     public Course getCourse() {
@@ -46,7 +39,7 @@ public class OpenCourse implements Serializable, Comparable<OpenCourse>, Cloneab
 		return groupId;
 	}
 	
-	public Vector <Teacher> getTeachers() {
+	public Teacher[] getTeachers() {
 		return teachers;
 	}
 	
@@ -55,16 +48,8 @@ public class OpenCourse implements Serializable, Comparable<OpenCourse>, Cloneab
 	}
 	
 	public boolean addStudent(Student s) {
-		if(students.size() < maxNumOfStudents && !students.contains(s)) {
+		if(!students.contains(s)) {
 			students.add(s);
-			return true;
-		}
-		return false;
-	}
-	
-	public boolean addTeacher(Teacher t) {
-		if(teachers.size() < 2 && !teachers.contains(t)) {
-			teachers.add(t);
 			return true;
 		}
 		return false;
@@ -77,6 +62,14 @@ public class OpenCourse implements Serializable, Comparable<OpenCourse>, Cloneab
 		
 		OpenCourse oc = (OpenCourse) o;
 		return course.equals(oc.getCourse()) && groupId.equals(oc.getGroupId()) && studyPeriod.equals(oc.getStudyPeriod()) && teachers.equals(oc.getTeachers()) && students.equals(oc.getStudents());                             
+	}
+	
+	 public Object clone() throws CloneNotSupportedException {
+			OpenCourse c = (OpenCourse) super.clone();
+			c.course = (Course) course.clone();
+			c.teachers = (Teacher[]) teachers.clone();
+			c.studyPeriod = (StudyPeriod) studyPeriod.clone();
+			return c;
 	}
 
 	public int compareTo(OpenCourse o) {
@@ -94,6 +87,6 @@ public class OpenCourse implements Serializable, Comparable<OpenCourse>, Cloneab
 		for(Teacher t: teachers) {
 			teachs += t.getFirstName().toUpperCase().charAt(0) + "." + t.getLastName() + " ";
 		}
-		return "id: " + course.getId() + "\nname: " + course.getName() + "\ngroup id: " + groupId + "\nteachers: " + ((teachers.isEmpty()) ? "" : teachs);
+		return "id: " + course.getId() + "\nname: " + course.getName() + "\ngroup id: " + groupId + "\nteachers: " + ((teachers[0] == null) ? "" : teachs);
 	}
 }

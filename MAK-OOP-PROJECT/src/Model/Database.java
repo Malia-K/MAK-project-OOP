@@ -4,11 +4,7 @@ import java.io.*;
 import java.util.Vector;
 
 public final class Database implements Serializable{
-	/**
-	 * 
-	 * The class contains all the data used in the system
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	private static Database instance;
 	
@@ -197,7 +193,7 @@ public final class Database implements Serializable{
 	}
 	
 	/*
-	 * add user to database
+	 * add news to database
 	 */
     public static void addUser(User u) {
     	getInstance().users.add(u);
@@ -224,5 +220,4 @@ public final class Database implements Serializable{
 		ObjectInputStream ois = new ObjectInputStream(fis);
 		return (Database)ois.readObject();
 	}
-
 }

@@ -9,7 +9,6 @@ import Model.*;
 import enums.Faculty;
 import enums.Gender;
 
-
 public class ManagerControl extends EmployeeControl /*implements canSeeOrganizations, canViewCourses, canMakeReport*/ {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     StringTokenizer st;
@@ -32,19 +31,22 @@ public class ManagerControl extends EmployeeControl /*implements canSeeOrganizat
 				return;
 			}
 			else if(action == 1) {
-				Course newCourse = (new CourseControl(getManager())).createCourse();
-				if(newCourse != null && !Database.getCourses().contains(newCourse)) {
-					Database.getCourses().add(newCourse);
-				}
+				(new CourseControl(getManager())).createCourse();
 			}
 			else if(action == 2) {
 				(new CourseControl(getManager())).deleteCourse();
 			}
+			else if(action == 3) {
+				(new OpenCourseControl(getManager())).createOpenCourse();
+			}
+			else if(action == 4) {
+				(new OpenCourseControl(getManager())).deleteOpenCourse();
+			}
 			Database.databaseSave();
 		} catch (NumberFormatException nfe) {
 			System.err.println("Invalid input, please, try again!");
-			manageCourses();
 		}
+    	manageCourses();
     }
 
     public void viewAllStudents() {
@@ -72,7 +74,7 @@ public class ManagerControl extends EmployeeControl /*implements canSeeOrganizat
         list += Format.formatRow("|    ID     |        FULL NAME          | FACULTY  | TEACHER TYPE |\n");
         list += Format.formatDiv("d-----------e---------------------------e----------e--------------f\n");
         System.out.print(list);
-    	for(Teacher t : Database.getInstance().getTeachers()) {
+    	for(Teacher t : Database.getTeachers()) {
     		String fullName = t.getLastName() + " "+ t.getFirstName();
     		String str1 = String.format("| %9s | %-25s | %-8s |%-14s |", 
     									t.getId(), fullName, t.getFaculty(), t.getTeacherType());
@@ -86,18 +88,6 @@ public class ManagerControl extends EmployeeControl /*implements canSeeOrganizat
     
     public void viewAllOrganizations() {
     	String list = "";
-
-        list += Format.formatDiv("a-------------b---------------------------b----------b-------------------c\n");
-        list += Format.formatRow("|    NAME     |       DESCRIPTION         | FACULTY  | ORGANIZATION HEAD |\n");
-        list += Format.formatDiv("d-------------e---------------------------e----------e-------------------f\n");
-        System.out.print(list);
-    	for(Organization o : Database.getInstance().getOrganizations()) {
-    		String str1 = String.format("| %9s | %-25s | %-8s |%-20s |", 
-    									o.getName(), o.getDescription(), o.getFaculty(), o.getHead());
-            System.out.println(Format.formatRow(str1));
-    	}
-    	System.out.println(
-    			Format.formatDiv("g-------------h---------------------------h----------h-------------------i"));
 
         list += Format.formatDiv("a-------------b---------------------------b----------b-------------------c\n");
         list += Format.formatRow("|    NAME     |       DESCRIPTION         | FACULTY  | ORGANIZATION HEAD |\n");
@@ -133,13 +123,13 @@ public class ManagerControl extends EmployeeControl /*implements canSeeOrganizat
 			String headId = st.nextToken();
 			
 			Student head = new Student();
-			for(Student s : Database.getInstance().getStudents()) {
+			for(Student s : Database.getStudents()) {
 				if(s.getId().equals(headId)) {
 					head = s;
 				}
 			}
 			
-			if(!checkDateFormat(dateOfCreation)) {
+			if(!Format.checkDateFormat(dateOfCreation)) {
 				System.out.println("Date format is not correct, please, try again!");
 				addNewOrganization();
 			}
@@ -148,7 +138,7 @@ public class ManagerControl extends EmployeeControl /*implements canSeeOrganizat
 			String description = br.readLine();
 			
 			Organization newOne = new Organization(name, description, head, dateOfCreation, faculty);
-			Database.getInstance().getOrganizations().add(newOne);
+			Database.getOrganizations().add(newOne);
 		}  catch(IllegalArgumentException iae) {
 			System.out.println("Format is not the same! Please, try again");
 		}catch(NoSuchElementException nsee) {
@@ -163,7 +153,7 @@ public class ManagerControl extends EmployeeControl /*implements canSeeOrganizat
     	String name = br.readLine();
     	boolean isFind = false;
     	Organization toDelete = new Organization();
-    	for(Organization o : Database.getInstance().getOrganizations()) {
+    	for(Organization o : Database.getOrganizations()) {
     		if(o.getName().equals(name)) {
     			toDelete = o;
     			isFind = true;
@@ -171,20 +161,11 @@ public class ManagerControl extends EmployeeControl /*implements canSeeOrganizat
     	}
     	
     	if(isFind) {
-    		Database.getInstance().getOrganizations().remove(toDelete);
+    		Database.getOrganizations().remove(toDelete);
     		System.out.println("Organization " + toDelete.getName() + " is deleted.");
     	}else {
     		System.out.println("Error! There is no such organization. Please try again");
     		deleteOrganization();
     	}
-    }
-    
-	private boolean checkDateFormat(String date) {
-		Pattern p = Pattern.compile("^[0-9]{4}-(1[0-2]|0[1-9])-(3[01]|[12][0-9]|0[1-9])$");
-		return p.matcher(date).matches();
-	}
-    
-    
-    
-    
+    }    
 }
