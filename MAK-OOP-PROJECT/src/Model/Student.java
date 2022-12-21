@@ -1,5 +1,6 @@
 package Model;
 
+import java.util.HashMap;
 import java.util.Vector;
 import enums.*;
 
@@ -11,9 +12,7 @@ public class Student extends User {
     private Organization organization;
     private int creditsTaken;
     private static final int maxAllowedCredits;
-    private Vector <Schedule> schedules;
-    private Vector<Transcript> transcript;
-    private Schedule schedule; 
+    private HashMap <OpenCourse, Mark> registeredCourses;
     
     static {
     	maxAllowedCredits = 21;
@@ -22,6 +21,7 @@ public class Student extends User {
     {
     	yearOfStudy = 1;
     	creditsTaken = 0;
+    	registeredCourses = new HashMap <OpenCourse, Mark>();
     }
     
     public Student() {}
@@ -45,16 +45,17 @@ public class Student extends User {
 		return degree;
 	}
 
-
 	public void setDegree(Degree degree) {
 		this.degree = degree;
 	}
 
-
+	public HashMap <OpenCourse, Mark> getRegisteredCourses() {
+		return registeredCourses;
+	}
+	
 	public int getYearOfStudy() {
 		return yearOfStudy;
 	}
-
 
 	public void setYearOfStudy(int yearOfStudy) {
 		this.yearOfStudy = yearOfStudy;
@@ -65,37 +66,23 @@ public class Student extends User {
 		return organization;
 	}
 
-
 	public void setOrganization(Organization organization) {
 		this.organization = organization;
 	}
 
+	public void addCourse(OpenCourse oc) throws CloneNotSupportedException {
+		registeredCourses.put((OpenCourse) oc.clone(), new Mark());
+		creditsTaken += oc.getCourse().getCredits();
+	}
 
 	public int getCreditsTaken() {
 		return creditsTaken;
-	}
-
-
-	public void setCreditsTaken(int creditsTaken) {
-		this.creditsTaken = creditsTaken;
 	}
 
 	public int getMaxAllowedCredits() {
 		return maxAllowedCredits;
 	}
 
-	public Vector<Schedule> getSchedules() {
-		return schedules;
-	}
-
-	public Vector<Transcript> getTranscript() {
-		return transcript;
-	}
-	
-	public Schedule getSchedule() {
-		return schedule;
-	}
-	
 	public String toString() {
 		return super.toString() + "\nfaculty: " + faculty + "\ndegree: " + degree 
 				+ "\nyear of study: " + yearOfStudy;

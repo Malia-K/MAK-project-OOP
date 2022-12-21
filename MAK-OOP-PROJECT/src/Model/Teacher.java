@@ -48,7 +48,7 @@ public class Teacher extends Employee {
 	}
 	
 	public Vector<OpenCourse> getCourses() {
-		return Database.getOpenCourses().stream().filter(c -> c.getTeachers().contains(this)).collect(Collectors.toCollection(Vector::new));
+		return Database.getOpenCourses().stream().filter(c -> c.getTeachers()[0].equals(this) || c.getTeachers()[1].equals(this)).collect(Collectors.toCollection(Vector::new));
 	}
     
     public int compareTo(Teacher o) {

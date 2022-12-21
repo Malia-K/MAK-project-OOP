@@ -43,7 +43,7 @@ public class Session {
    		return control;
 	}
 	
-	public UserControl createControl(User user) {
+	public static UserControl createControl(User user) {
 		UserControl uc = null;
 		if(user == null) return uc;
 		else if(user instanceof Student) {

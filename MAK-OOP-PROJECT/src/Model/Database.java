@@ -193,7 +193,7 @@ public final class Database implements Serializable{
 	}
 	
 	/*
-	 * add user to database
+	 * add news to database
 	 */
     public static void addUser(User u) {
     	getInstance().users.add(u);
@@ -220,5 +220,4 @@ public final class Database implements Serializable{
 		ObjectInputStream ois = new ObjectInputStream(fis);
 		return (Database)ois.readObject();
 	}
-
 }

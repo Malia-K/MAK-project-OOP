@@ -20,11 +20,11 @@ public class testAdmin {
 ////	    String name=br.readLine();    
 ////	    System.out.println("Welcome "+name);  
 ////		Admin main = new Admin();
-//		
+//		Database.databaseSave();
 ////		AddUsers m = new AddUsers();
 //		int num = 10;
 ////		String formatted = String.format("%04d", num);
-////		System.out.println(formatted);
+////		System.out.println(formatted);	
 //		
 ////		User k = new User("Karina", "Zhykbayeva", Gender.FEMALE, "2004-06-17", "abcd", "2021-09-01", "S", "S_Karina_Zhykbayeva");
 ////		
@@ -75,14 +75,19 @@ public class testAdmin {
 ////		Database.getInstance().addUser(get);
 ////		Database.getInstance().addUser(send);
 ////		Database.databaseSave();
-////		AdminControl ac = new AdminControl();
+//		AdminControl ac = new AdminControl();
 ////		for(int i = 0; i < 10; i++) {
-////			ac.manageUsers();
+//			ac.manageUsers();
+//			System.out.println(Database.getTeachers());
 ////		}
 ////		ac.manageUsers();
 ////		Database.getInstance().getOpenCourses().clear();
 //////		
-////		Course c1 = new Course("s", "s", 2, Faculty.DEF, "2/1");
+			Course c1 = new Course("s", "object-oriented programmin", 2, Faculty.DEF, "2/1");
+			Database.getCourses().add(c1);
+//			Database.databaseSave();
+			
+			System.out.println(Database.getCourses());
 ////		Course c2 = new Course("sr", "s", 2, Faculty.DEF, "2/2");
 ////		Course c3 = new Course("skl", "ssd", 3, Faculty.DEF, "2/1");
 ////		
@@ -93,8 +98,7 @@ public class testAdmin {
 ////		System.out.println(c2 + " " + c4);
 ////		Teacher t = new Teacher("asd", "fsdf", Gender.FEMALE, "2222-12-31", "sda", "2222-10-12", "", 5, Faculty.DEF, TeacherType.LECTOR);
 ////		
-////		StudyPeriod p = new StudyPeriod();
-////		OpenCourse oc1 = new OpenCourse(c1, p);
+			StudyPeriod p = new StudyPeriod();
 ////		oc1.addTeacher(t);
 ////		OpenCourse oc2 = new OpenCourse(c2, p);
 ////		OpenCourse oc3 = new OpenCourse(c3, p);
@@ -177,9 +181,31 @@ public class testAdmin {
 //		EmployeeControl ec = new EmployeeControl(e1);
 //		
 ////		ec.viewMessage();
-		AdminControl ac = new AdminControl();
-		ac.manageUsers();
-		System.out.println(Database.getUsers());
-		(new Session()).session();
+//		AdminControl ac = new AdminControl();
+//		ac.manageUsers();
+//		System.out.println(Database.getUsers());
+//		(new Session()).session();
+//		
+//		ManagerControl mc = new ManagerControl();
+//		mc.manageCourses();
+//		System.out.println(Database.getOpenCourses());
+			
+			AdminControl ac = new AdminControl();
+			ac.manageUsers();
+
+			Teacher[] t = new Teacher[2];
+			t[0] = Database.getTeachers().get(0);
+			t[1] = t[0];
+			OpenCourse oc1 = new OpenCourse(c1, p, t);
+			Database.getOpenCourses().add(oc1);
+//			System.out.println(Database.getUsers());
+			
+			StudentControl sc = new StudentControl(Database.getUsers().get(1));
+//			System.out.println(sc.getStudent());
+			sc.courseRegistration();
+			Database.databaseSave();
+			
+			System.out.println(Database.getStudents().get(0).getRegisteredCourses());
+//			new Session().session();
 	}
 }

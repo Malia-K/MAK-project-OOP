@@ -172,7 +172,6 @@ public class AddUsers{
 			User newUser = create(action);
 			if(newUser != null && !Database.getUsers().contains(newUser)) {
 				Database.addUser(newUser);
-				Database.databaseSave();
 			}
 		} catch (NumberFormatException nfe) {
 			System.err.println("Invalid input, please, try again!");

@@ -37,7 +37,7 @@ public class AdminControl extends EmployeeControl {
     }
     
     public void manageUsers() throws NumberFormatException, IOException {
-    	System.out.println("Choose action:\n\t0. Return to menu\n\t1. Add User\n\t2. Update User\n\t3. Delete User");
+    	System.out.println("Choose action:\n\t0. Return to menu\n\t1. Add User\n\t2. Delete User");
     	try {
     		int action = Integer.parseInt(br.readLine());
 	    	if(action == 0) {
@@ -47,19 +47,17 @@ public class AdminControl extends EmployeeControl {
 	    	else if(action == 1) {
 	    		(new AddUsers(getAdmin())).createUser();
 	    	}
-	    	else if(action == 2) {}
-	    	else if(action == 3) {
+	    	else if(action == 2) {
 	    		deleteUser();
 	    	}
 	    	else {
 	    		System.err.println("Sorry, this option doesn't exist\nPlease, try again!");
-	    		manageUsers();
 	    	}
 			Database.databaseSave();
     	} catch (NumberFormatException nfe) {
 			System.err.println("Invalid input, please, try again!");
-			manageUsers();
 		}
+		manageUsers();
     }
 
 }

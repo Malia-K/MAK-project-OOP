@@ -1,10 +1,15 @@
 package Controller;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 import Model.*;
 
 
 public class StudentControl extends UserControl /*implements canSeeOrganizations, canViewCourses, canMakeRequest, viewCourseData, hasSchedule*/ {
-	
+	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    
 	public StudentControl() {}
 	
 	public StudentControl(User user) {
@@ -16,7 +21,20 @@ public class StudentControl extends UserControl /*implements canSeeOrganizations
 	}
 	
 	
-	public void CourseRegistration() {}
+	public void courseRegistration() throws IOException, CloneNotSupportedException {
+		System.out.println("choose group id of available course");
+		viewRegistrationCourses();
+		
+		String id = br.readLine();
+		
+		for(OpenCourse oc: Database.getOpenCourses()) {
+			if(oc.getGroupId().equals(id)) {
+				if(oc.getCourse().getCredits() + getStudent().getCreditsTaken() < getStudent().getMaxAllowedCredits() && !getStudent().getRegisteredCourses().containsKey(oc)) {
+					getStudent().addCourse(oc);
+				}
+			}
+		}
+	}
 	
 	
 	public void rateTeacher() {}
@@ -33,8 +51,7 @@ public class StudentControl extends UserControl /*implements canSeeOrganizations
     									t.getId(), fullName, t.getFaculty(), t.getTeacherType());
             System.out.println(Format.formatRow(str1));
     	}
-    	System.out.println(
-Format.formatDiv("g-----------h---------------------------h----------h--------------i"));
+    	System.out.println(Format.formatDiv("g-----------h---------------------------h----------h--------------i"));
 	}
 	
 	public void viewTranscipt() {}
@@ -47,9 +64,22 @@ Format.formatDiv("g-----------h---------------------------h----------h----------
 	
 	public void makeRequest() {}
 	
-	public void viewCourses() {}
+	public void viewRegistrationCourses() {
+		String list = "";
+        list += Format.formatDiv("a-----------b---------------------------b----------b--------------c\n");
+        list += Format.formatRow("|    ID     |        COURSE NAME        | FACULTY  |    LECTOR    |\n");
+        list += Format.formatDiv("d-----------e---------------------------e----------e--------------f\n");
+        System.out.print(list);
+    	for(OpenCourse t : Database.getOpenCourses()) {
+    		String teacherName = t.getTeachers()[0].getFirstName().charAt(0) + " "+ t.getTeachers()[0].getLastName();
+    		String str1 = String.format("| %9s | %-25s | %-8s |%-14s |", 
+    									t.getGroupId(), t.getCourse().getName(), t.getCourse().getFaculty(), teacherName);
+            System.out.println(Format.formatRow(str1));
+    	}
+    	System.out.println(Format.formatDiv("g-----------h---------------------------h----------h--------------i"));	
+	}
 	
-	public void viewMainPage() {
+	public void viewMainPage() throws InterruptedException {
 	      super.viewMainPage();
 	      System.out.print(  " 4.  Student schedule \n"
 	              + " 5.  Transcript \n"
