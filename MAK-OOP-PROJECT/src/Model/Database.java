@@ -5,7 +5,7 @@ import java.util.Vector;
 
 /**
 	 * 
-	 * The class contains all the data used in the system
+	 * The class contains all the data used in the system.
 	 * 
 	 */
 public final class Database implements Serializable{
@@ -50,7 +50,7 @@ public final class Database implements Serializable{
     
  /**
 	  * 
-	  * returns instance of class Database
+	  * Returns instance of class Database.
 	  * 
 	  */
     public static Database getInstance() {
@@ -59,7 +59,7 @@ public final class Database implements Serializable{
     
 /**
 	 * 
-	 * returns vector of all users
+	 * Returns vector of all users.
 	 * 
 	 */
     public static Vector <User> getUsers(){
@@ -68,7 +68,7 @@ public final class Database implements Serializable{
     
 /**
 	 * 
-	 * returns vector of all students
+	 * Returns vector of all students.
 	 * 
 	 */
     public static Vector <Student> getStudents() {
@@ -84,7 +84,7 @@ public final class Database implements Serializable{
     
   /**
 	   * 
-	   * returns vector of all admins
+	   * Returns vector of all admins.
 	   * 
 	   */
     public static Vector <Admin> getAdmins(){
@@ -100,7 +100,7 @@ public final class Database implements Serializable{
     
 /**
 	 * 
-	 * returns vector of all librarians
+	 * Returns vector of all librarians.
 	 * 
 	 */
     public static Vector <Librarian> getLibrarians(){
@@ -117,7 +117,7 @@ public final class Database implements Serializable{
     
 /**
 	 * 
-	 * returns vector of all managers
+	 * Returns vector of all managers.
 	 * 
 	 */
     public static Vector <Manager> getManagers(){
@@ -134,7 +134,7 @@ public final class Database implements Serializable{
     
 /**
 	 * 
-	 * returns vector of all teachers
+	 * Returns vector of all teachers.
 	 * 
 	 */
     public static Vector <Teacher> getTeachers(){
@@ -150,7 +150,7 @@ public final class Database implements Serializable{
 
 /**
 	 * 
-	 * returns vector of all books
+	 * Returns vector of all books.
 	 * 
 	 */
 	public static Vector<Book> getLibrary() {
@@ -159,7 +159,7 @@ public final class Database implements Serializable{
 
 /**
 	 * 
-	 * returns vector of all courses
+	 * Returns vector of all courses.
 	 * 
 	 */
 	public static Vector<Course> getCourses() {
@@ -168,7 +168,7 @@ public final class Database implements Serializable{
 	
 /**
 	 * 
-	 * returns vector of all organizations
+	 * Returns vector of all organizations.
 	 * 
 	 */
 	public static Vector<Organization> getOrganizations() {
@@ -177,7 +177,7 @@ public final class Database implements Serializable{
 
 /**
 	 * 
-	 * returns vector of all logs
+	 * Returns vector of all logs.
 	 * 
 	 */
 	public static Vector<String> getLogs() {
@@ -186,7 +186,7 @@ public final class Database implements Serializable{
 	
 /**
 	 * 
-	 * returns vector of all reports
+	 * Returns vector of all reports.
 	 * 
 	 */
 	public static Vector<Report> getReports() {
@@ -195,7 +195,7 @@ public final class Database implements Serializable{
 
 /**
 	 * 
-	 * returns vector of all news
+	 * Returns vector of all news.
 	 * 
 	 */
 	public static Vector <New> getNews() {
@@ -204,7 +204,7 @@ public final class Database implements Serializable{
 	
 /**
 	 * 
-	 * returns vector of all messages
+	 * Returns vector of all messages.
 	 * 
 	 */
 	public static Vector <Message> getMessages() {
@@ -213,7 +213,7 @@ public final class Database implements Serializable{
 	
 /**
 	 * 
-	 * returns vector of all open courses
+	 * Returns vector of all open courses.
 	 * 
 	 */
 	public static Vector <OpenCourse> getOpenCourses() {
@@ -222,7 +222,7 @@ public final class Database implements Serializable{
 	
 /**
 	 * 
-	 * adds news to database
+	 * Adds news to database.
 	 * 
 	 */
 	public static void addNews(New n) {
@@ -231,7 +231,7 @@ public final class Database implements Serializable{
 	
 /**
 	 * 
-	 * add user to database
+	 * Adds user to database.
 	 * 
 	 */
     public static void addUser(User u) {
@@ -240,7 +240,7 @@ public final class Database implements Serializable{
 
 /**
 	 * 
-	 * method that saves database instance to the file
+	 * Method that saves database instance to the file.
 	 * @throws IOException
 	 */
     public static void databaseSave() throws IOException {
@@ -255,7 +255,7 @@ public final class Database implements Serializable{
     
 /**
 	 * 
-	 * reads saved data from the file and returns it to database
+	 * Reads saved data from the file and returns it to database.
 	 * @throws Exception
 	 */
     public static Database readDatabase() throws Exception{
