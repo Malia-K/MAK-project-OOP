@@ -5,7 +5,7 @@ import enums.Semester;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-public class StudyPeriod implements Serializable {
+public class StudyPeriod implements Serializable, Comparable<StudyPeriod>, Cloneable {
 	private static final long serialVersionUID = 1L;
 	private Semester semester;
 	private int year;
@@ -39,6 +39,28 @@ public class StudyPeriod implements Serializable {
 
 	public void setYear(int year) {
 		this.year = year;
+	}
+	
+	public int compareTo(StudyPeriod o) {
+		if(year == o.getYear()) {
+			return semester.compareTo(o.getSemester());
+		}
+		if(year > o.getYear()) return 1;
+		return -1;
+	}
+	
+	public boolean equals(Object o) {
+		if(this == o) return true;
+		if(o == null) return false;
+		if(this.getClass() != o.getClass()) return false;
+		
+		StudyPeriod sp = (StudyPeriod) o;
+		return year == sp.getYear() && semester.equals(sp.getSemester());
+	}
+	
+	public Object clone() throws CloneNotSupportedException {
+		StudyPeriod sp = (StudyPeriod) super.clone();
+		return sp;
 	}
 	
 	public String toString() {

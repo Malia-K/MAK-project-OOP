@@ -42,14 +42,24 @@ public final class Database implements Serializable{
     
     private Database() {}
     
+    
+    /*
+     * returns instance of class Database
+     */
     public static Database getInstance() {
     	return instance;
     }
     
+    /*
+     * returns vector of all users
+     */
     public static Vector <User> getUsers(){
     	return instance.users;
     }
     
+    /*
+     * returns vector of all students
+     */
     public static Vector <Student> getStudents() {
     	Vector <Student> students = new Vector <Student>();
     	for(User u: instance.users) {
@@ -61,17 +71,9 @@ public final class Database implements Serializable{
     	return students;
     }
     
-    public static Vector <Employee> getEmployees(){
-    	Vector <Employee> employees = new Vector <Employee>();
-    	for(User u: instance.users) {
-    		if(u instanceof Employee) {
-    			Employee e = (Employee) u;
-    			employees.add(e);
-    		}
-    	}
-    	return employees;
-    }
-    
+    /*
+     * returns vector of all admins
+     */
     public static Vector <Admin> getAdmins(){
     	Vector <Admin> admins = new Vector <Admin>();
     	for(User u: instance.users) {
@@ -83,6 +85,9 @@ public final class Database implements Serializable{
     	return admins;
     }
     
+    /*
+     * returns vector of all librarians
+     */
     public static Vector <Librarian> getLibrarians(){
     	Vector <Librarian> librarians = new Vector <Librarian>();
     	for(User u: instance.users) {
@@ -94,6 +99,10 @@ public final class Database implements Serializable{
     	return librarians;
     }
       
+    
+    /*
+     * returns vector of all managers
+     */
     public static Vector <Manager> getManagers(){
     	Vector <Manager> managers = new Vector <Manager>();
     	for(User u: instance.users) {
@@ -105,6 +114,10 @@ public final class Database implements Serializable{
     	return managers;
     }
     
+    
+    /*
+     * returns vector of all teachers
+     */
     public static Vector <Teacher> getTeachers(){
     	Vector <Teacher> teachers = new Vector <Teacher>();
     	for(User u: instance.users) {
@@ -116,48 +129,79 @@ public final class Database implements Serializable{
     	return teachers;
     }
 
+    /*
+     * returns vector of all books
+     */
 	public static Vector<Book> getLibrary() {
 		return instance.library;
 	}
 
-
+	/*
+     * returns vector of all courses
+     */
 	public static Vector<Course> getCourses() {
 		return instance.courses;
 	}
-
+	
+	/*
+     * returns vector of all organizations
+     */
 	public static Vector<Organization> getOrganizations() {
 		return instance.organizations;
 	}
 
+	/*
+     * returns vector of all logs
+     */
 	public static Vector<String> getLogs() {
 		return instance.logs;
 	}
-
+	
+	/*
+     * returns vector of all reports
+     */
 	public static Vector<Report> getReports() {
 		return instance.reports;
 	}
 
-    
+	/*
+     * returns vector of all news
+     */
 	public static Vector <New> getNews() {
 		return instance.news;
 	}
 	
+	/*
+     * returns vector of all messages
+     */
 	public static Vector <Message> getMessages() {
 		return instance.messages;
 	}
-
+	
+	/*
+     * returns vector of all open courses
+     */
 	public static Vector <OpenCourse> getOpenCourses() {
 		return instance.openCourses;
 	}
 	
+	/*
+	 * adds news to database
+	 */
 	public static void addNews(New n) {
 		getInstance().news.add(n);
 	}
 	
+	/*
+	 * add user to database
+	 */
     public static void addUser(User u) {
     	getInstance().users.add(u);
     }
 
+    /*
+     * method that saves database instance to the file
+     */
     public static void databaseSave() throws IOException {
     	FileOutputStream fos = new FileOutputStream(Connect.getInstance().getPath());
 		ObjectOutputStream oos = new ObjectOutputStream(fos);
@@ -167,6 +211,10 @@ public final class Database implements Serializable{
 		oos.close();
     }
     
+    
+    /*
+     * reads saved data from the file and returns it to database
+     */
     public static Database readDatabase() throws Exception{
 		FileInputStream fis = new FileInputStream(Connect.getInstance().getPath());
 		ObjectInputStream ois = new ObjectInputStream(fis);

@@ -3,6 +3,7 @@ import java.io.BufferedReader;
 import Model.Book;
 import java.util.Vector;
 import Model.Librarian;
+import Model.User;
 
 public class LibrarianControl extends EmployeeControl {
 	BufferedReader br = new BufferedReader(New InputStreamReader(System.in));

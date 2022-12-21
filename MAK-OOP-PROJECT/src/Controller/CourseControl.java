@@ -23,11 +23,13 @@ public class CourseControl {
 		activeManager = m;
 	}
 	
+	
+	
 	private Vector <Course> prereqs(String ids) {
 		Vector <Course> prereqs = new Vector <Course>();
 		st = new StringTokenizer(ids, " ");
 		while(st.hasMoreTokens()) {
-			for(Course c: Database.getInstance().getCourses()) {
+			for(Course c: Database.getCourses()) {
 				if(c.getId().equals(st.nextToken())) {
 					prereqs.add(c);
 				}
@@ -64,14 +66,11 @@ public class CourseControl {
 				prereqsId += st.nextToken() + " ";
 			}
 			
-			System.out.println(prereqsId + "sdsd");
-			
 			if(prereqsId.length() != 0) {
 				Vector <Course> prerequisites = prereqs(prereqsId);
 				
 				return new Course(id, name, credits, Faculty.valueOf(faculty), formula, prerequisites);
 			}
-			
 			return new Course(id, name, credits, Faculty.valueOf(faculty), formula);
 			
 		} catch(NumberFormatException nfe) {
@@ -96,9 +95,9 @@ public class CourseControl {
 		if(goBack(id)) {
 			return;
 		}
-		for(Course c: Database.getInstance().getCourses()) {
+		for(Course c: Database.getCourses()) {
 			if(c.getId().equals(id)) {
-				Database.getInstance().getCourses().remove(c);
+				Database.getCourses().remove(c);
 				System.out.println("Course " + id + " deleted");
 				return;
 			}

@@ -24,9 +24,6 @@ public class Employee extends User {
 	}
 	
 	public int compareTo(User o) {
-		if(super.compareTo(o) == 0) {
-			if(experience)
-		}
 		return super.compareTo(o);
 	}
 	

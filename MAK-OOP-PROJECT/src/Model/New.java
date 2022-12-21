@@ -1,21 +1,23 @@
 package Model;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.StringTokenizer;
 
-public class New{
+public class New implements Serializable, Comparable<New>{
+	private static final long serialVersionUID = 1L;
 	private String title;
 	private User author;
-	private LocalDateTime time;
+	private String time;
 	private String description;
 	
 		
 	public New(String title, User author, String description) {
 		this.title = title;
 		this.author = author;
-		this.time = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
+		this.time = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES).toString().replace('T', ' ');
 		this.description = description;
 	}
 	
@@ -32,7 +34,7 @@ public class New{
 	}
 
 	public String getTime() {
-		return time.toString().replace('T', ' ');
+		return time;
 	}
 
 	public String getDescription() {
@@ -42,60 +44,37 @@ public class New{
 	public void setDescription(String description) {
 		this.description = description;
 	}
-		
-	public void printNew() {
-		System.out.print(" ========  " + this.getTitle() + "  ========" + "\n ");
-		System.out.println(this.getDescription() + "\n");
-		System.out.println(" ".repeat(15) + this.getAuthor().getFirstName() + " " + this.getAuthor().getLastName() + "  "+ this.getTime());
-		System.out.println(Format.formatDiv( "-".repeat(45) + '\n'));
+
+	public int compareTo(New o) {
+		return time.compareTo(o.getTime());
 	}
 	
-	public StringTokenizer getFormattedString(String s, String delimiter, int size) {
-		StringTokenizer st = new StringTokenizer(s, delimiter);
-		String formatted = new String();
-		String temp = new String();
-		while(st.hasMoreTokens()) {
-			String token = st.nextToken();
-			if(temp.length() + token.length() < size) {
-				temp += token + " "; 
-			}
-			else {
-				formatted += temp + "\n";
-				temp = token + " ";
-			}
-			if(!st.hasMoreTokens()) {
-				formatted += temp;
-			}
-		}
-		return new StringTokenizer(formatted, "\n");
+	
+	public boolean equals(Object o) {
+		if(this == o) return true;
+		if(o == null) return false;
+		if(this.getClass() != o.getClass()) return false;
+		
+		New nw = (New) o;
+		return title.equals(nw.getTitle()) && author.equals(nw.getAuthor()) && time.equals(nw.getTime()) && description.equals(nw.getDescription());
 	}
 	
 	public String toString() {
 		String news = new String();
-		StringTokenizer st = getFormattedString(title, " ", 35);
-		int maxLength = 0;
+		StringTokenizer st = Format.getFormattedString(title, " ", 35);
 		while(st.hasMoreTokens()) {
 			String token = st.nextToken();
-
-			maxLength = Math.max(token.length(), maxLength);
-			int s = 49 - maxLength;
-			news += " " + "=".repeat(10) + " ".repeat(4) + token + " ".repeat((11 + 10 + s + s + token.length()) - s - token.length()) + "=".repeat(10) + "\n";
+			news += " " + "=".repeat(10) + " ".repeat(4) + token + " ".repeat(35 - token.length()) + "=".repeat(10) + "\n";
 		}
-		news +=  Format.formatRow("|\n");
-		st = getFormattedString(description, " ", 54);
+		
+		news += Format.formatRow("|\n");
+		st = Format.getFormattedString(description, " ", 54);
+		
 		while(st.hasMoreTokens()) {
 			news += Format.formatRow("|") + " ".repeat(4) + st.nextToken() + "\n";
 		}
+		news += Format.formatRow("|\n" + "|" + " ".repeat(57 - getTime().length()) + getTime());
 		
-//		for(int i = 0; i < description.length(); i++) {
-//			if(i + 54 > description.length()) {
-//				news += Format.formatRow("|") + " ".repeat(4) + description.substring(i, description.length());
-//			}
-//			else {
-//				news += Format.formatRow("|") + " ".repeat(4) + description.substring(i, i + 54) + "\n";
-//			}
-//			i += 53;
-//		}
 		return news;
 	}
 }

@@ -1,15 +1,17 @@
 package Model;
 
+import java.time.LocalDateTime;
+
 import enums.*;
 
 public class Lesson {
     private OpenCourse course;
     private Days day;
-    private Time startTime;
+    private LocalDateTime startTime;
     private String room;
     private Format format;
     private LessonType lessonType;
-    private Time finishTime;
+    private LocalDateTime finishTime;
 
     public OpenCourse getCourse() {
         return this.course;
@@ -27,11 +29,11 @@ public class Lesson {
         this.day = day;
     }
     
-    public Time getStartTime() {
+    public LocalDateTime getStartTime() {
         return this.startTime;
     }
 
-    public void setStartTime(Time startTime) {
+    public void setStartTime(LocalDateTime startTime) {
         this.startTime = startTime;
     }
     
@@ -59,11 +61,11 @@ public class Lesson {
         this.lessonType = lessonType;
     }
     
-    public Time getFinishTime() {
+    public LocalDateTime getFinishTime() {
         return this.finishTime;
     }
     
-    public void setFinishTime(Time finishTime) {
+    public void setFinishTime(LocalDateTime finishTime) {
         this.finishTime = finishTime;
     }  
 }

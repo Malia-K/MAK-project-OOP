@@ -54,7 +54,7 @@ public  class User implements Comparable<User>, Serializable, Cloneable {
 
 	public LocalDate getBirthDate() {
 		return birthDate;
-	}
+	}	
 
 	public void setBirthDate(LocalDate birthDate) {
 		this.birthDate = birthDate;
@@ -83,43 +83,17 @@ public  class User implements Comparable<User>, Serializable, Cloneable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	public void viewMainPage() {
-	    String header = "";
-	      
-	      header += formatDiv("a" + "-".repeat(43) + "c" +"\n");
-	      header += formatRow("|"+ " ".repeat(16) +  "Operations:" + " ".repeat(16) + "|\n");
-	      header += formatDiv("g" +"-".repeat(43) + "i"+ '\n');
-	      System.out.print(header);
-	      System.out.print(  " 1.  News \n"
-	               + " 2.  User's information \n"
-	               + " 3.  Library \n");
-	  }
-	  
-	  
-	  
-	   public static String formatRow(String str){
-	        return str.replace('|', '\u2502');
-	    }
-
-	    public static String formatDiv(String str){
-	        return str.replace('a', '\u250c')
-	                .replace('b', '\u252c')
-	                .replace('c', '\u2510')
-	                .replace('d', '\u251c')
-	                .replace('e', '\u253c')
-	                .replace('f', '\u2524')
-	                .replace('g', '\u2514')
-	                .replace('h', '\u2534')
-	                .replace('i', '\u2518')
-	                .replace('-', '\u2500');
-	    }
 
 	public int compareTo(User o) {
 		if(lastName.compareTo(o.getLastName()) == 0) {
 			return firstName.compareTo(o.getFirstName());
 		}
 		return lastName.compareTo(o.getLastName());
+	}
+	
+	public Object clone() throws CloneNotSupportedException {
+		User u = (User) super.clone();
+		return u;
 	}
 	
 	public boolean equals(Object o) {
