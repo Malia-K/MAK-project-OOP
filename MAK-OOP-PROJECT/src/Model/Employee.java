@@ -39,7 +39,7 @@ public class Employee extends User {
     /**
      * 
      * Returns the employee's experience.
-     * @return
+     * @return int
      */
     public int getExperience() {
 		return experience;

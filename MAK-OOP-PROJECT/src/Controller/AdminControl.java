@@ -35,7 +35,7 @@ public class AdminControl extends EmployeeControl {
 	/**
 	 * 
 	 * Returns the admin.
-	 * @return
+	 * @return Admin
 	 */
     public Admin getAdmin() {
         return (Admin) this.getUser();

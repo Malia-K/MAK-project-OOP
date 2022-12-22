@@ -35,7 +35,7 @@ public class UserControl{
 	/**
 	 * 
 	 * Returns the user.
-	 * @return
+	 * @return User
 	 */
     public User getUser() {
     	return this.user;
@@ -51,7 +51,7 @@ public class UserControl{
      * Method describing user verification in the system.
      * @param login
      * @param password
-     * @return
+     * @return User
      */
     public User verify(String login, String password) {   	
     	for(User u : Database.getUsers()) {

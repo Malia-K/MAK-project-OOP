@@ -15,7 +15,7 @@ public class Format {
 	 * 
 	 * Replacing vertical characters with unicode.
 	 * @param str
-	 * @return
+	 * @return String
 	 */
 	 public static String formatRow(String str){
 	        return str.replace('|', '\u2502');
@@ -25,7 +25,7 @@ public class Format {
 	  * 
 	  * Replacing horizontal characters with unicode.
 	  * @param str
-	  * @return
+	  * @return String
 	  */
 	 public static String formatDiv(String str){
 		 return str.replace('a', '\u250c')
@@ -45,7 +45,7 @@ public class Format {
 	 * @param s
 	 * @param delimiter
 	 * @param size
-	 * @return
+	 * @return String
 	 */
 	public static StringTokenizer getFormattedString(String s, String delimiter, int size) {
 		StringTokenizer st = new StringTokenizer(s, delimiter);
@@ -70,7 +70,7 @@ public class Format {
 		 * 
 		 * A method that takes a string as a date and checks if it matches the format.
 		 * @param date
-		 * @return
+		 * @return boolean
 		 */
 	public static boolean checkDateFormat(String date) {
 		Pattern p = Pattern.compile("^[0-9]{4}-(1[0-2]|0[1-9])-(3[01]|[12][0-9]|0[1-9])$");

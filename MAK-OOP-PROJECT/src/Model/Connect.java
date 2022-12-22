@@ -24,7 +24,7 @@ public final class Connect {
 	/**
 	 * 
 	 * Returns path to the data.ser. 
-	 * @return
+	 * @return String
 	 */
 	public String getPath() {
 		return getInstance().path;
@@ -33,7 +33,7 @@ public final class Connect {
 	/**
 	 * 
 	 * Returns instance of class Connect.
-	 * @return
+	 * @return Connect
 	 */
 	public static Connect getInstance() {
 		return instance;

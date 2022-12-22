@@ -61,7 +61,7 @@ public  class User implements Comparable<User>, Serializable, Cloneable {
     /**
      * 
      * Returns the user's first name.
-     * @return
+     * @return String
      */
 
 	public String getFirstName() {
@@ -82,7 +82,7 @@ public  class User implements Comparable<User>, Serializable, Cloneable {
 	/**
 	 * 
 	 * Returns the user's last name.
-	 * @return
+	 * @return String
 	 */
 	public String getLastName() {
 		return lastName;
@@ -101,7 +101,7 @@ public  class User implements Comparable<User>, Serializable, Cloneable {
 	/**
 	 * 
 	 * Returns the user's gender.
-	 * @return
+	 * @return Gender
 	 */
 	public Gender getGender() {
 		return gender;
@@ -119,7 +119,7 @@ public  class User implements Comparable<User>, Serializable, Cloneable {
 	/**
 	 * 
 	 * Returns the user's birth date.
-	 * @return
+	 * @return LocalDate
 	 */
 	public LocalDate getBirthDate() {
 		return birthDate;
@@ -146,7 +146,7 @@ public  class User implements Comparable<User>, Serializable, Cloneable {
 	/**
 	 * 
 	 * Returns the user's enrolled date.
-	 * @return
+	 * @return LocalDate
 	 */
 	public LocalDate getEnrolledDate() {
 		return enrolled;
@@ -155,7 +155,7 @@ public  class User implements Comparable<User>, Serializable, Cloneable {
 	/**
 	 * 
 	 * Returns the user's ID.
-	 * @return
+	 * @return String
 	 */
 	public String getId() {
 		return id;
@@ -164,7 +164,7 @@ public  class User implements Comparable<User>, Serializable, Cloneable {
 	/**
 	 * 
 	 * Returns the user's login.
-	 * @return
+	 * @return String
 	 */
 	public String getLogin() {
 		return login;
@@ -173,7 +173,7 @@ public  class User implements Comparable<User>, Serializable, Cloneable {
 	/**
 	 * 
 	 * Returns the user's password.
-	 * @return
+	 * @return String
 	 */
 	public String getPassword() {
 		return password;
@@ -234,7 +234,7 @@ public  class User implements Comparable<User>, Serializable, Cloneable {
 	 * 
 	 * Password hashing.
 	 * @param password
-	 * @return
+	 * @return int
 	 */
 	public static int hashCode(String password) {
 		return Objects.hash(password);
