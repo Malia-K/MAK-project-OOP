@@ -1,6 +1,7 @@
 package Model;
 
 import java.io.*;
+import java.util.HashMap;
 import java.util.Vector;
 
 public final class Database implements Serializable{
@@ -17,6 +18,7 @@ public final class Database implements Serializable{
     private Vector <New> news;
     private Vector <Message> messages;
     private Vector <OpenCourse> openCourses;
+    private HashMap<User, Book> readers;
     
     static {
     	if(new File(Connect.getInstance().getPath()).exists()) {
@@ -38,6 +40,7 @@ public final class Database implements Serializable{
     	news = new Vector<New>();
     	messages = new Vector<Message>();
     	openCourses = new Vector <OpenCourse>();
+    	readers = new HashMap<User, Book>();
     }
     
     private Database() {}
@@ -184,6 +187,15 @@ public final class Database implements Serializable{
 	public static Vector <OpenCourse> getOpenCourses() {
 		return instance.openCourses;
 	}
+	
+	
+	/*
+     * returns vector of all readers
+     */
+	public static HashMap<User, Book> getReaders(){
+		return instance.readers;
+	}
+	
 	
 	/*
 	 * adds news to database
